@@ -1,0 +1,28 @@
+# Build outputs and intermediate binaries
+build/
+output/
+CustomHinduWidget/build/
+CustomHinduWidget/output/
+*.apk
+*.dex
+*.class
+classes.args
+resources.zip
+unaligned.apk
+aligned.apk
+
+# IDE & Editor files
+.idea/
+.gradle/
+*.iml
+local.properties
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Keystore certificates (keep if test key, or ignore production credentials)
+# keystore/*.jks

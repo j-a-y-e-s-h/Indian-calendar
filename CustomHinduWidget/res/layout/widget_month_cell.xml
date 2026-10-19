@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cell_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="50dp"
+    android:paddingLeft="1.5dp"
+    android:paddingRight="1.5dp"
+    android:paddingTop="1dp"
+    android:paddingBottom="2.5dp"
+    android:background="@drawable/cell_transparent">
+
+    <!-- Height anchor: enforces exact row height in GridView RemoteViews -->
+    <FrameLayout
+        android:id="@+id/cell_height_guide"
+        android:layout_width="1px"
+        android:layout_height="53dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="invisible" />
+
+    <!-- Top-Left: Realistic Moon (Scales dynamically: 34dp - 44dp) -->
+    <ImageView
+        android:id="@+id/cell_moon"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/moon_real_01" />
+
+    <!-- Hindu Tithi Date Number on Moon (top half) -->
+    <TextView
+        android:id="@+id/cell_tithi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:gravity="center_horizontal"
+        android:textColor="#FFE18C"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:includeFontPadding="false"
+        android:shadowColor="#FF000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="2.0"
+        android:text="8" />
+
+    <!-- Hindu Month Name (e.g. Ashwin / Bhadrapada) on Moon (lower half) -->
+    <TextView
+        android:id="@+id/cell_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cell_tithi"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="0dp"
+        android:textColor="#F0DFC6"
+        android:textSize="7.8sp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:includeFontPadding="false"
+        android:shadowColor="#FF000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.5"
+        android:shadowRadius="2.0"
+        android:text="Ashwin" />
+
+    <!-- Gregorian Date Number in Bottom-Right Corner (Bold, Prominent, Unclipped) -->
+    <TextView
+        android:id="@+id/cell_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="2.5dp"
+        android:gravity="end|bottom"
+        android:textColor="#F5F5F5"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:includeFontPadding="false"
+        android:shadowColor="#FF000000"
+        android:shadowDx="1.0"
+        android:shadowDy="1.0"
+        android:shadowRadius="1.5"
+        android:text="19" />
+
+    <!-- Compact Mode: Bottom-Left Tag (Festival e.g. 'Durga\nAshtami' or Chandra Rashi e.g. 'Dhanu') -->
+    <TextView
+        android:id="@+id/cell_extra_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/cell_day"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="2.5dp"
+        android:textColor="#FFD778"
+        android:textSize="6.8sp"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:singleLine="false"
+        android:lineSpacingMultiplier="0.85"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:shadowColor="#FF000000"
+        android:shadowDx="1.0"
+        android:shadowDy="1.0"
+        android:shadowRadius="1.5"
+        android:text="Durga Ash." />
+
+    <!-- Spacious Mode: Details below Moon (Rashi • Nakshatra and Festival) -->
+    <LinearLayout
+        android:id="@+id/cell_spacious_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cell_moon"
+        android:layout_above="@id/cell_day"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_marginTop="1dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cell_rashi_nakshatra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_vertical"
+            android:textColor="#BDB6AB"
+            android:textSize="7.5sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:text="Makar • U. Ash." />
+
+        <TextView
+            android:id="@+id/cell_occasion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:gravity="start|center_vertical"
+            android:textColor="#FFD778"
+            android:textSize="7.5sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:text="Durga Ashtami" />
+    </LinearLayout>
+
+</RelativeLayout>

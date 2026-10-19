@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Top App Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/md_theme_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/app_bar_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vedic Panchang &amp; Kundali"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- City Selector Chip -->
+        <LinearLayout
+            android:id="@+id/btn_city_chip"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="@drawable/m3_chip_surface"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="8dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                android:id="@+id/txt_app_bar_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="2dp"
+                android:text="Pune, IN"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_arrow_drop_down" />
+        </LinearLayout>
+
+        <!-- Today Jump Button -->
+        <ImageButton
+            android:id="@+id/btn_today_jump"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/m3_chip_surface"
+            android:src="@drawable/ic_today"
+            android:tint="@color/md_theme_primary" />
+
+        <!-- Share Button -->
+        <ImageButton
+            android:id="@+id/btn_share_app_bar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/m3_chip_surface"
+            android:src="@drawable/ic_share"
+            android:tint="@color/md_theme_primary" />
+
+        <!-- Settings & Themes Button -->
+        <ImageButton
+            android:id="@+id/btn_settings_app_bar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/m3_chip_surface"
+            android:src="@drawable/ic_settings"
+            android:tint="@color/md_theme_primary" />
+    </LinearLayout>
+
+    <!-- Date Navigation Header Strip -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/md_theme_surfaceContainerLow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <ImageButton
+            android:id="@+id/btn_prev_day"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_chevron_left"
+            android:tint="@color/md_theme_onSurfaceVariant" />
+
+        <LinearLayout
+            android:id="@+id/btn_date_picker_trigger"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_header_gregorian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday, 19 October 2026"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_header_hindu_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ashwina Shukla Ashtami"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_next_day"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_chevron_right"
+            android:tint="@color/md_theme_onSurfaceVariant" />
+    </LinearLayout>
+
+    <!-- Main Content Tab Container -->
+    <FrameLayout
+        android:id="@+id/container_tab_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Material 3 Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/md_theme_surfaceContainer"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+
+        <!-- Tab 1: Panchang -->
+        <LinearLayout
+            android:id="@+id/nav_item_panchang"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/nav_pill_panchang"
+                android:layout_width="56dp"
+                android:layout_height="28dp"
+                android:background="@drawable/m3_pill_indicator">
+
+                <ImageView
+                    android:id="@+id/nav_icon_panchang"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_panchang" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/nav_txt_panchang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/tab_panchang"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Tab 2: Calendar -->
+        <LinearLayout
+            android:id="@+id/nav_item_calendar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/nav_pill_calendar"
+                android:layout_width="56dp"
+                android:layout_height="28dp"
+                android:background="@color/transparent">
+
+                <ImageView
+                    android:id="@+id/nav_icon_calendar"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_calendar" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/nav_txt_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/tab_calendar"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Tab 3: Choghadiya -->
+        <LinearLayout
+            android:id="@+id/nav_item_choghadiya"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/nav_pill_choghadiya"
+                android:layout_width="56dp"
+                android:layout_height="28dp"
+                android:background="@color/transparent">
+
+                <ImageView
+                    android:id="@+id/nav_icon_choghadiya"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_choghadiya" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/nav_txt_choghadiya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/tab_choghadiya"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Tab 4: Kundali -->
+        <LinearLayout
+            android:id="@+id/nav_item_kundali"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/nav_pill_kundali"
+                android:layout_width="56dp"
+                android:layout_height="28dp"
+                android:background="@color/transparent">
+
+                <ImageView
+                    android:id="@+id/nav_icon_kundali"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_kundali" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/nav_txt_kundali"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/tab_kundali"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Tab 5: More -->
+        <LinearLayout
+            android:id="@+id/nav_item_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/nav_pill_more"
+                android:layout_width="56dp"
+                android:layout_height="28dp"
+                android:background="@color/transparent">
+
+                <ImageView
+                    android:id="@+id/nav_icon_more"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_more" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/nav_txt_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/tab_more"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

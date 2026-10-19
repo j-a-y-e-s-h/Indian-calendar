@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
+
+    <!-- Month Navigation and Title Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btn_prev_month"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_chevron_left"
+            android:scaleType="centerInside"
+            android:contentDescription="Previous Month" />
+
+        <LinearLayout
+            android:id="@+id/header_title_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/widget_month_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OCTOBER 2026"
+                android:textColor="#F5F5F5"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.04"
+                android:singleLine="true"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/widget_hindu_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ashwina • Vikram Samvat 2083 • Surya: Kanya"
+                android:textColor="#F0DFC6"
+                android:textSize="10sp"
+                android:singleLine="true"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_next_month"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_chevron_right"
+            android:scaleType="centerInside"
+            android:contentDescription="Next Month" />
+    </LinearLayout>
+
+    <!-- Today / Month Highlight Banner -->
+    <TextView
+        android:id="@+id/widget_today_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="1.5dp"
+        android:paddingBottom="1.5dp"
+        android:background="@drawable/today_banner_bg"
+        android:text="TODAY: Shukla Saptami • Mula • Dhanu • Navratri Day 7"
+        android:textColor="#FFE18C"
+        android:textSize="9.5sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:singleLine="true" />
+
+    <!-- Weekday Header Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="1dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sun"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/mon"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tue"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/wed"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/thu"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fri"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sat"
+            android:textColor="#BDB6AB"
+            android:textSize="10.5sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- Calendar Grid -->
+    <GridView
+        android:id="@+id/calendar_grid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="7"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:listSelector="@android:color/transparent"
+        android:background="@android:color/transparent" />
+
+</LinearLayout>

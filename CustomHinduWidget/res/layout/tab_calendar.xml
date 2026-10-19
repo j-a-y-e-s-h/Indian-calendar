@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_calendar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
+
+        <!-- Month Navigation Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/m3_card_surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <ImageButton
+                android:id="@+id/cal_btn_prev_month"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_chevron_left"
+                android:tint="@color/md_theme_primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/cal_txt_month_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="October 2026"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cal_txt_hindu_month_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Ashwina - Kartika"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/cal_btn_next_month"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_chevron_right"
+                android:tint="@color/md_theme_primary" />
+        </LinearLayout>
+
+        <!-- Material 3 Segmented Toggle: Month Grid / Festivals & Vrats -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_pill_indicator"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/cal_toggle_grid"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/m3_card_highlight"
+                android:gravity="center"
+                android:text="📅 Month Grid"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cal_toggle_festivals"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="🎉 Festivals &amp; Vrats"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- CONTAINER 1: Calendar Grid Mode -->
+        <LinearLayout
+            android:id="@+id/cal_container_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Weekday Headers -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SUN"
+                    android:textColor="#E57373"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="MON"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="TUE"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="WED"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="THU"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="FRI"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="SAT"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 7x6 Calendar Grid -->
+            <TableLayout
+                android:id="@+id/cal_table_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:stretchColumns="*" />
+
+            <!-- Selected Date Panchang Preview Card -->
+            <LinearLayout
+                android:id="@+id/cal_card_selected_date_preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/m3_card_surface"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/cal_sel_txt_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Monday, 19 October 2026"
+                            android:textColor="@color/md_theme_onSurface"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/cal_sel_txt_tithi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="Ashwina Shukla Ashtami"
+                            android:textColor="@color/md_theme_primary"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/cal_sel_txt_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/m3_badge_gold"
+                        android:text="Navratri D8"
+                        android:textColor="#FFD54F"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/cal_sel_txt_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Nakshatra: Uttara Ashadha • Yoga: Dhriti • Rahu Kaal: 07:47 - 09:14 AM"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/cal_btn_view_panchang"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:backgroundTint="@color/md_theme_primary"
+                    android:text="View Full Day Panchang"
+                    android:textColor="@color/md_theme_onPrimary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- CONTAINER 2: Festivals & Vrats List Mode -->
+        <LinearLayout
+            android:id="@+id/cal_container_festivals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Category Filter Chips -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chip_fest_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@drawable/m3_card_highlight"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="All Festivals"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chip_fest_major"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/m3_pill_indicator"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="Major Festivals"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chip_fest_ekadashi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/m3_pill_indicator"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="Ekadashi"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chip_fest_pradosh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/m3_pill_indicator"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="Pradosh"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chip_fest_sankashti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/m3_pill_indicator"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="Sankashti"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/chip_fest_purnima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/m3_pill_indicator"
+                        android:gravity="center"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:text="Purnima / Amavasya"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Dynamic Festivals Card List -->
+            <LinearLayout
+                android:id="@+id/cal_festivals_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

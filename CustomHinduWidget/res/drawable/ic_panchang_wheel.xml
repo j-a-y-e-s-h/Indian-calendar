@@ -1,0 +1,44 @@
+<!--
+  Panchang wheel motif — the five limbs as concentric rings around a hub, with a single radial
+  hand marking "now", so it reads as a dial rather than as the spoked zodiac wheel of
+  ic_chakra_wheel (the two sit side by side in the front screen's utility row). Single-colour and
+  tintable: rendered through Compose's Icon, so the colours below are placeholders the tint overrides.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="#FFFFFF">
+
+    <!-- Outer rim -->
+    <path
+        android:pathData="M1.6,12 a10.4,10.4 0 1,0 20.8,0 a10.4,10.4 0 1,0 -20.8,0"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.4"
+        android:fillColor="#00000000" />
+
+    <!-- Inner rings (the limbs) -->
+    <path
+        android:pathData="M4.6,12 a7.4,7.4 0 1,0 14.8,0 a7.4,7.4 0 1,0 -14.8,0"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.0"
+        android:fillColor="#00000000" />
+    <path
+        android:pathData="M7.6,12 a4.4,4.4 0 1,0 8.8,0 a4.4,4.4 0 1,0 -8.8,0"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.0"
+        android:fillColor="#00000000" />
+
+    <!-- The "now" hand, hub outward through every ring -->
+    <path
+        android:pathData="M12,12 L17.35,6.65"
+        android:strokeColor="#000000"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round" />
+
+    <!-- Hub -->
+    <path
+        android:pathData="M10.4,12 a1.6,1.6 0 1,0 3.2,0 a1.6,1.6 0 1,0 -3.2,0"
+        android:fillColor="#000000" />
+</vector>

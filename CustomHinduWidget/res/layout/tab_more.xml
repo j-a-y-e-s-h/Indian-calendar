@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_more"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
+
+        <!-- Material 3 Settings & Japanese Color Palettes Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_palette"
+                    android:tint="@color/md_theme_primary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Appearance &amp; Settings (सेटिंग्स)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/more_txt_active_theme_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_gold"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="朱色・山吹"
+                    android:textColor="#FFD54F"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Sanzo Wada Japanese Color Harmonies (和の配色) &amp; Vedic Reckoning"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <!-- Active Palette Swatches Bar -->
+            <LinearLayout
+                android:id="@+id/more_active_palette_preview"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_card_highlight"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <View
+                    android:id="@+id/more_palette_swatch_1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/m3_pill_indicator"
+                    android:backgroundTint="#BF4A1D" />
+
+                <View
+                    android:id="@+id/more_palette_swatch_2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/m3_pill_indicator"
+                    android:backgroundTint="#FFB74D" />
+
+                <TextView
+                    android:id="@+id/more_txt_active_palette_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="朱色・山吹 (Shu-iro &amp; Yamabuki) • Vermilion &amp; Gold"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/more_btn_open_themes"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/md_theme_primary"
+                    android:text="🎨 Color Palettes"
+                    android:textColor="@color/md_theme_onPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/more_btn_open_settings"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/md_theme_secondaryContainer"
+                    android:text="⚙️ All Settings"
+                    android:textColor="@color/md_theme_onSecondaryContainer"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Hindu 60-Ghati Clock Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/m3_card_surface"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hindu Time (Ghati-Pala-Vipala)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="60 Ghatis from Sunrise (1 Ghati = 24 minutes)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <com.custom.hinduwidget.HinduClockView
+                android:id="@+id/more_hindu_clock_view"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_marginTop="12dp" />
+
+            <TextView
+                android:id="@+id/more_txt_hindu_time_digital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Ghati: 18 • Pala: 42 • Vipala: 15"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/more_txt_ishtakaal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ishta Kaal: 07h 28m since Sunrise"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="12sp" />
+
+            <!-- Time Converter Sub-Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/m3_card_highlight"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hindu Time Converter (घटी-पल परिवर्तक)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Enter clock time (HH:MM) to get Ghatis/Palas from today's sunrise"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edit_convert_clock_time"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/m3_card_surface"
+                        android:hint="e.g. 14:30"
+                        android:inputType="time"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textColorHint="@color/md_theme_onSurfaceVariant"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btn_convert_to_ghati"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginLeft="8dp"
+                        android:backgroundTint="@color/md_theme_primary"
+                        android:text="Convert"
+                        android:textColor="@color/md_theme_onPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_convert_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Result: 14:30 = Ghati 19, Pala 37, Vipala 30"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Daily Puja Sankalpa Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Daily Puja Sankalpa (दैनिक संकल्प)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_gold"
+                    android:text="Kaala &amp; Desha"
+                    android:textColor="#FFD54F"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Recited before worship &amp; rituals to declare cosmic time and place"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/more_txt_sankalpa_sanskrit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_card_highlight"
+                android:lineSpacingExtra="4dp"
+                android:padding="12dp"
+                android:text="ॐ विष्णुर्विष्णुर्विष्णुः, श्रीमद्भगवतो महापुरुषस्य विष्णोराज्ञया प्रवर्तमानस्य अद्य ब्रह्मणो..."
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/more_txt_sankalpa_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="3dp"
+                android:text="English meaning &amp; cosmic coordinates..."
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/more_btn_copy_sankalpa"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/md_theme_secondaryContainer"
+                android:text="Copy Sankalpa Mantra (प्रतिलिपि बनाएं)"
+                android:textColor="@color/md_theme_onSecondaryContainer"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Ashtakoota Guna Milan Card (36 Gunas Vedic Matchmaking) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ashtakoota Guna Milan (36 गुण)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_green"
+                    android:text="Kundali Milan"
+                    android:textColor="@color/m3_auspicious"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Vedic matrimonial compatibility: Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, Nadi"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <!-- Selectors Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <!-- Groom Column -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/m3_card_highlight"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GROOM (वर)"
+                        android:textColor="@color/md_theme_primary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_groom_rashi"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/md_theme_surface"
+                        android:text="Mesha (Aries)"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_groom_nakshatra"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/md_theme_surface"
+                        android:text="Ashwini"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Bride Column -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/m3_card_highlight"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BRIDE (कन्या)"
+                        android:textColor="@color/md_theme_primary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_bride_rashi"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/md_theme_surface"
+                        android:text="Simha (Leo)"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btn_bride_nakshatra"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="4dp"
+                        android:backgroundTint="@color/md_theme_surface"
+                        android:text="Magha"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_calculate_guna_milan"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/md_theme_primary"
+                android:text="Calculate Compatibility (गुण मिलान करें)"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <!-- Guna Result Container -->
+            <LinearLayout
+                android:id="@+id/layout_guna_milan_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/m3_card_highlight"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/txt_guna_total_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Score: 28 / 36 (Uttam / Excellent)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_guna_dosha_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="No Nadi Dosha • No Bhakoot Dosha"
+                    android:textColor="@color/m3_auspicious"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/md_theme_outlineVariant" />
+
+                <TextView
+                    android:id="@+id/txt_guna_breakdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="3dp"
+                    android:text="1. Varna: 1/1 • 2. Vashya: 2/2\n3. Tara: 3/3 • 4. Yoni: 3/4\n5. Graha Maitri: 5/5 • 6. Gana: 6/6\n7. Bhakoot: 7/7 • 8. Nadi: 8/8"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- City Selector Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vedic Location &amp; Meridian"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/more_txt_current_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Pune, India (18.52° N, 73.86° E)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/more_txt_city_tz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Timezone: Asia/Kolkata (IST +05:30)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/more_btn_change_city"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/md_theme_primary"
+                android:text="Change City / Meridian"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Festivals Catalog Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Major Festivals &amp; Vrats (2026)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/more_festival_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <!-- Programmatically filled list of festivals -->
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Vedic Vastu Compass Card (8 Sacred Directions) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Vedic Vastu Compass (दिकपाल कम्पास)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/more_compass_live_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_green"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Live Sensor"
+                    android:textColor="@color/m3_auspicious"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="8 Vedic Directions, Ruling Dikpalas, Grahas &amp; Vastu recommendations"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <com.custom.hinduwidget.VedicCompassView
+                android:id="@+id/more_compass_view"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="14dp" />
+
+            <TextView
+                android:id="@+id/more_txt_compass_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="45° • ईशान (Ishanya / North-East)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/more_txt_compass_dikpala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="Dikpala: Ishana / Shiva • Lord: Guru (Jupiter)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/more_txt_compass_vastu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/m3_card_highlight"
+                android:lineSpacingExtra="3dp"
+                android:padding="10dp"
+                android:text="Vastu Tip: Most sacred divine zone. Ideal for Mandir, meditation, water body. Keep light and clean."
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/more_btn_compass_live_reset"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/md_theme_secondaryContainer"
+                android:text="🧭 Reset to Live Hardware Compass"
+                android:textColor="@color/md_theme_onSecondaryContainer"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Personal Tithis & Reminders (My Tithi / मेरी तिथि) Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="My Tithis &amp; Reminders (मेरी तिथि)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/more_btn_add_tithi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:backgroundTint="@color/md_theme_primary"
+                    android:text="+ Add Tithi"
+                    android:textColor="@color/md_theme_onPrimary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Track personal Birthdays, Anniversaries &amp; Shraddhas by Hindu Tithi"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:id="@+id/more_my_tithi_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+                <!-- Dynamic items loaded here -->
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Calendar System & Regional Settings Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calendar System &amp; Regional Panchang"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Switch regional conventions: Amavasyant (South/West) vs Purnimant (North)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <!-- Segmented Month System Toggle -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/m3_pill_indicator"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/toggle_amavasyant"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/m3_card_highlight"
+                    android:gravity="center"
+                    android:text="Amavasyant (अमावस्यांत)"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/toggle_purnimant"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Purnimant (पूर्णिमांत)"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Samvat System Readout -->
+            <TextView
+                android:id="@+id/more_txt_active_samvat_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_card_highlight"
+                android:padding="10dp"
+                android:text="Active: Amavasyant Month • Vikram Samvat 2083 • Saka 1948 • Parabhava Jovian Year"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Standalone Widget Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desktop Monthly Widget"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Place our 100% transparent minimalist Hindu calendar widget directly on your Android / HyperOS home screen."
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/more_btn_pin_widget"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/md_theme_secondaryContainer"
+                android:text="@string/pin_widget"
+                android:textColor="@color/md_theme_onSecondaryContainer"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Data Backup & Restore Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Backup &amp; Restore (डेटा बैकअप)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Export your settings, My Tithis, and saved Kundalis to a JSON backup file to keep safe or transfer to another phone."
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/more_btn_export_backup"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/md_theme_primary"
+                    android:text="📤 Export Backup"
+                    android:textColor="@color/md_theme_onPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/more_btn_import_backup"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:backgroundTint="@color/md_theme_secondaryContainer"
+                    android:text="📥 Import Backup"
+                    android:textColor="@color/md_theme_onSecondaryContainer"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Ayanamsa & System Settings Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ayanamsa &amp; Zodiac Settings (अयनांश)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Select the precession system used for Nirayana planetary positions."
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp" />
+
+            <!-- Segmented Ayanamsa Options -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_pill_indicator"
+                android:orientation="horizontal"
+                android:padding="3dp">
+
+                <TextView
+                    android:id="@+id/toggle_ayanamsa_lahiri"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/m3_card_highlight"
+                    android:gravity="center"
+                    android:text="Lahiri (Chitra)"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/toggle_ayanamsa_raman"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="B.V. Raman"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/toggle_ayanamsa_kp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Krishnamurti"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/more_txt_ayanamsa_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_card_highlight"
+                android:padding="10dp"
+                android:text="Active: Lahiri Ayanamsa (24°14&apos;18&quot;) • Standard Indian National Calendar &amp; Vedic ephemeris"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

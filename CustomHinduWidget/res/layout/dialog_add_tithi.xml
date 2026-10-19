@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/m3_card_surface"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Personal Tithi (मेरी तिथि)"
+        android:textColor="@color/md_theme_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Save birthdays, anniversaries, or shraddhas to track every year"
+        android:textColor="@color/md_theme_onSurfaceVariant"
+        android:textSize="12sp" />
+
+    <!-- Event Title Input -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Event Name / Title"
+        android:textColor="@color/md_theme_onSurface"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_tithi_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/m3_card_highlight"
+        android:hint="e.g. Grandfather's Shraddha"
+        android:inputType="textCapWords"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColor="@color/md_theme_onSurface"
+        android:textColorHint="@color/md_theme_onSurfaceVariant"
+        android:textSize="14sp" />
+
+    <!-- Category Selector -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Category"
+        android:textColor="@color/md_theme_onSurface"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_tithi_category"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/m3_card_highlight"
+        android:paddingLeft="8dp" />
+
+    <!-- Hindu Month Selector -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Hindu Month (मास)"
+        android:textColor="@color/md_theme_onSurface"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_tithi_month"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/m3_card_highlight"
+        android:paddingLeft="8dp" />
+
+    <!-- Paksha & Tithi Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paksha (पक्ष)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_tithi_paksha"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/m3_card_highlight"
+                android:paddingLeft="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tithi (तिथि)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_tithi_num"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/m3_card_highlight"
+                android:paddingLeft="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Notes Input -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Notes / Reminders (Optional)"
+        android:textColor="@color/md_theme_onSurface"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edit_tithi_notes"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/m3_card_highlight"
+        android:hint="e.g. Fasting until sunset"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:textColor="@color/md_theme_onSurface"
+        android:textColorHint="@color/md_theme_onSurfaceVariant"
+        android:textSize="13sp" />
+
+    <!-- Action Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel_add_tithi"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Cancel"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_save_add_tithi"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_marginLeft="12dp"
+            android:backgroundTint="@color/md_theme_primary"
+            android:text="Save Tithi (सहेजें)"
+            android:textColor="@color/md_theme_onPrimary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

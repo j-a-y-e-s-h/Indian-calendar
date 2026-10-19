@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cell_root"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/cell_transparent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <!-- Top Row: Date Number + Moon Phase -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp">
+
+        <TextView
+            android:id="@+id/cell_txt_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="19"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/cell_img_moon"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/moon_real_08" />
+    </LinearLayout>
+
+    <!-- Tithi Name -->
+    <TextView
+        android:id="@+id/cell_txt_tithi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:text="S. Ashtami"
+        android:textColor="@color/color_tithi"
+        android:textSize="9sp" />
+
+    <!-- Festival or Occasion Badge -->
+    <TextView
+        android:id="@+id/cell_txt_festival"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/m3_badge_gold"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:text="Navratri"
+        android:textColor="#FFD54F"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</LinearLayout>

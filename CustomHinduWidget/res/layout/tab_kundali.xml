@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_kundali"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
+
+        <!-- Material 3 Segmented Toggle: North Indian / South Indian / East Indian -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/m3_pill_indicator"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/toggle_btn_north_kundali"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/m3_card_highlight"
+                android:gravity="center"
+                android:text="North (Diamond)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toggle_btn_south_kundali"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="South (Square)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toggle_btn_east_kundali"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="East (Bangla)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Study Charts Button and Active Banner -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_study_charts"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/m3_card_highlight"
+                android:text="📜 Study Charts (प्रसिद्ध कुंडलियाँ)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_reset_study_chart"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/m3_pill_indicator"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="Reset (आज)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Lagna / Ascendant Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/m3_card_surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/kundali_txt_lagna"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lagna: Makar (Capricorn) 26°05\'"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/kundali_txt_ayanamsa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Ayanamsa: Lahiri (Chitra Paksha) 24°14\'"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/kundali_txt_chart_type_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/m3_badge_gold"
+                android:text="North Indian"
+                android:textColor="#FFD54F"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Kundali Chart Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <com.custom.hinduwidget.NorthIndianKundaliView
+                android:id="@+id/kundali_chart_view"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:visibility="visible" />
+
+            <com.custom.hinduwidget.SouthIndianKundaliView
+                android:id="@+id/kundali_south_chart_view"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:visibility="gone" />
+
+            <com.custom.hinduwidget.EastIndianKundaliView
+                android:id="@+id/kundali_east_chart_view"
+                android:layout_width="320dp"
+                android:layout_height="320dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/kundali_txt_chart_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Diamond Chart • Numbers indicate Rashis (1=Mesha .. 12=Meena)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Planetary Positions Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Graha Sthiti (9 Planetary Ephemeris)"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Graha List Container -->
+        <LinearLayout
+            android:id="@+id/kundali_graha_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+            <!-- 9 Graha rows added programmatically -->
+        </LinearLayout>
+
+        <!-- Avakahada Chakra & Janma Attributes Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avakahada Chakra (जन्म विवरण)"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/md_theme_outlineVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rashi &amp; Lord:"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/kundali_txt_avakahada_rashi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:text="Kumbha • Shani"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nakshatra &amp; Pada:"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/kundali_txt_avakahada_nakshatra"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:text="Shatabhisha • Pada 2"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Janma Name Syllables:"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/kundali_txt_avakahada_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:text="Sa, Si, Su, Se"
+                    android:textColor="#FFD54F"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Gana / Yoni / Nadi:"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/kundali_txt_avakahada_gyn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:text="Deva • Ashwa • Adi"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Varna / Vashya / Paya:"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/kundali_txt_avakahada_vvp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:text="Shudra • Manava • Silver"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Vimshottari Dasha Balance & Kuja Dosha Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dasha Balance &amp; Kuja Dosha"
+                android:textColor="@color/md_theme_primary"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/md_theme_outlineVariant" />
+
+            <!-- Vimshottari Dasha Balance -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vimshottari Dasha Balance at Birth:"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/kundali_txt_dasha_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Rahu Mahadasha: 11 Yrs 4 Mos 18 Days"
+                android:textColor="#FFD54F"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <!-- Kuja Dosha Status -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Manglik (Kuja Dosha) Assessment:"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/kundali_txt_kuja_dosha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/m3_badge_green"
+                android:text="No Manglik Dosha (Kuja Shuddha)"
+                android:textColor="@color/m3_auspicious"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Ashtakavarga Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ashtakavarga (अष्टकवर्ग)"
+                        android:textColor="@color/md_theme_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Sarvashtakavarga bindus across 12 houses (Total = 337)"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/kundali_txt_ashtaka_total_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_gold"
+                    android:text="337 Bindus"
+                    android:textColor="#D97706"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 12 Houses Bindu Grid (4 columns x 3 rows) -->
+            <GridLayout
+                android:id="@+id/kundali_ashtaka_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:columnCount="4"
+                android:rowCount="3" />
+
+            <TextView
+                android:id="@+id/kundali_txt_ashtaka_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_card_highlight"
+                android:padding="10dp"
+                android:text="Strongest: House 11 (35 bindus) • Weakest: House 8 (23 bindus) • Average: 28 bindus"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Shadbala Summary Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shadbala Summary (षड्बल)"
+                        android:textColor="@color/md_theme_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="6-fold planetary strength in Virupas &amp; Rupas"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/kundali_txt_shadbala_strongest_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_green"
+                    android:text="Mars Strongest"
+                    android:textColor="@color/m3_auspicious"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/kundali_shadbala_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <!-- Shani Sade Sati Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/m3_card_surface"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shani Sade Sati (शनि साढ़ेसाती)"
+                        android:textColor="@color/md_theme_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Transit Saturn relative to natal Moon"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/kundali_txt_sade_sati_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/m3_badge_green"
+                    android:text="No Sade Sati"
+                    android:textColor="@color/m3_auspicious"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/kundali_txt_sade_sati_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/m3_card_highlight"
+                android:padding="10dp"
+                android:text="Saturn in Pisces is favorable or neutral. No Sade Sati active."
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hindu Calendar</string>
+    <string name="app_subtitle">Vedic Panchang, Muhurta &amp; Kundali</string>
+    <string name="widget_name">Hindu Calendar Minimal</string>
+    <string name="widget_description">Transparent minimalist Hindu monthly calendar with accurate tithis and moon phases</string>
+    
+    <string name="tab_panchang">Panchang</string>
+    <string name="tab_calendar">Calendar</string>
+    <string name="tab_choghadiya">Choghadiya</string>
+    <string name="tab_kundali">Kundali</string>
+    <string name="tab_more">More</string>
+
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+
+    <string name="pin_widget">Pin Widget to Home Screen</string>
+    <string name="today_details_title">Today\'s Hindu Panchang</string>
+    <string name="settings_title">Widget Settings</string>
+    <string name="select_city">Select Vedic Location</string>
+    <string name="select_date">Select Date</string>
+</resources>

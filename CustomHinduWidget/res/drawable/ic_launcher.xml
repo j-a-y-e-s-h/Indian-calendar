@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Outer subtle ring -->
+    <path
+        android:strokeColor="#F0DFC6"
+        android:strokeWidth="1.5"
+        android:fillColor="#1A1A1A"
+        android:pathData="M24,4 A20,20 0 1,0 24,44 A20,20 0 1,0 24,4 Z" />
+    <!-- Crescent Moon inside -->
+    <path
+        android:fillColor="#F0DFC6"
+        android:pathData="M22,12 C28.63,12 34,17.37 34,24 C34,30.63 28.63,36 22,36 C20.3,36 18.7,35.64 17.27,35 C22.42,32.88 26,27.87 26,22 C26,16.13 22.42,11.12 17.27,9 C18.7,8.36 20.3,8 22,8 Z" />
+    <!-- Star / Bindu dot -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M28,16 A2,2 0 1,0 28,20 A2,2 0 1,0 28,16 Z" />
+</vector>

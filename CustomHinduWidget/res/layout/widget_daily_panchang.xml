@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_panchang_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/m3_card_surface"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <!-- Moon Graphic Column -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/widget_panchang_moon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/moon_real_09" />
+
+        <TextView
+            android:id="@+id/widget_panchang_moon_pct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="68% Illum."
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- Details Column -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <!-- Date & Vaar -->
+        <TextView
+            android:id="@+id/widget_panchang_date_vaar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19 Oct 2026 • Somavaar"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <!-- Tithi -->
+        <TextView
+            android:id="@+id/widget_panchang_tithi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Ashwina Shukla Navami"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Nakshatra & Chandra Rashi -->
+        <TextView
+            android:id="@+id/widget_panchang_nakshatra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Shravana • Makar Rashi"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="12sp" />
+
+        <!-- Sun Timings & Choghadiya -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/widget_panchang_sun_timings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🌅 06:28 • 🌇 18:05"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_panchang_city_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/m3_badge_green"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="Pune, IN"
+                android:textColor="@color/m3_auspicious"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

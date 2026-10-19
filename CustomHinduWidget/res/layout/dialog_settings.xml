@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/m3_card_surface"
+    android:fillViewport="true"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top Drag Pill Indicator -->
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/m3_pill_indicator" />
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_palette"
+                android:tint="@color/md_theme_primary" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Settings &amp; Appearance"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Material Design 3 &amp; Japanese Color Schemes"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SECTION 1: JAPANESE COLOR COMBINATIONS (Sanzo Wada 和の配色辞典) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Japanese Color Palette (和の配色辞典)"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Select an authentic color harmony by Sanzo Wada (1930s)"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="11sp" />
+
+        <!-- Palettes Container List -->
+        <LinearLayout
+            android:id="@+id/dialog_palettes_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <!-- Dynamically populated with Japanese palette cards -->
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/md_theme_outlineVariant" />
+
+        <!-- SECTION 2: VEDIC RECKONING SYSTEM -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masa Reckoning (मास गणना)"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Choose Amavasyant (New Moon / South &amp; West) or Purnimant (Full Moon / North)"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/m3_pill_indicator"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/dialog_toggle_amanta"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/m3_card_highlight"
+                android:gravity="center"
+                android:text="अमान्त (Amavasyant)"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dialog_toggle_purnimanta"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="पूर्णिमान्त (Purnimant)"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/md_theme_outlineVariant" />
+
+        <!-- SECTION 3: AYANAMSA -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ayanamsa Precession System (अयनांश)"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/m3_pill_indicator"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/dialog_toggle_lahiri"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/m3_card_highlight"
+                android:gravity="center"
+                android:text="Lahiri"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dialog_toggle_raman"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="B.V. Raman"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dialog_toggle_kp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Krishnamurti"
+                android:textColor="@color/md_theme_onSurfaceVariant"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/md_theme_outlineVariant" />
+
+        <!-- SECTION 4: FLUID MOTION & ANIMATIONS (/animate) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dialog_txt_section_anim_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fluid Transitions (/animate)"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Smooth spring damping &amp; month slide animations"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/dialog_badge_anim_active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/m3_badge_green"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:text="Active"
+                android:textColor="@color/m3_auspicious"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/md_theme_outlineVariant" />
+
+        <!-- SECTION 5: DATA BACKUP & RESTORE (डेटा बैकअप) -->
+        <TextView
+            android:id="@+id/dialog_txt_section_backup_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Backup &amp; Restore (डेटा बैकअप)"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Export user preferences, saved Tithis, and custom charts as JSON"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dialog_btn_export_backup"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/md_theme_primary"
+                android:text="📤 Export JSON"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/dialog_btn_import_backup"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/md_theme_secondaryContainer"
+                android:text="📥 Import JSON"
+                android:textColor="@color/md_theme_onSecondaryContainer"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/md_theme_outlineVariant" />
+
+        <!-- SECTION 6: DESKTOP WIDGETS (विजेट्स) -->
+        <TextView
+            android:id="@+id/dialog_txt_section_widgets_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home Screen Widgets (होम स्क्रीन विजेट)"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Pin transparent Hindu calendar widgets directly to your home screen"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dialog_btn_pin_month_widget"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/md_theme_surfaceContainerHigh"
+                android:text="📅 Month Grid"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/dialog_btn_pin_daily_widget"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/md_theme_surfaceContainerHigh"
+                android:text="☀️ Daily Panchang"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Close / Save Button -->
+        <Button
+            android:id="@+id/dialog_btn_close_settings"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="@color/md_theme_primary"
+            android:text="Done &amp; Apply (लागू करें)"
+            android:textColor="@color/md_theme_onPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>
