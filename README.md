@@ -1,12 +1,15 @@
-# 🕉️ Vedic Hindu Calendar, Panchang & Kundali (हिन्दू पंचांग एवं वैदिक ज्योतिष)
+# 🕉️ Vedic Hindu Calendar & Panchang — 100% Offline, Ad-Free Android App (APK)
+### (हिन्दू पंचांग, दैनिक चौघड़िया, होरा, वैदिक जन्मकुंडली एवं 16-दिशा वास्तु कंपास)
 
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84.svg?style=flat&logo=android)](https://www.android.com/)
+[![Download APK](https://img.shields.io/badge/Download%20APK-v1.0.0%20(1%20MB)-4CAF50.svg?style=flat&logo=android)](https://github.com/j-a-y-e-s-h/Indian-calendar/releases/tag/v1.0.0)
+[![Offline](https://img.shields.io/badge/100%25%20Offline-No%20Internet%20Required-blue.svg?style=flat)](#-why-this-app-key-highlights)
+[![Ad-Free](https://img.shields.io/badge/Ad--Free-Zero%20Trackers-orange.svg?style=flat)](#-why-this-app-key-highlights)
 [![Design](https://img.shields.io/badge/Material%20Design-Material%203%20Expressive-6750A4.svg?style=flat)](https://m3.material.io/)
 [![Palettes](https://img.shields.io/badge/Aesthetics-Sanzo%20Wada%20Harmonies-E91E63.svg?style=flat)](#-sanzo-wada-japanese-color-harmonies-和の配色)
 [![Vedic](https://img.shields.io/badge/Calculation-Surya%20Siddhanta%20%2B%20Lahiri-FF9800.svg?style=flat)](#-astronomical--vedic-ephemeris-engine)
-[![Offline](https://img.shields.io/badge/Database-4%2C500%2B%20Global%20Cities-2196F3.svg?style=flat)](#-4500-offline-global-cities-database)
+[![Offline Database](https://img.shields.io/badge/Database-4%2C500%2B%20Global%20Cities-2196F3.svg?style=flat)](#-4500-offline-global-cities-database)
 [![Live Showcase](https://img.shields.io/badge/Live%20Showcase-Interactive%203D%20Website-FFD700.svg?style=flat&logo=safari)](https://j-a-y-e-s-h.github.io/Indian-calendar/)
-[![Download APK](https://img.shields.io/badge/Download%20APK-v1.0.0%20(1%20MB)-4CAF50.svg?style=flat&logo=android)](https://github.com/j-a-y-e-s-h/Indian-calendar/releases/tag/v1.0.0)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](LICENSE)
 
 > **The next-generation Android Vedic Ephemeris & Panchang application**, crafted with **Material 3 Expressive Design**, fluid physics-based animations, classical **Sanzo Wada Japanese Color Harmonies**, and precision astronomical algorithms for astrologers, temple pujaris, and seekers worldwide.
@@ -36,8 +39,9 @@
 ---
 
 ## ⚡ Why This App? Key Highlights
-* 📴 **100% Offline & Private**: Zero cloud dependency, zero trackers, zero data collection. All astronomical calculations happen strictly on-device.
-* 🛰️ **Precision Topocentric Ephemeris**: Exact latitude, longitude, and elevation-aware Sunrise, Sunset, Moonrise, and planetary longitudes (Lahiri / Surya Siddhanta).
+* 📴 **100% Offline & Ad-Free**: Zero cloud dependency, zero internet permissions required, zero ads, zero trackers, zero telemetry. All astronomical ephemeris calculations execute strictly on-device.
+* 📦 **Lightweight Native APK (~1 MB)**: Complete offline bundle including a 4,500+ global cities database, triple Kundali charts, 16-petal Vastu compass, and 60-Ghati Hindu clock.
+* 🛰️ **Precision Topocentric Ephemeris**: Exact latitude, longitude, and elevation-aware Sunrise, Sunset, Moonrise, and planetary longitudes (Lahiri / Surya Siddhanta / VSOP87).
 * 🎨 **Material 3 + Sanzo Wada Aesthetics**: Full-app color harmony cascade based on early 20th-century Japanese color palettes.
 * 🧭 **Multi-Tradition Support**: Amanta (South/West India) and Purnimanta (North India) reckoning, plus North/South/East Indian Kundali chart layouts.
 * 🔋 **Battery Efficient**: Event-based canvas repaints, zero rogue wake-locks, and hardware-accelerated rendering.
@@ -306,7 +310,13 @@ The app supports:
 </details>
 
 <details>
-<summary><b>5. How do I add the transparent Vedic widgets to my Android home screen? (होम स्क्रीन पर विजेट कैसे लगाएं?)</b></summary>
+<summary><b>5. Where can I download the free, offline, ad-free Vedic Hindu Calendar APK? (फ्री एवं विज्ञापन-मुक्त ऑफ़लाइन पंचांग APK कहाँ से डाउनलोड करें?)</b></summary>
+<br>
+You can download the production-ready universal APK directly from <a href="https://github.com/j-a-y-e-s-h/Indian-calendar/releases/tag/v1.0.0"><b>GitHub Releases v1.0.0 (vedic-hindu-calendar-v1.0.0.apk)</b></a>. It is ~1 MB in size, completely open source, has zero trackers, displays zero ads, requires zero internet access, and runs on any Android phone or tablet with Android 8.0 or higher.
+</details>
+
+<details>
+<summary><b>6. How do I add the transparent Vedic widgets to my Android home screen? (होम स्क्रीन पर विजेट कैसे लगाएं?)</b></summary>
 <br>
 1. Long-press any empty space on your Android home screen.
 2. Select <b>Widgets (विजेट)</b>.
