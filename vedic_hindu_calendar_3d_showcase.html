@@ -547,6 +547,11 @@
                                 </div>
 
                                 <div class="flex items-center gap-1.5 pointer-events-auto">
+                                    <button id="tour-btn" onclick="toggleGuidedTour()" title="Auto Tour All 8 Screens"
+                                        class="px-3 py-1.5 rounded-full bg-white/85 hover:bg-white border border-accent/40 shadow-sm text-xs font-semibold flex items-center gap-1.5 transition text-accent">
+                                        <i data-lucide="play" id="tour-icon" class="w-3.5 h-3.5 fill-current"></i>
+                                        <span id="tour-label">Guided Tour</span>
+                                    </button>
                                     <button onclick="resetPhoneCamera()" title="Reset 3D Tilt"
                                         class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition"
                                         style="color: var(--text-primary);">
@@ -1611,6 +1616,65 @@
         }
 
         
+
+        /* --------------------------------------------------------------------------
+           GUIDED 3D TOUR ENGINE (AUTO ROTATE + AUTO STEP SCREENS)
+           -------------------------------------------------------------------------- */
+        let isTourActive = false;
+        let tourTimer = null;
+        const TOUR_STEP_DURATION = 4200; // 4.2s per screen
+
+        function toggleGuidedTour() {
+            if (isTourActive) {
+                stopGuidedTour();
+            } else {
+                startGuidedTour();
+            }
+        }
+
+        function startGuidedTour() {
+            isTourActive = true;
+            const btn = document.getElementById('tour-btn');
+            const icon = document.getElementById('tour-icon');
+            const label = document.getElementById('tour-label');
+            if (btn) {
+                btn.className = 'px-3 py-1.5 rounded-full bg-accent text-white shadow-md text-xs font-semibold flex items-center gap-1.5 transition ring-2 ring-accent/30';
+            }
+            if (label) label.textContent = 'Pause Tour';
+            if (icon) {
+                icon.className = 'w-3.5 h-3.5 text-white';
+                icon.setAttribute('data-lucide', 'pause');
+                lucide.createIcons();
+            }
+
+            advanceTourStep();
+            clearInterval(tourTimer);
+            tourTimer = setInterval(advanceTourStep, TOUR_STEP_DURATION);
+        }
+
+        function advanceTourStep() {
+            if (!isTourActive) return;
+            spinBoostY = 0.40;
+            selectAppScreen((currentScreenIndex + 1) % APP_SCREENS.length);
+        }
+
+        function stopGuidedTour() {
+            isTourActive = false;
+            clearInterval(tourTimer);
+            tourTimer = null;
+            const btn = document.getElementById('tour-btn');
+            const label = document.getElementById('tour-label');
+            const icon = document.getElementById('tour-icon');
+            if (btn) {
+                btn.className = 'px-3 py-1.5 rounded-full bg-white/85 hover:bg-white border border-accent/40 shadow-sm text-xs font-semibold flex items-center gap-1.5 transition text-accent';
+            }
+            if (label) label.textContent = 'Guided Tour';
+            if (icon) {
+                icon.className = 'w-3.5 h-3.5 fill-current text-accent';
+                icon.setAttribute('data-lucide', 'play');
+                lucide.createIcons();
+            }
+        }
 
         function stepCarousel(delta) {
             selectAppScreen(currentScreenIndex + delta);
