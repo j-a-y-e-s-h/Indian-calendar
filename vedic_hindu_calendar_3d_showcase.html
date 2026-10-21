@@ -449,9 +449,72 @@
         .animate-spin-slow {
             animation: spin-slow 48s linear infinite;
         }
+            /* Smooth Preloader Animations */
+        @keyframes preloader-shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .preloader-progress-bar {
+            animation: preloader-shimmer 1.4s ease-in-out infinite;
+        }
+        #app-preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="vedic-bg-pattern antialiased selection:bg-amber-500/20 selection:text-amber-900">
+    <!-- ==========================================================================
+         PRELOADER: SACRED CELESTIAL LOADING SCREEN (/ce-frontend-design & /impeccable)
+         ========================================================================== -->
+    <noscript>
+        <style>#app-preloader { display: none !important; }</style>
+    </noscript>
+    <div id="app-preloader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-all duration-700 ease-out select-none"
+        style="background: var(--bg-primary); color: var(--text-primary);" aria-label="Loading Vedic Hindu Calendar..." aria-live="polite">
+        
+        <!-- Ambient Radial Cosmic Aura -->
+        <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 50% 46%, rgba(212, 139, 30, 0.16), transparent 70%);"></div>
+
+        <div class="relative z-10 flex flex-col items-center text-center px-6">
+            
+            <!-- Animated Surya-Chandra Cosmic Mandala Centerpiece -->
+            <div class="relative w-24 h-24 mb-6 flex items-center justify-center">
+                <!-- Orbiting Pulsing Glow Rings -->
+                <div class="absolute inset-0 rounded-full border border-amber-500/25 animate-ping opacity-30"></div>
+                <div class="absolute -inset-2.5 rounded-full border-2 border-dashed border-amber-500/35 animate-spin-slow"></div>
+                
+                <!-- Central Logo Badge with Saffron Glow -->
+                <div class="w-20 h-20 rounded-3xl bg-white/95 border-2 border-amber-500/50 shadow-2xl flex items-center justify-center text-accent transform hover:scale-105 transition-transform">
+                    <svg class="w-12 h-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.8" stroke-dasharray="1.5 5" stroke-linecap="round" opacity="0.6"/>
+                        <circle cx="24" cy="24" r="17" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="24" cy="24" r="13" stroke="currentColor" stroke-width="0.8" opacity="0.5"/>
+                        <circle cx="24" cy="24" r="9.5" stroke="currentColor" stroke-width="0.8" opacity="0.4"/>
+                        <path d="M22.5 14.5 C29.5 14.5 33.5 19.5 33.5 24.5 C33.5 29.5 29.5 34.5 22.5 34.5 C20.8 34.5 19 34 17.5 33 C22.2 31 25.5 27 25.5 22.8 C25.5 19 22.8 15.8 18 15.3 C19.5 14.8 21 14.5 22.5 14.5 Z" fill="currentColor"/>
+                        <circle cx="27.5" cy="18.5" r="1.8" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Typography Hierarchy -->
+            <div class="space-y-1">
+                <span class="font-monument text-xs font-bold uppercase tracking-[0.24em] text-accent">Vedic Hindu Calendar</span>
+                <p class="font-hindi text-xl font-medium tracking-wide" style="color: var(--text-primary);">॥ कालचक्र प्रवर्तते ॥</p>
+            </div>
+
+            <!-- Fluid Shimmer Progress Track -->
+            <div class="w-48 h-1.5 rounded-full bg-black/5 overflow-hidden mt-6 relative border border-black/5">
+                <div class="preloader-progress-bar absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 w-full"></div>
+            </div>
+
+            <p class="text-[11px] font-sans font-medium mt-3" style="color: var(--text-muted);">
+                Initializing Sub-Arcsecond Ephemeris & 3D Viewport...
+            </p>
+        </div>
+    </div>
+
 
     <!-- ==========================================================================
          1. STICKY GLASSMORPHIC NAVIGATION
@@ -2011,13 +2074,29 @@
         /* --------------------------------------------------------------------------
            8. INITIALIZE ON WINDOW LOAD
            -------------------------------------------------------------------------- */
+        /* --------------------------------------------------------------------------
+           PRELOADER CONTROLLER (/ce-frontend-design & /impeccable)
+           -------------------------------------------------------------------------- */
+        function dismissPreloader() {
+            const preloader = document.getElementById('app-preloader');
+            if (!preloader || preloader.classList.contains('fade-out')) return;
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                if (preloader.parentNode) {
+                    preloader.parentNode.removeChild(preloader);
+                }
+            }, 800);
+        }
+        // Safety timeout: guaranteed dismissal within 2.2s under any network condition
+        setTimeout(dismissPreloader, 2200);
         window.onload = function () {
             buildGalleryThumbnails();
-        preloadAllScreens();
+            preloadAllScreens();
             initThreeJS();
             selectAppScreen(0);
             updateLiveGhatiClock();
             animate();
+            setTimeout(dismissPreloader, 400);
         };
     </script>
 </body>
