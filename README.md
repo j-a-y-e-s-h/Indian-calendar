@@ -5,6 +5,8 @@
 [![Palettes](https://img.shields.io/badge/Aesthetics-Sanzo%20Wada%20Harmonies-E91E63.svg?style=flat)](#-sanzo-wada-japanese-color-harmonies-和の配色)
 [![Vedic](https://img.shields.io/badge/Calculation-Surya%20Siddhanta%20%2B%20Lahiri-FF9800.svg?style=flat)](#-astronomical--vedic-ephemeris-engine)
 [![Offline](https://img.shields.io/badge/Database-4%2C500%2B%20Global%20Cities-2196F3.svg?style=flat)](#-4500-offline-global-cities-database)
+[![Live Showcase](https://img.shields.io/badge/Live%20Showcase-Interactive%203D%20Website-FFD700.svg?style=flat&logo=safari)](https://j-a-y-e-s-h.github.io/Indian-calendar/)
+[![Download APK](https://img.shields.io/badge/Download%20APK-v1.0.0%20(1%20MB)-4CAF50.svg?style=flat&logo=android)](https://github.com/j-a-y-e-s-h/Indian-calendar/releases/tag/v1.0.0)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat)](LICENSE)
 
 > **The next-generation Android Vedic Ephemeris & Panchang application**, crafted with **Material 3 Expressive Design**, fluid physics-based animations, classical **Sanzo Wada Japanese Color Harmonies**, and precision astronomical algorithms for astrologers, temple pujaris, and seekers worldwide.
