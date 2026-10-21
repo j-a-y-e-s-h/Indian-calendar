@@ -11,6 +11,37 @@
 
 ---
 
+## 📑 Table of Contents (विषय-सूची)
+* [📸 Visual Showcase (एप्लिकेशन झलक)](#-visual-showcase-एप्लिकेशन-झलक)
+* [⚡ Why This App? Key Highlights (प्रमुख विशेषताएँ)](#-why-this-app-key-highlights)
+* [🌟 Detailed Feature Breakdown](#-core-features-प्रमुख-विशेषताएँ)
+  * [1. Daily Vedic Panchanga (दैनिक पंचांग)](#1-️-daily-vedic-panchanga-दैनिक-पंचांग)
+  * [2. High-Density Month Grid (मासिक कैलेंडर)](#2-️-high-density-vedic-calendar-grid-मासिक-पंचांग-कैलेंडर)
+  * [3. Real-Time Choghadiya & Hora (चौघड़िया एवं होरा)](#3--real-time-choghadiya--hora-chakra-चौघड़िया-एवं-होरा-चक्र)
+  * [4. Vedic Kundali & Ephemeris (जन्मकुंडली एवं ग्रह)](#4--vedic-kundali--planetary-ephemeris-वैदिक-जन्मकुंडली-एवं-ग्रह-स्थिति)
+  * [5. 16-Petal Vastu Compass (वास्तु कंपास)](#5--16-petal-vedic-vastu-compass-वास्तु-शास्त्र-कंपास)
+  * [6. Traditional Hindu Clock (घटी-पल घड़ी)](#6-️-traditional-hindu-clock-घटी-पल-विपल-घड़ी)
+  * [7. Sanzo Wada Japanese Color Harmonies (रंग संयोजन)](#7--sanzo-wada-japanese-color-harmonies-和の配色)
+  * [8. Desktop Home Screen Widgets (विजेट)](#8--transparent-material-3-desktop-home-widgets)
+* [🌍 4,500+ Offline Global Cities Database](#-4500-offline-global-cities-database)
+* [🛠️ Build & Installation Guide (स्थापना निर्देश)](#️-build--installation-निर्माण-एवं-स्थापना)
+* [📐 Project Architecture & Codebase Structure](#-project-structure-प्रोजेक्ट-संरचना)
+* [🕉️ Vedic Sanskrit Glossaries (वैदिक शब्दावली)](#️-sanskrit-terms--vedic-glossaries-वैदिक-शब्दावली)
+* [❓ Frequently Asked Questions (अक्सर पूछे जाने वाले प्रश्न)](#-frequently-asked-questions-faqs)
+* [🤝 Contributing & Community](#-contributing--community)
+* [📄 License](#-license)
+
+---
+
+## ⚡ Why This App? Key Highlights
+* 📴 **100% Offline & Private**: Zero cloud dependency, zero trackers, zero data collection. All astronomical calculations happen strictly on-device.
+* 🛰️ **Precision Topocentric Ephemeris**: Exact latitude, longitude, and elevation-aware Sunrise, Sunset, Moonrise, and planetary longitudes (Lahiri / Surya Siddhanta).
+* 🎨 **Material 3 + Sanzo Wada Aesthetics**: Full-app color harmony cascade based on early 20th-century Japanese color palettes.
+* 🧭 **Multi-Tradition Support**: Amanta (South/West India) and Purnimanta (North India) reckoning, plus North/South/East Indian Kundali chart layouts.
+* 🔋 **Battery Efficient**: Event-based canvas repaints, zero rogue wake-locks, and hardware-accelerated rendering.
+
+---
+
 ## 📸 Visual Showcase (एप्लिकेशन झलक)
 
 | 📅 1. Daily Vedic Panchang (दैनिक पंचांग) | 🗓️ 2. High-Density Month Grid (मासिक कैलेंडर) |
@@ -233,6 +264,63 @@ Indian-calendar/
 | **Ashtadikpala** | अष्टदिक्पाल | Guardians of the eight directional points of the universe. |
 | **Ghati** | घटी | Ancient unit of time equal to 24 standard minutes (1/60th of a day). |
 | **Ayanamsa** | अयनांश | Angular difference between Tropical and Sidereal zodiacs (Lahiri / Chitra Paksha). |
+
+---
+
+## ❓ Frequently Asked Questions (FAQs)
+
+<details>
+<summary><b>1. What is the difference between Amanta and Purnimanta month systems? (अमान्त और पूर्णिमान्त मास में क्या अंतर है?)</b></summary>
+<br>
+In Indian astronomy, lunar months are counted by two primary traditions:
+* <b>Amanta (अमान्त)</b>: The lunar month ends on <i>Amavasya</i> (New Moon). Followed widely in Gujarat, Maharashtra, Karnataka, Andhra Pradesh, Telangana, Tamil Nadu, and Kerala.
+* <b>Purnimanta (पूर्णिमान्त)</b>: The lunar month ends on <i>Purnima</i> (Full Moon). Followed in Northern and Central India (Uttar Pradesh, Bihar, Rajasthan, Madhya Pradesh, Punjab, Haryana, Delhi, Himachal Pradesh).
+<br>
+The app allows instantaneous 1-tap switching between Amanta and Purnimanta from the centralized Settings modal.
+</details>
+
+<details>
+<summary><b>2. How are Choghadiya and Hora timings calculated for any location? (चौघड़िया एवं होरा मुहूर्त की गणना कैसे होती है?)</b></summary>
+<br>
+Choghadiya is not fixed to arbitrary wall-clock hours; it is strictly topocentric:
+* <b>Day Choghadiya (दिन का चौघड़िया)</b>: The exact interval between local Sunrise and local Sunset is divided into <b>8 equal periods</b> (each approximately 1.5 hours or 3.75 Ghatis). The 8th period is ruled by the lord of the next sunset.
+* <b>Night Choghadiya (रात का चौघड़िया)</b>: The interval between Sunset and the following day's Sunrise is divided into 8 equal periods.
+* <b>Planetary Hora (होरा)</b>: Each day is divided into 24 planetary hours beginning with the ruler of the day at Sunrise.
+</details>
+
+<details>
+<summary><b>3. Does this app require an internet connection or GPS? (क्या यह पंचांग बिना इंटरनेट के काम करता है?)</b></summary>
+<br>
+<b>No.</b> The app is 100% offline. It bundles a compressed database of over <b>4,500+ global cities</b> with exact geographical coordinates, timezones, and elevation offsets. All celestial trigonometry, planetary ephemeris, and Tithi-Nakshatra transitions are calculated natively on your device CPU with zero network requests.
+</details>
+
+<details>
+<summary><b>4. Which Ayanamsa systems are supported for Vedic Kundali? (कुंडली के लिए कौन सा अयनांश प्रयोग किया जाता है?)</b></summary>
+<br>
+The app supports:
+* <b>Lahiri / Chitra Paksha (चित्रपक्षीय लाहिड़ी अयनांश)</b> — The official Indian Government standard and most widely accepted system by Parashari astrologers.
+* <b>B.V. Raman Ayanamsa</b> — Popularized by Dr. B.V. Raman.
+* <b>KP (Krishnamurti Padhdhati) Ayanamsa</b> — Used for sub-lord precision astrology.
+</details>
+
+<details>
+<summary><b>5. How do I add the transparent Vedic widgets to my Android home screen? (होम स्क्रीन पर विजेट कैसे लगाएं?)</b></summary>
+<br>
+1. Long-press any empty space on your Android home screen.
+2. Select <b>Widgets (विजेट)</b>.
+3. Scroll to <b>Vedic Hindu Calendar</b>.
+4. Choose either the <b>Month Calendar Grid (4x4)</b> or <b>Daily Panchang Pill (4x2)</b> and drag it to your screen.
+<br>
+<i>Tip: You can also open the app's Settings modal and tap "Pin Month Widget" or "Pin Daily Widget" for 1-tap launcher placement on Android 8.0+.</i>
+</details>
+
+---
+
+## 🤝 Contributing & Community
+Contributions, bug reports, and suggestions from Vedic scholars, Sanskrit linguists, and Android developers are welcome!
+* Star the repository on GitHub: ⭐ [Indian-calendar](https://github.com/j-a-y-e-s-h/Indian-calendar)
+* Open an Issue for feature requests or astronomical calculation queries.
+* Pull requests are warmly welcomed for localized translations and regional festival additions.
 
 ---
 
