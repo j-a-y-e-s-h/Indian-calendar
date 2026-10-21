@@ -552,7 +552,17 @@
                                         <i data-lucide="play" id="tour-icon" class="w-3.5 h-3.5 fill-current"></i>
                                         <span id="tour-label">Guided Tour</span>
                                     </button>
-                                    <button onclick="resetPhoneCamera()" title="Reset 3D Tilt"
+                                    <button onclick="zoomIn3D()" title="Zoom In (+)"
+                                        class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition hover:border-accent"
+                                        style="color: var(--text-primary);">
+                                        <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="zoomOut3D()" title="Zoom Out (-)"
+                                        class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition hover:border-accent"
+                                        style="color: var(--text-primary);">
+                                        <i data-lucide="zoom-out" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="resetPhoneCamera()" title="Reset 3D Tilt & Zoom"
                                         class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition"
                                         style="color: var(--text-primary);">
                                         <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
@@ -902,7 +912,6 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
 
                         <!-- Thumbnail Grid of 8 Screens -->
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="gallery-thumbs">
@@ -1141,7 +1150,7 @@
                 id: 2,
                 icon: "hourglass",
                 pill: "Choghadiya",
-                thumbTitle: "Choghadiya & Hora",
+                thumbTitle: "Choghadiya",
                 hindi: "चौघड़िया एवं होरा",
                 title: "Real-Time Choghadiya & 24 Planetary Hora",
                 badge: "MODULE 03 • MUHURTA TIMERS",
@@ -1175,7 +1184,7 @@
                 id: 4,
                 icon: "compass",
                 pill: "16-Petal Vastu",
-                thumbTitle: "16-Petal Vastu",
+                thumbTitle: "Vastu Compass",
                 hindi: "१६-दिशा वास्तु चक्र",
                 title: "16-Petal Vedic Vastu Compass & 8 Dikpalas",
                 badge: "MODULE 05 • STHAPATYA VEDA",
@@ -1226,7 +1235,7 @@
                 id: 7,
                 icon: "smartphone",
                 pill: "Desktop Widgets",
-                thumbTitle: "Desktop Widgets",
+                thumbTitle: "Home Widgets",
                 hindi: "होम स्क्रीन विजेट",
                 title: "Material You Transparent Home Screen Widgets",
                 badge: "MODULE 08 • ANDROID LAUNCHER",
@@ -1261,7 +1270,8 @@
             scene = new THREE.Scene();
 
             camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-            camera.position.set(0, 0.15, getAdaptiveCameraZ());
+            targetZoomZ = getAdaptiveCameraZ();
+            camera.position.set(0, 0.15, targetZoomZ);
 
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
             renderer.setSize(width, height);
@@ -1460,6 +1470,11 @@
             // Pointer & Touch Interaction Listeners
             container.addEventListener('mousemove', onPointerMove);
             container.addEventListener('touchmove', onTouchMove, { passive: true });
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = Math.sign(e.deltaY) * 0.6;
+                targetZoomZ = Math.min(MAX_ZOOM_Z, Math.max(MIN_ZOOM_Z, targetZoomZ + delta));
+            }, { passive: false });
             container.addEventListener('mouseleave', () => {
                 targetRotX = 0;
                 targetRotY = -0.18;
@@ -1487,19 +1502,32 @@
             targetRotX = -ny * 0.35;
         }
 
+        let targetZoomZ = 9.8;
+        const MIN_ZOOM_Z = 6.0;
+        const MAX_ZOOM_Z = 15.0;
+
         function getAdaptiveCameraZ() {
             const w = window.innerWidth;
-            if (w < 440) return 9.2;
-            if (w < 640) return 8.5;
-            if (w < 1024) return 8.0;
-            return 7.6;
+            if (w < 440) return 12.2;
+            if (w < 640) return 11.2;
+            if (w < 1024) return 10.5;
+            return 9.8; // Baseline desktop zoom: framed comfortably with ~15% margins so phone never touches borders
+        }
+
+        function zoomIn3D() {
+            targetZoomZ = Math.max(MIN_ZOOM_Z, targetZoomZ - 1.2);
+        }
+
+        function zoomOut3D() {
+            targetZoomZ = Math.min(MAX_ZOOM_Z, targetZoomZ + 1.2);
         }
 
         function onWindowResize() {
             const container = document.getElementById('webgl-container');
             if (!container || !renderer) return;
             camera.aspect = container.clientWidth / container.clientHeight;
-            camera.position.z = getAdaptiveCameraZ();
+            targetZoomZ = getAdaptiveCameraZ();
+            camera.position.z = targetZoomZ;
             camera.updateProjectionMatrix();
             renderer.setSize(container.clientWidth, container.clientHeight);
         }
@@ -1508,6 +1536,7 @@
             targetRotX = 0;
             targetRotY = 0;
             spinBoostY = 0;
+            targetZoomZ = getAdaptiveCameraZ();
         }
 
         function spinPhone360() {
@@ -1521,10 +1550,13 @@
             const time = clock.getElapsedTime();
 
             if (phoneGroup) {
-                // Smooth Lerp Damping toward Cursor + Spin Boost
+                // Smooth Lerp Damping toward Cursor + Spin Boost + Camera Zoom Lerp
                 spinBoostY *= 0.92;
                 phoneGroup.rotation.y += ((targetRotY + spinBoostY) - phoneGroup.rotation.y) * 0.06;
                 phoneGroup.rotation.x += (targetRotX - phoneGroup.rotation.x) * 0.06;
+                if (camera) {
+                    camera.position.z += (targetZoomZ - camera.position.z) * 0.1;
+                }
 
                 // Subtle Vertical Levitation Oscillation
                 phoneGroup.position.y = Math.sin(time * 1.5) * 0.12;
