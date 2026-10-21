@@ -194,15 +194,17 @@
     <!-- Google Fonts: Outfit, Cinzel, Tiro Devanagari Hindi -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        serif: ['Cinzel', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        monument: ['"Cinzel"', 'serif'],
                         hindi: ['"Tiro Devanagari Hindi"', 'serif'],
                     }
                 }
@@ -211,6 +213,27 @@
     </script>
 
     <style>
+        /* ==========================================================================
+           CLASSICAL VEDIC TYPOGRAPHY & GOLD ILLUMINATION (/typeset & /ce-frontend-design)
+           ========================================================================== */
+        .font-display, .font-serif {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+        }
+        .font-monument {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.12em;
+        }
+        .font-hindi {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            line-height: 1.65;
+        }
+        .text-gold-gradient {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, #D97706 45%, #F59E0B 75%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         /* ==========================================================================
            CLASSICAL SANZO WADA LIGHT-THEME HARMONIES (配色総鑑 - DAYLIGHT EDITION)
            ========================================================================== */
@@ -297,7 +320,10 @@
         html, body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             overflow-x: hidden;
             transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
         }
@@ -567,8 +593,8 @@
                             <p class="font-hindi text-lg sm:text-xl font-medium text-accent">
                                 ॥ हिन्दू पंचांग, चौघड़िया, जन्म कुंडली एवं वास्तु शास्त्र ॥
                             </p>
-                            <h1 class="font-serif text-3xl sm:text-5xl lg:text-[46px] font-bold tracking-tight leading-[1.12]" style="color: var(--text-primary);">
-                                Vedic Hindu Calendar & Panchang — <span class="text-accent">Timeless Wisdom in 3D.</span>
+                            <h1 class="font-serif text-3xl sm:text-5xl lg:text-[52px] font-semibold tracking-[-0.015em] leading-[1.14]" style="color: var(--text-primary);">
+                                Vedic Hindu Calendar & Panchang — <span class="text-gold-gradient italic font-serif font-semibold">Timeless Wisdom in 3D.</span>
                             </h1>
                         </div>
 
@@ -645,39 +671,40 @@
                         <!-- 3D WebGL Canvas Wrapper -->
                         <div class="relative w-full rounded-3xl glass-card overflow-hidden border border-accent/30">
                             
-                            <!-- Top Floating HUD Overlay inside 3D Viewport -->
-                            <div class="absolute top-3.5 left-4 right-4 flex items-center justify-between z-10 pointer-events-none">
-                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-black/5 shadow-sm text-xs font-medium" style="color: var(--text-secondary);">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                    <span>Brahmanda Ecliptic 60° • Surya & Chandra Orbit</span>
+                            <!-- Top Floating HUD Overlay inside 3D Viewport (Responsive Adaptation) -->
+                            <div class="absolute top-2.5 left-2.5 right-2.5 sm:top-3.5 sm:left-4 sm:right-4 flex items-center justify-between z-10 pointer-events-none gap-1.5">
+                                <div class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-black/5 shadow-sm text-[11px] sm:text-xs font-medium shrink min-w-0" style="color: var(--text-secondary);">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
+                                    <span class="hidden md:inline">Brahmanda Ecliptic • </span>
+                                    <span class="truncate">Surya & Chandra Orbit</span>
                                 </div>
 
-                                <div class="flex items-center gap-1.5 pointer-events-auto">
+                                <div class="flex items-center gap-1 sm:gap-1.5 pointer-events-auto shrink-0">
                                     <button id="tour-btn" onclick="toggleGuidedTour()" title="Auto Tour All 8 Screens"
-                                        class="px-3 py-1.5 rounded-full bg-white/85 hover:bg-white border border-accent/40 shadow-sm text-xs font-semibold flex items-center gap-1.5 transition text-accent">
+                                        class="px-2.5 sm:px-3 py-1.5 rounded-full bg-white/90 hover:bg-white border border-accent/40 shadow-sm text-[11px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5 transition text-accent">
                                         <i data-lucide="play" id="tour-icon" class="w-3.5 h-3.5 fill-current"></i>
-                                        <span id="tour-label">Guided Tour</span>
+                                        <span id="tour-label" class="hidden sm:inline">Guided Tour</span>
                                     </button>
-                                    <button onclick="zoomIn3D()" title="Zoom In (+)"
-                                        class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition hover:border-accent"
+                                    <button onclick="zoomIn3D()" title="Zoom In (+)" aria-label="Zoom In"
+                                        class="p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition hover:border-accent"
                                         style="color: var(--text-primary);">
-                                        <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                                        <i data-lucide="zoom-in" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                                     </button>
-                                    <button onclick="zoomOut3D()" title="Zoom Out (-)"
-                                        class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition hover:border-accent"
+                                    <button onclick="zoomOut3D()" title="Zoom Out (-)" aria-label="Zoom Out"
+                                        class="p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition hover:border-accent"
                                         style="color: var(--text-primary);">
-                                        <i data-lucide="zoom-out" class="w-4 h-4"></i>
+                                        <i data-lucide="zoom-out" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                                     </button>
-                                    <button onclick="resetPhoneCamera()" title="Reset 3D Tilt & Zoom"
-                                        class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition"
+                                    <button onclick="resetPhoneCamera()" title="Reset 3D Tilt & Zoom" aria-label="Reset Camera"
+                                        class="p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition"
                                         style="color: var(--text-primary);">
-                                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
                                     </button>
-                                    <button onclick="spinPhone360()" title="Spin 360°"
-                                        class="px-3 py-1.5 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-semibold flex items-center gap-1 transition"
+                                    <button onclick="spinPhone360()" title="Spin 360°" aria-label="Spin 360 Degrees"
+                                        class="px-2 sm:px-3 py-1.5 rounded-full bg-white/90 hover:bg-white border border-black/10 shadow-sm text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition"
                                         style="color: var(--text-primary);">
                                         <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
-                                        <span>Spin 3D</span>
+                                        <span class="hidden sm:inline">Spin 3D</span>
                                     </button>
                                 </div>
                             </div>
@@ -741,7 +768,7 @@
                 
                 <!-- Section Header -->
                 <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-                    <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
+                    <span class="font-monument px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
                         Six Pillars of Vedic Timekeeping
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--text-primary);">
@@ -936,7 +963,7 @@
                 
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                     <div>
-                        <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
+                        <span class="font-monument px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
                             High-DPI UI Inspection
                         </span>
                         <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-3" style="color: var(--text-primary);">
@@ -1036,7 +1063,7 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center mb-12 space-y-3">
-                    <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
+                    <span class="font-monument px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
                         Astronomical & Architectural FAQ
                     </span>
                     <h2 class="font-serif text-3xl sm:text-4xl font-bold" style="color: var(--text-primary);">
