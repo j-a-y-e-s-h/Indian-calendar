@@ -838,19 +838,15 @@
                 <!-- Main Gallery Stage -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     
-                    <!-- High-Res Procedural Canvas Preview (5 Cols) -->
+                    <!-- High-Res Real Android Screenshot Preview Stage (5 Cols) -->
                     <div class="lg:col-span-5 flex justify-center">
-                        <div class="relative p-3.5 rounded-[40px] bg-gradient-to-b from-amber-100/80 via-white to-stone-200/80 border-2 border-accent/40 shadow-2xl max-w-[320px] w-full">
-                            <!-- Speaker Notch -->
-                            <div class="w-20 h-1.5 bg-stone-400/50 rounded-full mx-auto mb-2.5"></div>
-                            <!-- Mode Toggle: Dynamic Sanzo Wada vs Real Device Screenshot -->
-                            <div class="flex items-center justify-center gap-1.5 mb-2.5 bg-black/5 p-1 rounded-xl text-xs font-semibold">
-                                <button id="view-mode-vector" onclick="setGalleryViewMode('vector')" class="px-3 py-1 rounded-lg bg-white shadow-sm text-accent transition">🎨 Live Theme</button>
-                                <button id="view-mode-real" onclick="setGalleryViewMode('real')" class="px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition">📸 Actual Screenshot</button>
+                        <div class="relative p-3.5 rounded-[42px] bg-gradient-to-b from-amber-100/90 via-white to-stone-200/90 border-2 border-accent/50 shadow-2xl max-w-[320px] w-full transform hover:scale-[1.01] transition-transform">
+                            <!-- Speaker Earpiece Notch -->
+                            <div class="w-20 h-1.5 bg-stone-400/60 rounded-full mx-auto mb-3"></div>
+                            <!-- Real Device Screenshot Display -->
+                            <div class="relative overflow-hidden rounded-[28px] bg-slate-900 border border-black/10 shadow-lg">
+                                <img id="gallery-preview-img" src="screenshots/01_panchang_m3.png" alt="Native Android 16 App Screenshot" class="w-full h-auto object-cover transition-opacity duration-300">
                             </div>
-                            <!-- High-Resolution 2D Preview Canvas & Image Fallback -->
-                            <canvas id="gallery-preview-canvas" width="540" height="1080" class="w-full h-auto rounded-[28px] shadow-inner border border-black/10 bg-white"></canvas>
-                            <img id="gallery-preview-img" src="screenshots/01_panchang_m3.png" alt="Actual Screenshot" class="hidden w-full h-auto rounded-[28px] shadow-inner border border-black/10 bg-white object-cover">
                         </div>
                     </div>
 
@@ -861,8 +857,9 @@
                                 <span id="gallery-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-accent-soft text-accent border border-accent">
                                     MODULE 01 • PANCHANGAM
                                 </span>
-                                <span id="gallery-file-tag" class="font-mono text-xs px-2.5 py-1 rounded bg-black/5" style="color: var(--text-muted);">
-                                    screenshots/01_panchang_m3.png
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-700 border border-emerald-500/20">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <span>Verified Native Screen</span>
                                 </span>
                             </div>
 
@@ -1070,8 +1067,9 @@
             {
                 id: 0,
                 pill: "📅 Daily Panchang",
+                thumbTitle: "Daily Panchang",
                 hindi: "दैनिक पंचांग",
-                title: "📅 Daily Panchang (Tithi, Nakshatra, Yoga, Karana)",
+                title: "📅 Daily Vedic Panchang Dashboard",
                 badge: "MODULE 01 • PANCHANGAM",
                 file: "screenshots/01_panchang_m3.png",
                 desc: "Complete topocentric 5-limb Panchanga with Sunrise/Sunset, Rahu Kaal, Abhijit Muhurta, and dynamic Sankalpam mantra.",
@@ -1085,11 +1083,12 @@
             {
                 id: 1,
                 pill: "🗓️ Month Grid",
+                thumbTitle: "Month Grid",
                 hindi: "मासिक कैलेंडर",
-                title: "🗓️ Vedic Lunar-Solar Month Grid & Ekadashi Tracker",
+                title: "🗓️ Vedic Lunar-Solar Month Grid & Ekadashi",
                 badge: "MODULE 02 • MASA CALENDAR",
                 file: "screenshots/02_calendar_grid.png",
-                desc: "Full monthly view displaying Gregorian dates alongside Shukla/Krishna Tithis, Purnima, Amavasya, Sankashti, Pradosham, and major Hindu festivals.",
+                desc: "Full monthly view displaying Gregorian dates alongside Shukla/Krishna Tithis, Purnima, Amavasya, Sankashti, and Hindu festivals.",
                 highlights: [
                     "✦ Purnima, Amavasya & Ekadashi Badges",
                     "✦ Amanta & Purnimanta Tradition Support",
@@ -1099,7 +1098,8 @@
             },
             {
                 id: 2,
-                pill: "⏳ Choghadiya & Hora",
+                pill: "⏳ Choghadiya",
+                thumbTitle: "Choghadiya & Hora",
                 hindi: "चौघड़िया एवं होरा",
                 title: "⏳ Real-Time Choghadiya & 24 Planetary Hora",
                 badge: "MODULE 03 • MUHURTA TIMERS",
@@ -1114,12 +1114,13 @@
             },
             {
                 id: 3,
-                pill: "🌌 Kundali & Ephemeris",
-                hindi: "जन्म कुंडली एवं ग्रह स्पष्ट",
-                title: "🌌 Triple Kundali Charts, Shadbala & Planetary Ephemeris",
+                pill: "🌌 Kundali Chart",
+                thumbTitle: "Kundali Chart",
+                hindi: "जन्म कुंडली एवं ग्रह",
+                title: "🌌 Triple Kundali Charts, Shadbala & Ephemeris",
                 badge: "MODULE 04 • JYOTISH HOROSCOPE",
                 file: "screenshots/04_kundali_ephemeris.png",
-                desc: "Instant Lagna (D1) & Navamsa (D9) charts in North, South, and East Indian layouts with true Lahiri degrees, Nakshatra Padas, Vimshottari Dasha, and SAV.",
+                desc: "Instant Lagna (D1) charts in North, South, and East Indian layouts with true Lahiri degrees, Nakshatra Padas, and Shadbala.",
                 highlights: [
                     "✦ North, South & East Indian Chart Styles",
                     "✦ Sub-Arcsecond Planetary Longitudes",
@@ -1129,12 +1130,13 @@
             },
             {
                 id: 4,
-                pill: "🧭 16-Petal Vastu Compass",
+                pill: "🧭 16-Petal Vastu",
+                thumbTitle: "16-Petal Vastu",
                 hindi: "१६-दिशा वास्तु चक्र",
-                title: "🧭 16-Petal Vedic Vastu Compass & 8 Ashtadikpalas",
+                title: "🧭 16-Petal Vedic Vastu Compass & 8 Dikpalas",
                 badge: "MODULE 05 • STHAPATYA VEDA",
                 file: "screenshots/05_vastu_compass.png",
-                desc: "Live magnetometer-driven 16-zone Vastu Purusha Mandala highlighting Water, Fire, Earth, Air, and Space zones plus the 8 directional guardians.",
+                desc: "Live magnetometer-driven 16-zone Vastu Purusha Mandala highlighting Water, Fire, Earth, Air, and Space zones.",
                 highlights: [
                     "✦ 16 Mahavastu Directional Sectors (22.5°)",
                     "✦ 8 Ashtadikpala Deities & Elements",
@@ -1144,7 +1146,8 @@
             },
             {
                 id: 5,
-                pill: "⏰ 60-Ghati Hindu Clock",
+                pill: "⏰ 60-Ghati Clock",
+                thumbTitle: "60-Ghati Clock",
                 hindi: "६० घटी वैदिक घड़ी",
                 title: "⏰ 60-Ghati Hindu Clock & Sunrise Ishta Kaal",
                 badge: "MODULE 06 • SURYA SIDDHANTA TIME",
@@ -1159,12 +1162,13 @@
             },
             {
                 id: 6,
-                pill: "⚙️ Settings Modal",
+                pill: "⚙️ Settings",
+                thumbTitle: "Settings Modal",
                 hindi: "सेटिंग्स एवं स्थान",
-                title: "⚙️ Tradition, Ayanamsa & 4,500+ Offline City Settings",
+                title: "⚙️ Tradition, Ayanamsa & 4,500+ Cities Settings",
                 badge: "MODULE 07 • CUSTOMIZATION",
                 file: "screenshots/07_m3_settings.png",
-                desc: "Configure Amanta vs Purnimanta month system, Lahiri/Raman/KP Ayanamsa, 4,500+ offline cities or manual GPS coordinates, and bilingual language.",
+                desc: "Configure Amanta vs Purnimanta month system, Lahiri/Raman/KP Ayanamsa, 4,500+ offline cities, and Material 3 palettes.",
                 highlights: [
                     "✦ Amanta / Purnimanta Instant Toggle",
                     "✦ Lahiri, True Citra, Raman & KP Ayanamsa",
@@ -1174,12 +1178,13 @@
             },
             {
                 id: 7,
-                pill: "📱 Home Screen Widgets",
+                pill: "📱 Desktop Widgets",
+                thumbTitle: "Desktop Widgets",
                 hindi: "होम स्क्रीन विजेट",
                 title: "📱 Material You Transparent Home Screen Widgets",
                 badge: "MODULE 08 • ANDROID LAUNCHER",
                 file: "screenshots/08_home_widgets.png",
-                desc: "Glanceable Android home screen widgets for Daily Panchang, live Choghadiya countdown, and 60-Ghati Vedic time without opening the app.",
+                desc: "Glanceable Android home screen widgets for Daily Panchang, live Choghadiya countdown, and 60-Ghati Vedic time.",
                 highlights: [
                     "✦ 4×2 Daily Panchang Summary Widget",
                     "✦ 4×1 Live Choghadiya & Hora Pill",
@@ -1761,22 +1766,31 @@
             fillLight.position.set(-5, -3, 4);
             scene.add(fillLight);
 
-            // Generate 8 High-DPI Procedural App Screen Textures (+ optional image loader fallback)
-            for (let i = 0; i < 8; i++) {
-                const c = generateAppScreenCanvas(i, '#D48B1E', '#2B4C7E');
-                screenCanvases[i] = c;
-                const tex = new THREE.CanvasTexture(c);
-                tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-                tex.needsUpdate = true;
+            // Load 8 Real High-Resolution Android Screenshots into Three.js Textures
+            const textureLoader = new THREE.TextureLoader();
+            APP_SCREENS.forEach((screen, i) => {
+                const tex = textureLoader.load(screen.file, (loaded) => {
+                    loaded.generateMipmaps = true;
+                    loaded.minFilter = THREE.LinearMipmapLinearFilter;
+                    loaded.magFilter = THREE.LinearFilter;
+                    if (renderer && renderer.capabilities) {
+                        loaded.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                    }
+                    loaded.needsUpdate = true;
+                    if (i === currentScreenIndex && screenMesh) {
+                        screenMesh.material.map = loaded;
+                        screenMesh.material.needsUpdate = true;
+                    }
+                });
                 screenTextures[i] = tex;
-            }
+            });
 
             // 1. Construct 3D Smartphone Mockup Group
             phoneGroup = new THREE.Group();
             scene.add(phoneGroup);
 
             // Main Obsidian/Titanium Chassis
-            const chassisGeo = new THREE.BoxGeometry(2.36, 4.72, 0.18);
+            const chassisGeo = new THREE.BoxGeometry(2.36, 4.96, 0.18);
             const chassisMat = new THREE.MeshStandardMaterial({
                 color: 0x1A1C24,
                 metalness: 0.85,
@@ -1786,7 +1800,7 @@
             phoneGroup.add(chassisMesh);
 
             // Metallic Golden Chamfer / Rim Border
-            const rimGeo = new THREE.BoxGeometry(2.44, 4.80, 0.14);
+            const rimGeo = new THREE.BoxGeometry(2.44, 5.04, 0.14);
             const rimMat = new THREE.MeshStandardMaterial({
                 color: 0xD48B1E,
                 metalness: 0.95,
@@ -1796,7 +1810,7 @@
             phoneGroup.add(rimMesh);
 
             // Subtle Pearl Backplate Accent
-            const backGeo = new THREE.PlaneGeometry(2.26, 4.62);
+            const backGeo = new THREE.PlaneGeometry(2.26, 4.86);
             const backMat = new THREE.MeshStandardMaterial({
                 color: 0xFAF8F5,
                 metalness: 0.3,
@@ -1817,12 +1831,11 @@
             volBtn.position.set(-1.23, 0.65, 0);
             phoneGroup.add(volBtn);
 
-            // Front Screen Plane with Active App Texture
-            const screenGeo = new THREE.PlaneGeometry(2.22, 4.52);
-            const screenMat = new THREE.MeshStandardMaterial({
-                map: screenTextures[0],
-                roughness: 0.18,
-                metalness: 0.05
+            // Front Screen Plane with Active Real Screenshot Texture
+            // Precision 20:9 Aspect Ratio (1268x2756 -> Height 4.80, Width 2.21)
+            const screenGeo = new THREE.PlaneGeometry(2.21, 4.80);
+            const screenMat = new THREE.MeshBasicMaterial({
+                map: screenTextures[0]
             });
             screenMesh = new THREE.Mesh(screenGeo, screenMat);
             screenMesh.position.z = 0.095;
@@ -2051,23 +2064,19 @@
             document.getElementById('active-screen-title').textContent = screenData.title;
             document.getElementById('active-screen-desc').textContent = screenData.desc;
 
-            // 4. Sync 2D Showcase Gallery Canvas & Info
-            const galleryCanvas = document.getElementById('gallery-preview-canvas');
-            if (galleryCanvas && screenCanvases[currentScreenIndex]) {
-                const gCtx = galleryCanvas.getContext('2d');
-                gCtx.clearRect(0, 0, galleryCanvas.width, galleryCanvas.height);
-                gCtx.drawImage(screenCanvases[currentScreenIndex], 0, 0);
-            }
-
+            // 4. Sync 2D Showcase Gallery Real Screenshot with smooth opacity transition
             document.getElementById('carousel-counter').textContent = `0${currentScreenIndex + 1} / 08`;
             document.getElementById('gallery-badge').textContent = screenData.badge;
-            document.getElementById('gallery-file-tag').textContent = screenData.file;
             document.getElementById('gallery-title').textContent = screenData.title;
             document.getElementById('gallery-desc').textContent = screenData.desc;
 
             const galleryImg = document.getElementById('gallery-preview-img');
             if (galleryImg && screenData) {
-                galleryImg.src = screenData.file;
+                galleryImg.style.opacity = '0.35';
+                setTimeout(() => {
+                    galleryImg.src = screenData.file;
+                    galleryImg.style.opacity = '1';
+                }, 100);
             }
 
             const highlightsContainer = document.getElementById('gallery-highlights');
@@ -2118,8 +2127,8 @@
             container.innerHTML = APP_SCREENS.map((s, idx) => `
                 <button onclick="selectAppScreen(${idx})" class="${idx === 0 ? 'p-3 rounded-2xl text-left border-2 border-accent bg-accent-soft transition-all shadow-sm' : 'p-3 rounded-2xl text-left border border-black/10 bg-white/80 hover:border-accent transition-all'}">
                     <div class="text-[11px] font-mono font-bold text-accent">0${idx + 1}</div>
-                    <div class="text-xs font-bold truncate mt-0.5" style="color: var(--text-primary);">${s.pill}</div>
-                    <div class="text-[11px] font-hindi truncate" style="color: var(--text-muted);">${s.hindi}</div>
+                    <div class="text-xs font-bold mt-0.5" style="color: var(--text-primary);">${s.thumbTitle}</div>
+                    <div class="text-[11px] font-hindi" style="color: var(--text-muted);">${s.hindi}</div>
                 </button>
             `).join('');
         }
