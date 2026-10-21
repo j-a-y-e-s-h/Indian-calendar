@@ -21,6 +21,8 @@
     <meta name="twitter:description" content="100% Offline, Ad-Free Android App with Choghadiya, Triple Kundali, Vastu Compass, and 60-Ghati Clock.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/j-a-y-e-s-h/Indian-calendar/main/screenshots/01_panchang_m3.png">
 
+        <!-- Preload Primary Active Screen for Instant 3D & 2D Render -->
+    <link rel="preload" as="image" href="screenshots/01_panchang_m3_fast.webp" type="image/webp">
     <!-- Favicon: Surya-Chandra Cosmic Mandala Logo -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23F6AD55'/%3E%3Cstop offset='100%25' stop-color='%23C05621'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ccircle cx='50' cy='50' r='38' fill='none' stroke='%23FEEBC8' stroke-width='2' stroke-dasharray='3 3'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23FFD700'/%3E%3Ccircle cx='46' cy='46' r='16' fill='%23FFFFFF'/%3E%3Ccircle cx='51' cy='45' r='14' fill='%23FFD700'/%3E%3Ccircle cx='50' cy='50' r='3' fill='%23C05621'/%3E%3C/svg%3E">
 
@@ -873,7 +875,7 @@
                             <div class="w-20 h-1.5 bg-stone-400/60 rounded-full mx-auto mb-3"></div>
                             <!-- Real Device Screenshot Display (Rigid 20:9 Aspect Ratio) -->
                             <div class="relative overflow-hidden rounded-[28px] bg-slate-900 border border-black/10 shadow-lg w-full flex items-center justify-center" style="aspect-ratio: 1268 / 2756; min-height: 560px;">
-                                <img id="gallery-preview-img" src="screenshots/01_panchang_m3.png" alt="Native Android 16 App Screenshot" class="w-full h-full object-cover transition-opacity duration-300 block">
+                                <img id="gallery-preview-img" src="screenshots/01_panchang_m3_fast.webp" loading="eager" decoding="async" alt="Native Android 16 App Screenshot" class="w-full h-full object-cover transition-opacity duration-300 block">
                             </div>
                         </div>
                     </div>
@@ -1134,7 +1136,8 @@
                 hindi: "दैनिक पंचांग",
                 title: "Daily Vedic Panchang Dashboard",
                 badge: "MODULE 01 • PANCHANGAM",
-                file: "screenshots/01_panchang_m3.png",
+                file: "screenshots/01_panchang_m3_fast.webp",
+                fallbackFile: "screenshots/01_panchang_m3.png",
                 desc: "Complete topocentric 5-limb Panchanga with Sunrise/Sunset, Rahu Kaal, Abhijit Muhurta, and dynamic Sankalpam mantra.",
                 highlights: [
                     "Topocentric Sunrise & Sunset",
@@ -1151,7 +1154,8 @@
                 hindi: "मासिक कैलेंडर",
                 title: "Vedic Lunar-Solar Month Grid & Ekadashi",
                 badge: "MODULE 02 • MASA CALENDAR",
-                file: "screenshots/02_calendar_grid.png",
+                file: "screenshots/02_calendar_grid_fast.webp",
+                fallbackFile: "screenshots/02_calendar_grid.png",
                 desc: "Full monthly view displaying Gregorian dates alongside Shukla/Krishna Tithis, Purnima, Amavasya, Sankashti, and Hindu festivals.",
                 highlights: [
                     "Purnima, Amavasya & Ekadashi Badges",
@@ -1168,7 +1172,8 @@
                 hindi: "चौघड़िया एवं होरा",
                 title: "Real-Time Choghadiya & 24 Planetary Hora",
                 badge: "MODULE 03 • MUHURTA TIMERS",
-                file: "screenshots/03_choghadiya_hora.png",
+                file: "screenshots/03_choghadiya_hora_fast.webp",
+                fallbackFile: "screenshots/03_choghadiya_hora.png",
                 desc: "Live progress countdowns for all 8 Day & 8 Night Choghadiyas (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg) and Chaldean Planetary Horas.",
                 highlights: [
                     "Day & Night 8-Fold Muhurta Slices",
@@ -1185,7 +1190,8 @@
                 hindi: "जन्म कुंडली एवं ग्रह",
                 title: "Triple Kundali Charts, Shadbala & Ephemeris",
                 badge: "MODULE 04 • JYOTISH HOROSCOPE",
-                file: "screenshots/04_kundali_ephemeris.png",
+                file: "screenshots/04_kundali_ephemeris_fast.webp",
+                fallbackFile: "screenshots/04_kundali_ephemeris.png",
                 desc: "Instant Lagna (D1) charts in North, South, and East Indian layouts with true Lahiri degrees, Nakshatra Padas, and Shadbala.",
                 highlights: [
                     "North, South & East Indian Chart Styles",
@@ -1202,7 +1208,8 @@
                 hindi: "१६-दिशा वास्तु चक्र",
                 title: "16-Petal Vedic Vastu Compass & 8 Dikpalas",
                 badge: "MODULE 05 • STHAPATYA VEDA",
-                file: "screenshots/05_vastu_compass.png",
+                file: "screenshots/05_vastu_compass_fast.webp",
+                fallbackFile: "screenshots/05_vastu_compass.png",
                 desc: "Live magnetometer-driven 16-zone Vastu Purusha Mandala highlighting Water, Fire, Earth, Air, and Space zones.",
                 highlights: [
                     "16 Mahavastu Directional Sectors (22.5°)",
@@ -1219,7 +1226,8 @@
                 hindi: "६० घटी वैदिक घड़ी",
                 title: "60-Ghati Hindu Clock & Sunrise Ishta Kaal",
                 badge: "MODULE 06 • SURYA SIDDHANTA TIME",
-                file: "screenshots/06_hindu_clock.png",
+                file: "screenshots/06_hindu_clock_fast.webp",
+                fallbackFile: "screenshots/06_hindu_clock.png",
                 desc: "Traditional Vedic chronometer anchored to local Sunrise where 1 Solar Day = 60 Ghatis, 1 Ghati = 60 Palas, and 1 Pala = 60 Vipalas.",
                 highlights: [
                     "Concentric 60-Ghati / Pala / Vipala Dial",
@@ -1236,7 +1244,8 @@
                 hindi: "सेटिंग्स एवं स्थान",
                 title: "Tradition, Ayanamsa & 4,500+ Cities Settings",
                 badge: "MODULE 07 • CUSTOMIZATION",
-                file: "screenshots/07_m3_settings.png",
+                file: "screenshots/07_m3_settings_fast.webp",
+                fallbackFile: "screenshots/07_m3_settings.png",
                 desc: "Configure Amanta vs Purnimanta month system, Lahiri/Raman/KP Ayanamsa, 4,500+ offline cities, and Material 3 palettes.",
                 highlights: [
                     "Amanta / Purnimanta Instant Toggle",
@@ -1253,7 +1262,8 @@
                 hindi: "होम स्क्रीन विजेट",
                 title: "Material You Transparent Home Screen Widgets",
                 badge: "MODULE 08 • ANDROID LAUNCHER",
-                file: "screenshots/08_home_widgets.png",
+                file: "screenshots/08_home_widgets_fast.webp",
+                fallbackFile: "screenshots/08_home_widgets.png",
                 desc: "Glanceable Android home screen widgets for Daily Panchang, live Choghadiya countdown, and 60-Ghati Vedic time.",
                 highlights: [
                     "4×2 Daily Panchang Summary Widget",
@@ -1306,25 +1316,51 @@
             fillLight.position.set(-5, -3, 4);
             scene.add(fillLight);
 
-            // Load 8 Authentic High-Resolution Android Screenshots into Three.js Textures
+            // 1. High-Performance Instant Texture Pipeline
             const textureLoader = new THREE.TextureLoader();
-            APP_SCREENS.forEach((screen, i) => {
-                const tex = textureLoader.load(screen.file, (loaded) => {
-                    loaded.generateMipmaps = true;
-                    loaded.minFilter = THREE.LinearMipmapLinearFilter;
-                    loaded.magFilter = THREE.LinearFilter;
-                    if (renderer && renderer.capabilities) {
-                        loaded.anisotropy = renderer.capabilities.getMaxAnisotropy();
-                    }
-                    loaded.needsUpdate = true;
-                    screenTextures[i] = loaded;
-                    if (i === currentScreenIndex && screenMesh) {
-                        screenMesh.material.map = loaded;
-                        screenMesh.material.needsUpdate = true;
-                    }
-                });
-                screenTextures[i] = tex;
+            
+            // Prioritize Active Screen 01 immediately
+            const firstTex = textureLoader.load(APP_SCREENS[0].file, (loaded) => {
+                loaded.generateMipmaps = true;
+                loaded.minFilter = THREE.LinearMipmapLinearFilter;
+                loaded.magFilter = THREE.LinearFilter;
+                if (renderer && renderer.capabilities) {
+                    loaded.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                }
+                loaded.needsUpdate = true;
+                screenTextures[0] = loaded;
+                if (screenMesh) {
+                    screenMesh.material.map = loaded;
+                    screenMesh.material.needsUpdate = true;
+                }
+                // Lazily load remaining screens without network congestion
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(preloadRemainingTextures, { timeout: 1000 });
+                } else {
+                    setTimeout(preloadRemainingTextures, 150);
+                }
             });
+            screenTextures[0] = firstTex;
+
+            function preloadRemainingTextures() {
+                for (let i = 1; i < APP_SCREENS.length; i++) {
+                    const tex = textureLoader.load(APP_SCREENS[i].file, (loaded) => {
+                        loaded.generateMipmaps = true;
+                        loaded.minFilter = THREE.LinearMipmapLinearFilter;
+                        loaded.magFilter = THREE.LinearFilter;
+                        if (renderer && renderer.capabilities) {
+                            loaded.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                        }
+                        loaded.needsUpdate = true;
+                        screenTextures[i] = loaded;
+                        if (i === currentScreenIndex && screenMesh) {
+                            screenMesh.material.map = loaded;
+                            screenMesh.material.needsUpdate = true;
+                        }
+                    });
+                    screenTextures[i] = tex;
+                }
+            }
 
             // 1. Construct 3D Smartphone Mockup Group
             phoneGroup = new THREE.Group();
@@ -1723,6 +1759,19 @@
             selectAppScreen(currentScreenIndex + delta);
         }
 
+                // Background Preloader for 0ms Instant Gallery Swapping
+        function preloadAllScreens() {
+            APP_SCREENS.forEach(screen => {
+                const img = new Image();
+                img.src = screen.file;
+            });
+        }
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(preloadAllScreens, { timeout: 1500 });
+        } else {
+            setTimeout(preloadAllScreens, 300);
+        }
+
         function buildGalleryThumbnails() {
             const container = document.getElementById('gallery-thumbs');
             container.innerHTML = APP_SCREENS.map((s, idx) => `
@@ -1839,6 +1888,7 @@
            -------------------------------------------------------------------------- */
         window.onload = function () {
             buildGalleryThumbnails();
+        preloadAllScreens();
             initThreeJS();
             selectAppScreen(0);
             updateLiveGhatiClock();

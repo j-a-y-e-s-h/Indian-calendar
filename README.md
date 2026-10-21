@@ -48,22 +48,22 @@
 
 | 📅 1. Daily Vedic Panchang (दैनिक पंचांग) | 🗓️ 2. High-Density Month Grid (मासिक कैलेंडर) |
 |:---:|:---:|
-| <img src="screenshots/01_panchang_m3.png" width="360" alt="Daily Vedic Panchang with 5 Limbs, Muhurtas, and Sun Moon Illumination" /> | <img src="screenshots/02_calendar_grid.png" width="360" alt="Full Month Hindu Calendar Grid with Moon Phase Icons and Vrat Festival Tags" /> |
+| <img src="screenshots/01_panchang_m3.webp" width="360" loading="lazy" alt="Daily Vedic Panchang with 5 Limbs, Muhurtas, and Sun Moon Illumination" /> | <img src="screenshots/02_calendar_grid.webp" width="360" loading="lazy" alt="Full Month Hindu Calendar Grid with Moon Phase Icons and Vrat Festival Tags" /> |
 | **5 Limbs of Panchanga**: Tithi, Nakshatra, Yoga, Karana, Vaara, Sunrise/Sunset, Day/Night Length & Auspicious Muhurtas. | **Interactive Month Grid**: Gregorian-Vedic sync, Amanta/Purnimanta months, Navratri/Diwali/Dussehra festival badges & instant day cards. |
 
 | ⏳ 3. Live Choghadiya & Hora (चौघड़िया एवं होरा) | 🌌 4. Kundali & 9-Graha Ephemeris (वैदिक कुंडली) |
 |:---:|:---:|
-| <img src="screenshots/03_choghadiya_hora.png" width="360" alt="Live Day and Night Choghadiya Timings with Realtime Countdown and Hora Chakra" /> | <img src="screenshots/04_kundali_ephemeris.png" width="360" alt="North Indian Diamond Vedic Kundali Chart with Planetary Degrees and Lagna" /> |
+| <img src="screenshots/03_choghadiya_hora.webp" width="360" loading="lazy" alt="Live Day and Night Choghadiya Timings with Realtime Countdown and Hora Chakra" /> | <img src="screenshots/04_kundali_ephemeris.webp" width="360" loading="lazy" alt="North Indian Diamond Vedic Kundali Chart with Planetary Degrees and Lagna" /> |
 | **Live Muhurta Timings**: Real-time Day & Night Choghadiya timeline, dynamic countdowns, Shubh/Labh/Amrit indicators & planetary Hora significance. | **Classical Kundali Charts**: North Indian Diamond, South Indian Square, and East Indian Bangla charts with Shadbala, Ashtakavarga SAV & Sade Sati. |
 
 | 🧭 5. 16-Petal Vedic Vastu Compass (वास्तु कंपास) | ⏰ 6. Vedic Ghati Clock (घटी-पल-विपल घड़ी) |
 |:---:|:---:|
-| <img src="screenshots/05_vastu_compass.png" width="360" alt="Vedic Vastu Shastra Compass with 16 Petals, 8 Dikpalas, and Architectural Tips" /> | <img src="screenshots/06_hindu_clock.png" width="360" alt="Classical Hindu Clock with 60 Ghatis from Sunrise and Ishta Kaal" /> |
+| <img src="screenshots/05_vastu_compass.webp" width="360" loading="lazy" alt="Vedic Vastu Shastra Compass with 16 Petals, 8 Dikpalas, and Architectural Tips" /> | <img src="screenshots/06_hindu_clock.webp" width="360" loading="lazy" alt="Classical Hindu Clock with 60 Ghatis from Sunrise and Ishta Kaal" /> |
 | **Vastu Shastra Compass**: Classical 16 petals, 8 Ashtadikpalas (Indra, Agni, Yama, Nirrti, Varuna, Vayu, Kubera, Ishana), planetary lords & architectural tips. | **Traditional Hindu Clock**: 60 Ghatis from Sunrise (1 Ghati = 24m), Pala, Vipala, and exact Ishta Kaal calculation. |
 
 | ⚙️ 7. Material 3 Settings (सेटिंग्स एवं विकल्प) | 📱 8. Desktop Home Screen Widgets (विजेट) |
 |:---:|:---:|
-| <img src="screenshots/07_m3_settings.png" width="360" alt="Centralized Settings with Japanese Color Palettes, Ayanamsa Systems, and Backup" /> | <img src="screenshots/08_home_widgets.png" width="360" alt="Transparent Material 3 Desktop Home Screen Widgets for Month Grid and Daily Panchang" /> |
+| <img src="screenshots/07_m3_settings.webp" width="360" loading="lazy" alt="Centralized Settings with Japanese Color Palettes, Ayanamsa Systems, and Backup" /> | <img src="screenshots/08_home_widgets.webp" width="360" loading="lazy" alt="Transparent Material 3 Desktop Home Screen Widgets for Month Grid and Daily Panchang" /> |
 | **Centralized Control**: 8 Sanzo Wada Japanese Palettes, Amanta/Purnimanta Masa, Lahiri/Raman/KP Ayanamsa, JSON Backup/Restore & 1-Tap Widget Pinning. | **Transparent Desktop Widgets**: Glaze-transparent Month Calendar Grid and compact Daily Panchang pill directly on your Android home screen. |
 
 ---
