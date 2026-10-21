@@ -4,6 +4,7 @@ output/
 CustomHinduWidget/build/
 CustomHinduWidget/output/
 *.apk
+!docs/*.apk
 *.dex
 *.class
 classes.args

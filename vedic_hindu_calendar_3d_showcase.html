@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Vedic Hindu Calendar, Panchang & Kundali — 3D Interactive Showcase</title>
+    <meta name="description" content="100% Offline, Ad-Free Android App for Daily Vedic Panchang, Choghadiya, Hora, Triple Kundali Charts, 16-Petal Vastu Compass, and 60-Ghati Hindu Clock.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Three.js r128 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Outfit, Cinzel, Tiro Devanagari Hindi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        hindi: ['"Tiro Devanagari Hindi"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ==========================================================================
+           CLASSICAL SANZO WADA LIGHT-THEME HARMONIES (配色総鑑 - DAYLIGHT EDITION)
+           ========================================================================== */
+        :root {
+            /* Default Palette 1: 白菊・瑠璃 (Shiragiku & Ruri — Chrysanthemum White & Lapis Gold) */
+            --bg-primary: #FAF8F5;
+            --bg-secondary: #F2EFE9;
+            --bg-surface: #FFFFFF;
+            --bg-glass: rgba(255, 255, 255, 0.82);
+            --bg-glass-strong: rgba(255, 255, 255, 0.94);
+            --text-primary: #141B2D;
+            --text-secondary: #4A5568;
+            --text-muted: #718096;
+            --accent-primary: #D48B1E;     /* Celestial Surya Gold */
+            --accent-secondary: #2B4C7E;   /* Lapis Lazuli Jewel */
+            --accent-soft: rgba(212, 139, 30, 0.12);
+            --accent-border: rgba(212, 139, 30, 0.32);
+            --border-subtle: rgba(20, 27, 45, 0.08);
+            --shadow-ambient: 0 20px 50px -12px rgba(20, 27, 45, 0.08), 0 4px 16px -2px rgba(212, 139, 30, 0.06);
+            --glow-radial: radial-gradient(circle at 50% 35%, rgba(212, 139, 30, 0.14), rgba(43, 76, 126, 0.05) 55%, transparent 75%);
+        }
+
+        [data-theme="zoge-kohaku"] {
+            /* Palette 2: 象牙・琥珀 (Zoge & Kohaku — Sacred Ivory & Sindoor Amber) */
+            --bg-primary: #FDFBF7;
+            --bg-secondary: #F6F0E6;
+            --bg-surface: #FFFFFF;
+            --bg-glass: rgba(253, 251, 247, 0.84);
+            --bg-glass-strong: rgba(255, 255, 255, 0.95);
+            --text-primary: #1F1612;
+            --text-secondary: #5C493E;
+            --text-muted: #8C7667;
+            --accent-primary: #C85A1E;     /* Sacred Sindoor Amber */
+            --accent-secondary: #8C5A3C;   /* Temple Bronze */
+            --accent-soft: rgba(200, 90, 30, 0.12);
+            --accent-border: rgba(200, 90, 30, 0.32);
+            --border-subtle: rgba(31, 22, 18, 0.08);
+            --shadow-ambient: 0 20px 50px -12px rgba(31, 22, 18, 0.08), 0 4px 16px -2px rgba(200, 90, 30, 0.07);
+            --glow-radial: radial-gradient(circle at 50% 35%, rgba(200, 90, 30, 0.14), rgba(140, 90, 60, 0.05) 55%, transparent 75%);
+        }
+
+        [data-theme="shironeri-sakura"] {
+            /* Palette 3: 白練・桜 (Shironeri & Sakura — Bleached Silk White & Lotus Rose) */
+            --bg-primary: #FBF9FA;
+            --bg-secondary: #F4EEF1;
+            --bg-surface: #FFFFFF;
+            --bg-glass: rgba(251, 249, 250, 0.84);
+            --bg-glass-strong: rgba(255, 255, 255, 0.95);
+            --text-primary: #231820;
+            --text-secondary: #5B4754;
+            --text-muted: #897381;
+            --accent-primary: #C44D76;     /* Padma Lotus Rose */
+            --accent-secondary: #536B50;   /* Uguisu Sage Leaf */
+            --accent-soft: rgba(196, 77, 118, 0.12);
+            --accent-border: rgba(196, 77, 118, 0.30);
+            --border-subtle: rgba(35, 24, 32, 0.08);
+            --shadow-ambient: 0 20px 50px -12px rgba(35, 24, 32, 0.08), 0 4px 16px -2px rgba(196, 77, 118, 0.07);
+            --glow-radial: radial-gradient(circle at 50% 35%, rgba(196, 77, 118, 0.14), rgba(83, 107, 80, 0.05) 55%, transparent 75%);
+        }
+
+        [data-theme="unohana-asagi"] {
+            /* Palette 4: 卯の花・浅葱 (Unohana & Asagi — Daylight White & Riverbank Teal) */
+            --bg-primary: #F6FAFA;
+            --bg-secondary: #EAF3F4;
+            --bg-surface: #FFFFFF;
+            --bg-glass: rgba(246, 250, 250, 0.84);
+            --bg-glass-strong: rgba(255, 255, 255, 0.95);
+            --text-primary: #102226;
+            --text-secondary: #3E595E;
+            --text-muted: #6C898F;
+            --accent-primary: #1B808C;     /* Asagi Turquoise */
+            --accent-secondary: #D49324;   /* Marigold Sun */
+            --accent-soft: rgba(27, 128, 140, 0.12);
+            --accent-border: rgba(27, 128, 140, 0.30);
+            --border-subtle: rgba(16, 34, 38, 0.08);
+            --shadow-ambient: 0 20px 50px -12px rgba(16, 34, 38, 0.08), 0 4px 16px -2px rgba(27, 128, 140, 0.07);
+            --glow-radial: radial-gradient(circle at 50% 35%, rgba(27, 128, 140, 0.14), rgba(212, 147, 36, 0.06) 55%, transparent 75%);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
+        }
+
+        /* Subtle Sacred Mandala Grid Background */
+        .vedic-bg-pattern {
+            background-image: 
+                var(--glow-radial),
+                radial-gradient(var(--border-subtle) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px;
+        }
+
+        /* White Glassmorphism Surfaces */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-ambient);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent-border);
+            transform: translateY(-3px);
+            box-shadow: 0 24px 56px -12px rgba(20, 27, 45, 0.12), 0 6px 20px -3px var(--accent-soft);
+        }
+
+        .glass-nav {
+            background: var(--bg-glass-strong);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* Accent Dynamic Classes */
+        .text-accent { color: var(--accent-primary); }
+        .text-accent-sec { color: var(--accent-secondary); }
+        .bg-accent { background-color: var(--accent-primary); }
+        .bg-accent-soft { background-color: var(--accent-soft); }
+        .border-accent { border-color: var(--accent-border); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #FFFFFF;
+            box-shadow: 0 10px 25px -5px var(--accent-border);
+            transition: all 0.25s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px -5px var(--accent-border);
+            filter: brightness(1.06);
+        }
+
+        /* Screen Switcher Pill Buttons */
+        .screen-pill {
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .screen-pill:hover {
+            border-color: var(--accent-border);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .screen-pill.active {
+            background: var(--accent-primary);
+            color: #FFFFFF;
+            border-color: var(--accent-primary);
+            box-shadow: 0 6px 18px -3px var(--accent-border);
+            font-weight: 600;
+        }
+
+        /* 3D Canvas Container - Mobile Adapted */
+        #webgl-container {
+            position: relative;
+            width: 100%;
+            height: 390px;
+            cursor: grab;
+            touch-action: pan-y;
+        }
+        #webgl-container:active {
+            cursor: grabbing;
+        }
+        @media (min-width: 480px) {
+            #webgl-container {
+                height: 460px;
+            }
+        }
+        @media (min-width: 768px) {
+            #webgl-container {
+                height: 540px;
+            }
+        }
+        @media (min-width: 1024px) {
+            #webgl-container {
+                height: 650px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-border);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        /* Slow Mandala Spin */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 48s linear infinite;
+        }
+    </style>
+</head>
+<body class="vedic-bg-pattern antialiased selection:bg-amber-500/20 selection:text-amber-900">
+
+    <!-- ==========================================================================
+         1. STICKY GLASSMORPHIC NAVIGATION
+         ========================================================================== -->
+    <header class="glass-nav sticky top-0 z-50 w-full transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
+            
+            <!-- Brand Logo & Bilingual Subtitle -->
+            <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-accent-soft border border-accent shadow-sm group-hover:scale-105 transition-transform">
+                    <span class="text-2xl leading-none select-none">🕉️</span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-serif font-bold text-lg sm:text-xl tracking-tight" style="color: var(--text-primary);">VEDIC PANCHANG</span>
+                        <span class="hidden sm:inline-block text-[11px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-accent-soft text-accent border border-accent">3D Edition</span>
+                    </div>
+                    <p class="font-hindi text-xs sm:text-sm" style="color: var(--text-secondary);">वैदिक हिन्दू पंचांग एवं कुंडली • १००% ऑफ़लाइन</p>
+                </div>
+            </a>
+
+            <!-- Center Navigation Links (Desktop) -->
+            <nav class="hidden xl:flex items-center gap-7 text-sm font-medium" style="color: var(--text-secondary);">
+                <a href="#hero" class="hover:text-accent transition-colors">3D Showcase</a>
+                <a href="#bento-features" class="hover:text-accent transition-colors">6 Vedic Pillars</a>
+                <a href="#gallery" class="hover:text-accent transition-colors">Screen Gallery</a>
+                <a href="#faq" class="hover:text-accent transition-colors">Siddhanta FAQ</a>
+            </nav>
+
+            <!-- Right Actions: Sanzo Wada Palette Switcher + GitHub + APK CTA -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                
+                <!-- Sanzo Wada Palette Dropdown -->
+                <div class="relative" id="palette-dropdown-wrapper">
+                    <button id="palette-btn" type="button" aria-label="Switch Sanzo Wada Color Harmony"
+                        class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/90 border border-accent/40 shadow-sm hover:shadow transition-all">
+                        <span id="active-swatch" class="w-4 h-4 rounded-full border border-black/10 flex-shrink-0" style="background: linear-gradient(135deg, #FAF8F5 35%, #D48B1E 35%, #2B4C7E 100%);"></span>
+                        <span class="hidden md:inline font-medium" id="active-palette-label">白菊 Shiragiku White</span>
+                        <i data-lucide="palette" class="w-4 h-4 text-accent"></i>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div id="palette-menu" class="hidden absolute right-0 mt-2 w-72 rounded-2xl glass-card p-2.5 z-50 border border-accent shadow-2xl">
+                        <div class="px-2.5 py-1.5 border-b border-black/5 mb-1.5">
+                            <p class="text-[11px] font-bold uppercase tracking-wider text-accent">Sanzo Wada Light Harmonies</p>
+                            <p class="text-[11px]" style="color: var(--text-muted);">配色総鑑 • Daylight White Editions</p>
+                        </div>
+                        
+                        <button onclick="setSanzoTheme('default', '白菊 Shiragiku White', '#FAF8F5', '#D48B1E', '#2B4C7E')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-black/5 transition text-left">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-full shadow-inner border border-black/10 flex-shrink-0" style="background: linear-gradient(135deg, #FAF8F5 30%, #D48B1E 30% 65%, #2B4C7E 65%);"></span>
+                                <div>
+                                    <div class="text-xs font-semibold" style="color: var(--text-primary);">白菊・瑠璃 (Shiragiku & Ruri)</div>
+                                    <div class="text-[11px]" style="color: var(--text-muted);">Alabaster White, Lapis & Surya Gold</div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button onclick="setSanzoTheme('zoge-kohaku', '象牙 Zoge Ivory', '#FDFBF7', '#C85A1E', '#8C5A3C')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-black/5 transition text-left mt-1">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-full shadow-inner border border-black/10 flex-shrink-0" style="background: linear-gradient(135deg, #FDFBF7 30%, #C85A1E 30% 65%, #8C5A3C 65%);"></span>
+                                <div>
+                                    <div class="text-xs font-semibold" style="color: var(--text-primary);">象牙・琥珀 (Zoge & Kohaku)</div>
+                                    <div class="text-[11px]" style="color: var(--text-muted);">Sacred Ivory, Sindoor Amber & Bronze</div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button onclick="setSanzoTheme('shironeri-sakura', '白練 Shironeri Silk', '#FBF9FA', '#C44D76', '#536B50')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-black/5 transition text-left mt-1">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-full shadow-inner border border-black/10 flex-shrink-0" style="background: linear-gradient(135deg, #FBF9FA 30%, #C44D76 30% 65%, #536B50 65%);"></span>
+                                <div>
+                                    <div class="text-xs font-semibold" style="color: var(--text-primary);">白練・桜 (Shironeri & Sakura)</div>
+                                    <div class="text-[11px]" style="color: var(--text-muted);">Silk White, Lotus Rose & Sage</div>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button onclick="setSanzoTheme('unohana-asagi', '卯の花 Unohana Teal', '#F6FAFA', '#1B808C', '#D49324')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-black/5 transition text-left mt-1">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-full shadow-inner border border-black/10 flex-shrink-0" style="background: linear-gradient(135deg, #F6FAFA 30%, #1B808C 30% 65%, #D49324 65%);"></span>
+                                <div>
+                                    <div class="text-xs font-semibold" style="color: var(--text-primary);">卯の花・浅葱 (Unohana & Asagi)</div>
+                                    <div class="text-[11px]" style="color: var(--text-muted);">Daylight White, River Teal & Marigold</div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GitHub Stars Link -->
+                <a href="https://github.com/j-a-y-e-s-h/Indian-calendar" target="_blank" rel="noopener noreferrer"
+                    class="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white/90 border border-black/10 hover:border-accent transition-all shadow-sm">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>Star</span>
+                    <span class="px-1.5 py-0.5 text-[11px] rounded-md bg-accent-soft text-accent font-bold">2.4k</span>
+                </a>
+
+                <!-- Direct APK Download Button -->
+                <button onclick="openDownloadModal()"
+                    class="btn-primary flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download APK</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         2. HERO SECTION & INTERACTIVE 3D WEBGL CENTERPIECE
+         ========================================================================== -->
+    <main>
+        <section id="hero" class="relative pt-8 pb-16 lg:py-14 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                    
+                    <!-- Left Column: Typography, Bilingual Copy, CTAs & Live Stats (5 Cols) -->
+                    <div class="lg:col-span-5 space-y-6 text-left z-10">
+                        
+                        <!-- Sacred Badge -->
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-accent shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-accent">Surya Siddhanta × Modern Material 3</span>
+                        </div>
+
+                        <!-- Dual-Language Headline -->
+                        <div class="space-y-2">
+                            <p class="font-hindi text-lg sm:text-xl font-medium text-accent">
+                                ॥ हिन्दू पंचांग, चौघड़िया, जन्म कुंडली एवं वास्तु शास्त्र ॥
+                            </p>
+                            <h1 class="font-serif text-3xl sm:text-5xl lg:text-[46px] font-bold tracking-tight leading-[1.12]" style="color: var(--text-primary);">
+                                Timeless Vedic Wisdom, <span class="text-accent">Modern Expressive 3D.</span>
+                            </h1>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-base sm:text-lg leading-relaxed" style="color: var(--text-secondary);">
+                            Experience sub-arcsecond astronomical precision in a luminous, ad-free Android sanctuary. Complete with <strong style="color: var(--text-primary);">5-Limb Daily Panchang</strong>, live <strong style="color: var(--text-primary);">Choghadiya & Hora</strong> timers, <strong style="color: var(--text-primary);">Triple Kundali Charts</strong>, a sensor-fused <strong style="color: var(--text-primary);">16-Petal Vastu Compass</strong>, and a real-time <strong style="color: var(--text-primary);">60-Ghati Hindu Clock</strong>.
+                        </p>
+
+                        <!-- High-Impact CTA Buttons -->
+                        <div class="flex flex-wrap items-center gap-3.5 pt-1">
+                            <button onclick="openDownloadModal()"
+                                class="btn-primary flex items-center gap-3 px-6 py-3.5 rounded-2xl text-sm sm:text-base font-semibold">
+                                <i data-lucide="smartphone" class="w-5 h-5"></i>
+                                <div class="text-left">
+                                    <div class="leading-none">Download APK</div>
+                                    <div class="text-[11px] opacity-90 font-normal mt-0.5">v1.0.0 • 1.04 MB • Android 8.0+</div>
+                                </div>
+                            </button>
+
+                            <a href="https://github.com/j-a-y-e-s-h/Indian-calendar" target="_blank" rel="noopener noreferrer"
+                                class="flex items-center gap-2.5 px-5 py-3.5 rounded-2xl text-sm sm:text-base font-semibold bg-white border border-black/10 hover:border-accent shadow-sm hover:shadow transition-all"
+                                style="color: var(--text-primary);">
+                                <i data-lucide="star" class="w-5 h-5 text-accent fill-current"></i>
+                                <span>Star on GitHub</span>
+                            </a>
+                        </div>
+
+                        <!-- Key Stats Pills -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+                            <div class="glass-card p-3 rounded-2xl">
+                                <div class="flex items-center gap-1.5 text-accent font-bold text-sm sm:text-base">
+                                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                                    <span>4,500+ Cities</span>
+                                </div>
+                                <p class="text-xs mt-0.5" style="color: var(--text-muted);">100% Offline World DB</p>
+                            </div>
+
+                            <div class="glass-card p-3 rounded-2xl">
+                                <div class="flex items-center gap-1.5 text-accent font-bold text-sm sm:text-base">
+                                    <i data-lucide="clock" class="w-4 h-4"></i>
+                                    <span>60-Ghati Clock</span>
+                                </div>
+                                <p class="text-xs mt-0.5" style="color: var(--text-muted);">Sunrise-Anchored Ishta Kaal</p>
+                            </div>
+
+                            <div class="glass-card p-3 rounded-2xl col-span-2 sm:col-span-1">
+                                <div class="flex items-center gap-1.5 text-accent font-bold text-sm sm:text-base">
+                                    <i data-lucide="Compass" class="w-4 h-4"></i>
+                                    <span>Triple Kundali</span>
+                                </div>
+                                <p class="text-xs mt-0.5" style="color: var(--text-muted);">North, South & East + Shadbala</p>
+                            </div>
+                        </div>
+
+                        <!-- Active 3D Screen Info Card -->
+                        <div class="glass-card p-4 rounded-2xl border-l-4 border-l-amber-500">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-accent" id="active-screen-badge">Screen 01 / 08 • Live on 3D Device</span>
+                                <span class="text-xs font-hindi" style="color: var(--text-muted);" id="active-screen-hindi">दैनिक पंचांग</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-base mt-1" style="color: var(--text-primary);" id="active-screen-title">📅 Daily Panchang (Tithi, Nakshatra, Yoga, Karana)</h3>
+                            <p class="text-xs sm:text-sm mt-0.5" style="color: var(--text-secondary);" id="active-screen-desc">
+                                Complete topocentric 5-limb Panchanga with Sunrise/Sunset, Rahu Kaal, Abhijit Muhurta, and dynamic Sankalpam mantra.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Three.js 3D Viewport & 8 Pill Switchers (7 Cols) -->
+                    <div class="lg:col-span-7 flex flex-col items-center">
+                        
+                        <!-- 3D WebGL Canvas Wrapper -->
+                        <div class="relative w-full rounded-3xl glass-card overflow-hidden border border-accent/30">
+                            
+                            <!-- Top Floating HUD Overlay inside 3D Viewport -->
+                            <div class="absolute top-3.5 left-4 right-4 flex items-center justify-between z-10 pointer-events-none">
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-black/5 shadow-sm text-xs font-medium" style="color: var(--text-secondary);">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span>Brahmanda Ecliptic 60° • Surya & Chandra Orbit</span>
+                                </div>
+
+                                <div class="flex items-center gap-1.5 pointer-events-auto">
+                                    <button onclick="resetPhoneCamera()" title="Reset 3D Tilt"
+                                        class="p-2 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-medium transition"
+                                        style="color: var(--text-primary);">
+                                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                                    </button>
+                                    <button onclick="spinPhone360()" title="Spin 360°"
+                                        class="px-3 py-1.5 rounded-full bg-white/85 hover:bg-white border border-black/10 shadow-sm text-xs font-semibold flex items-center gap-1 transition"
+                                        style="color: var(--text-primary);">
+                                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-accent"></i>
+                                        <span>Spin 3D</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Three.js Mount Container -->
+                            <div id="webgl-container" aria-label="Interactive 3D Smartphone showing Vedic Hindu Calendar app screens surrounded by orbiting Sun, Moon, and Zodiac Ecliptic Ring"></div>
+
+                            <!-- Bottom Floating Interaction Hint -->
+                            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+                                <div class="px-3.5 py-1 rounded-full bg-white/80 backdrop-blur-md border border-black/5 text-[11px] font-medium shadow-sm whitespace-nowrap" style="color: var(--text-muted);">
+                                    🖱️ Move cursor or touch-drag to tilt 3D titanium chassis • Click tabs below to switch live screen
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8 Live Screen Switcher Pills -->
+                        <div class="w-full mt-4">
+                            <div class="flex items-center justify-between mb-2 px-1">
+                                <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-muted);">Interactive 3D Screen Switcher (8 App Modules)</span>
+                                <span class="text-xs font-medium text-accent">Click any pill to swap WebGL texture</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="screen-switcher-pills">
+                                <button onclick="selectAppScreen(0)" class="screen-pill active px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>📅</span><span class="truncate">Daily Panchang</span>
+                                </button>
+                                <button onclick="selectAppScreen(1)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>🗓️</span><span class="truncate">Month Grid</span>
+                                </button>
+                                <button onclick="selectAppScreen(2)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>⏳</span><span class="truncate">Choghadiya & Hora</span>
+                                </button>
+                                <button onclick="selectAppScreen(3)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>🌌</span><span class="truncate">Kundali & Ephemeris</span>
+                                </button>
+                                <button onclick="selectAppScreen(4)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>🧭</span><span class="truncate">16-Petal Vastu Compass</span>
+                                </button>
+                                <button onclick="selectAppScreen(5)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>⏰</span><span class="truncate">60-Ghati Hindu Clock</span>
+                                </button>
+                                <button onclick="selectAppScreen(6)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>⚙️</span><span class="truncate">Settings Modal</span>
+                                </button>
+                                <button onclick="selectAppScreen(7)" class="screen-pill px-3 py-2.5 rounded-xl text-xs font-medium flex items-center gap-2 text-left">
+                                    <span>📱</span><span class="truncate">Home Screen Widgets</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             3. FEATURES BENTO GRID (6 SACRED ARCHITECTURAL CARDS)
+             ========================================================================== -->
+        <section id="bento-features" class="py-16 lg:py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
+                        Six Pillars of Vedic Timekeeping
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--text-primary);">
+                        Engineered from Sacred Astronomical First Principles
+                    </h2>
+                    <p class="font-hindi text-base sm:text-lg text-accent">
+                        सूर्य सिद्धान्त एवं दृक् गणित पर आधारित संपूर्ण वैदिक ज्योतिष तथा पंचांग
+                    </p>
+                </div>
+
+                <!-- 6-Card Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Card 1: 5 Limbs of Panchanga -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-accent">
+                                    <i data-lucide="calendar-check-2" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-xs font-hindi px-2.5 py-1 rounded-full bg-black/5 font-medium">पंचांग के ५ अंग</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold mb-2" style="color: var(--text-primary);">
+                                5 Limbs of Panchanga
+                            </h3>
+                            <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+                                Precise topocentric calculations of <strong style="color: var(--text-primary);">Tithi</strong> (Lunar Day), <strong style="color: var(--text-primary);">Nakshatra</strong> (27 Lunar Mansions & Pada), <strong style="color: var(--text-primary);">Yoga</strong>, <strong style="color: var(--text-primary);">Karana</strong>, and <strong style="color: var(--text-primary);">Vaara</strong> with exact transition timestamps.
+                            </p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/90 border border-black/5 space-y-2 text-xs">
+                            <div class="flex justify-between">
+                                <span style="color: var(--text-muted);">Tithi • तिथि</span>
+                                <span class="font-semibold text-accent">Shukla Dashami (till 09:42 PM)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span style="color: var(--text-muted);">Nakshatra • नक्षत्र</span>
+                                <span class="font-semibold" style="color: var(--text-primary);">Dhanishta (Pada 3)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span style="color: var(--text-muted);">Yoga / Karana</span>
+                                <span class="font-semibold" style="color: var(--text-primary);">Shula • Taitila</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Real-Time Choghadiya & Hora -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-accent">
+                                    <i data-lucide="hourglass" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-xs font-hindi px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 font-semibold">शुभ चौघड़िया • होरा</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold mb-2" style="color: var(--text-primary);">
+                                Choghadiya & Planetary Hora
+                            </h3>
+                            <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+                                Dynamic 8-fold day and night Muhurta divisions anchored to local Sunrise & Sunset. Instant countdowns for <strong style="color: var(--text-primary);">Amrit, Shubh, Labh, Char</strong> alongside 24 daily Chaldean Planetary Horas.
+                            </p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/90 border border-black/5 space-y-2 text-xs">
+                            <div class="flex items-center justify-between">
+                                <span class="font-semibold text-emerald-700 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                                    Amrit Choghadiya (Best)
+                                </span>
+                                <span class="font-mono font-bold" style="color: var(--text-primary);">42m 18s left</span>
+                            </div>
+                            <div class="w-full bg-black/5 h-2 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full rounded-full w-3/4"></div>
+                            </div>
+                            <div class="flex justify-between pt-0.5" style="color: var(--text-muted);">
+                                <span>Current Hora: ♃ Guru (Jupiter)</span>
+                                <span class="text-accent font-semibold">Tap to view 24h table →</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Triple Kundali Charts -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-accent">
+                                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-xs font-hindi px-2.5 py-1 rounded-full bg-black/5 font-medium">जन्म कुंडली एवं षड्बल</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold mb-2" style="color: var(--text-primary);">
+                                Triple Kundali, Shadbala & SAV
+                            </h3>
+                            <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+                                Switch seamlessly between <strong style="color: var(--text-primary);">North Indian Diamond</strong>, <strong style="color: var(--text-primary);">South Indian Rashi Box</strong>, and <strong style="color: var(--text-primary);">East Indian Surya Chart</strong> styles. Includes Lahiri Chitrapaksha Ayanamsa, Vimshottari Dasha, 6-fold Shadbala, and Sarvashtakavarga.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                            <div class="p-2.5 rounded-xl bg-white/90 border border-accent font-semibold text-accent">
+                                ◇ North Style
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-white/90 border border-black/5 font-medium" style="color: var(--text-secondary);">
+                                ⊞ South Style
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-white/90 border border-black/5 font-medium" style="color: var(--text-secondary);">
+                                ⨳ East Style
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: 16-Petal Vedic Vastu Compass -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-accent">
+                                    <i data-lucide="compass" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-xs font-hindi px-2.5 py-1 rounded-full bg-black/5 font-medium">१६-ज़ोन वास्तु चक्र</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold mb-2" style="color: var(--text-primary);">
+                                16-Petal Vedic Vastu Compass
+                            </h3>
+                            <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+                                Hardware magnetometer + gyroscope sensor fusion mapping the <strong style="color: var(--text-primary);">16 Mahavastu Zones</strong>, <strong style="color: var(--text-primary);">8 Ashtadikpalas</strong> (Indra, Agni, Yama, Nirriti, Varuna, Vayu, Kubera, Ishana), and Pancha Bhoota elemental balance.
+                            </p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/90 border border-black/5 flex items-center justify-between text-xs">
+                            <div>
+                                <div class="font-bold text-accent">NE • Ishanya (ईशान्य) • 45°</div>
+                                <div style="color: var(--text-muted);">Ruler: Lord Shiva / Brihaspati • Water Element</div>
+                            </div>
+                            <span class="px-2.5 py-1 rounded-lg bg-accent-soft text-accent font-bold">Live Sensor</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: 60-Ghati Hindu Clock (Live Ticking Counter) -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-accent">
+                                    <i data-lucide="watch" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-xs font-hindi px-2.5 py-1 rounded-full bg-accent-soft text-accent font-semibold">६० घटी • पल • विपल</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold mb-2" style="color: var(--text-primary);">
+                                60-Ghati Hindu Clock (Ishta Kaal)
+                            </h3>
+                            <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+                                Unlike midnight-anchored Western clocks, Vedic time begins at local Sunrise. 1 Solar Day = <strong style="color: var(--text-primary);">60 Ghatis</strong> (24 mins each), 1 Ghati = <strong style="color: var(--text-primary);">60 Palas</strong> (24 secs), 1 Pala = <strong style="color: var(--text-primary);">60 Vipalas</strong> (0.4 secs).
+                            </p>
+                        </div>
+                        <!-- Live Ticking Ghati Counter -->
+                        <div class="p-3.5 rounded-2xl bg-white/95 border border-accent/40 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-accent block">Live Ishta Kaal Since Sunrise</span>
+                                <span id="live-ghati-readout" class="font-mono text-lg font-bold" style="color: var(--text-primary);">18 Gh : 42 Pa : 15 Vi</span>
+                            </div>
+                            <span class="text-xs font-hindi px-2 py-1 rounded bg-accent-soft text-accent">इष्टकाल</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: 100% Offline & Ad-Free Architecture -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+                        <div>
+                            <div class="flex items-center justify-between mb-5">
+                                <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-accent">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700">Zero Permissions • 1 MB</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold mb-2" style="color: var(--text-primary);">
+                                100% Offline & Sacred Privacy
+                            </h3>
+                            <p class="text-sm leading-relaxed mb-5" style="color: var(--text-secondary);">
+                                No ads, no trackers, no cloud API dependencies, and zero internet permission required. All planetary ephemerides and <strong style="color: var(--text-primary);">4,500+ global cities</strong> are computed locally on your device in under 2 milliseconds.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2.5 py-1 rounded-lg bg-white/90 border border-black/5 font-medium">✓ Apache 2.0 Open Source</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white/90 border border-black/5 font-medium">✓ No Internet Needed</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-white/90 border border-black/5 font-medium">✓ Material You Widgets</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             4. INTERACTIVE HIGH-RES SHOWCASE GALLERY (CAROUSEL + SYNC WITH 3D PHONE)
+             ========================================================================== -->
+        <section id="gallery" class="py-16 lg:py-24 bg-white/60 border-y border-black/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                    <div>
+                        <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
+                            High-DPI UI Inspection
+                        </span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold mt-3" style="color: var(--text-primary);">
+                            Interactive App Screen Showcase
+                        </h2>
+                        <p class="text-sm sm:text-base mt-1" style="color: var(--text-secondary);">
+                            Inspect all 8 high-resolution Material 3 screens. Selecting any screen here also updates the 3D Smartphone above.
+                        </p>
+                    </div>
+
+                    <!-- Carousel Prev / Next Controls -->
+                    <div class="flex items-center gap-3">
+                        <button onclick="stepCarousel(-1)" aria-label="Previous Screen"
+                            class="w-11 h-11 rounded-2xl bg-white border border-black/10 hover:border-accent flex items-center justify-center shadow-sm transition">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <span id="carousel-counter" class="font-mono text-sm font-bold px-3 py-2 rounded-xl bg-accent-soft text-accent">
+                            01 / 08
+                        </span>
+                        <button onclick="stepCarousel(1)" aria-label="Next Screen"
+                            class="w-11 h-11 rounded-2xl bg-white border border-black/10 hover:border-accent flex items-center justify-center shadow-sm transition">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Gallery Stage -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- High-Res Procedural Canvas Preview (5 Cols) -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative p-3.5 rounded-[40px] bg-gradient-to-b from-amber-100/80 via-white to-stone-200/80 border-2 border-accent/40 shadow-2xl max-w-[320px] w-full">
+                            <!-- Speaker Notch -->
+                            <div class="w-20 h-1.5 bg-stone-400/50 rounded-full mx-auto mb-2.5"></div>
+                            <!-- Mode Toggle: Dynamic Sanzo Wada vs Real Device Screenshot -->
+                            <div class="flex items-center justify-center gap-1.5 mb-2.5 bg-black/5 p-1 rounded-xl text-xs font-semibold">
+                                <button id="view-mode-vector" onclick="setGalleryViewMode('vector')" class="px-3 py-1 rounded-lg bg-white shadow-sm text-accent transition">🎨 Live Theme</button>
+                                <button id="view-mode-real" onclick="setGalleryViewMode('real')" class="px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition">📸 Actual Screenshot</button>
+                            </div>
+                            <!-- High-Resolution 2D Preview Canvas & Image Fallback -->
+                            <canvas id="gallery-preview-canvas" width="540" height="1080" class="w-full h-auto rounded-[28px] shadow-inner border border-black/10 bg-white"></canvas>
+                            <img id="gallery-preview-img" src="screenshots/01_panchang_m3.png" alt="Actual Screenshot" class="hidden w-full h-auto rounded-[28px] shadow-inner border border-black/10 bg-white object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Screen Details & 8 Thumbnail Selector Cards (7 Cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <span id="gallery-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-accent-soft text-accent border border-accent">
+                                    MODULE 01 • PANCHANGAM
+                                </span>
+                                <span id="gallery-file-tag" class="font-mono text-xs px-2.5 py-1 rounded bg-black/5" style="color: var(--text-muted);">
+                                    screenshots/01_panchang_m3.png
+                                </span>
+                            </div>
+
+                            <h3 id="gallery-title" class="font-serif text-2xl sm:text-3xl font-bold" style="color: var(--text-primary);">
+                                📅 Daily Panchang & Muhurta Dashboard
+                            </h3>
+
+                            <p id="gallery-desc" class="text-sm sm:text-base leading-relaxed" style="color: var(--text-secondary);">
+                                View Samvatsara (Vikram Samvat 2083 & Shaka 1948), Ayana, Ritu, Masa, Paksha, Tithi progress bar, Nakshatra Pada, Yoga, Karana, Sun/Moon rise-set timings, and auspicious/inauspicious windows (Rahu Kaal, Yamaganda, Gulika Kaal, Abhijit Muhurta).
+                            </p>
+
+                            <div id="gallery-highlights" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm">
+                                <div class="p-3 rounded-xl bg-white/90 border border-black/5 font-medium">✦ Topocentric Sunrise & Sunset</div>
+                                <div class="p-3 rounded-xl bg-white/90 border border-black/5 font-medium">✦ Auto-Generated Sankalpam Mantra</div>
+                                <div class="p-3 rounded-xl bg-white/90 border border-black/5 font-medium">✦ Rahu Kaal & Abhijit Muhurta Alerts</div>
+                                <div class="p-3 rounded-xl bg-white/90 border border-black/5 font-medium">✦ Bilingual English & Devanagari UI</div>
+                            </div>
+                        </div>
+
+                        <!-- Thumbnail Grid of 8 Screens -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="gallery-thumbs">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             5. FREQUENTLY ASKED QUESTIONS (SIDDHANTA & TECHNICAL ACCORDION)
+             ========================================================================== -->
+        <section id="faq" class="py-16 lg:py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12 space-y-3">
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-accent-soft text-accent border border-accent">
+                        Astronomical & Architectural FAQ
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold" style="color: var(--text-primary);">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="font-hindi text-base text-accent">
+                        पंचांग गणना, अमांत बनाम पूर्णिमांत परंपरा एवं ऑफ़लाइन सटीकता से जुड़े प्रश्न
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <!-- FAQ 1: Amanta vs Purnimanta -->
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(0)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                            <span class="font-serif font-bold text-base sm:text-lg pr-4" style="color: var(--text-primary);">
+                                1. What is the difference between Amanta and Purnimanta lunar month traditions?
+                            </span>
+                            <i data-lucide="chevron-down" id="faq-icon-0" class="w-5 h-5 text-accent flex-shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-body-0" class="px-6 pb-5 text-sm sm:text-base leading-relaxed" style="color: var(--text-secondary);">
+                            In the <strong style="color: var(--text-primary);">Amanta (अमांत)</strong> system followed across Maharashtra, Gujarat, Karnataka, Andhra Pradesh, Telangana, and Tamil Nadu, each lunar month ends on No Moon (Amavasya). In the <strong style="color: var(--text-primary);">Purnimanta (पूर्णिमांत)</strong> system followed across North, Central, and Eastern India, the lunar month ends on Full Moon (Purnima). Both traditions share identical Shukla Paksha dates, while Krishna Paksha falls under different month names. You can toggle effortlessly between Amanta and Purnimanta inside the Settings Modal.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2: Topocentric Sunrise/Sunset & Choghadiya -->
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(1)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                            <span class="font-serif font-bold text-base sm:text-lg pr-4" style="color: var(--text-primary);">
+                                2. How are Topocentric Sunrise, Sunset, and Choghadiya intervals calculated?
+                            </span>
+                            <i data-lucide="chevron-down" id="faq-icon-1" class="w-5 h-5 text-accent flex-shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-body-1" class="hidden px-6 pb-5 text-sm sm:text-base leading-relaxed" style="color: var(--text-secondary);">
+                            Unlike generic apps that use fixed 6:00 AM–6:00 PM approximations, our engine computes exact <strong style="color: var(--text-primary);">Drik Ganita topocentric Sunrise (Udaya) and Sunset (Asta)</strong> using your city's latitude, longitude, elevation, and atmospheric refraction correction. Daytime length (<code class="px-1.5 py-0.5 rounded bg-black/5">Dinamana = Sunset − Sunrise</code>) is divided into 8 equal daytime Choghadiya Muhurtas, while nighttime length (<code class="px-1.5 py-0.5 rounded bg-black/5">Ratrimana = Next Sunrise − Sunset</code>) is divided into 8 equal nocturnal Choghadiyas.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3: Zero-Internet Offline Accuracy -->
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(2)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                            <span class="font-serif font-bold text-base sm:text-lg pr-4" style="color: var(--text-primary);">
+                                3. How does the app achieve sub-arcsecond accuracy with zero internet connection?
+                            </span>
+                            <i data-lucide="chevron-down" id="faq-icon-2" class="w-5 h-5 text-accent flex-shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-body-2" class="hidden px-6 pb-5 text-sm sm:text-base leading-relaxed" style="color: var(--text-secondary);">
+                            The app embeds high-precision analytical planetary perturbation series (<strong style="color: var(--text-primary);">VSOP87 & ELP2000-82 lunar theory</strong>) paired with true Lahiri (Chitrapaksha), Raman, and KP Ayanamsa models directly in native code. Alongside a compressed spatial database of <strong style="color: var(--text-primary);">4,500+ global cities</strong> and IANA timezones, the entire APK stays just <strong style="color: var(--text-primary);">~1 MB</strong> and runs 100% offline forever—even in remote Himalayan temples or during flights.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4: Adding Transparent Home Screen Widgets -->
+                    <div class="glass-card rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(3)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                            <span class="font-serif font-bold text-base sm:text-lg pr-4" style="color: var(--text-primary);">
+                                4. How do I add the transparent Panchang, Choghadiya, and 60-Ghati widgets to my Android home screen?
+                            </span>
+                            <i data-lucide="chevron-down" id="faq-icon-3" class="w-5 h-5 text-accent flex-shrink-0 transition-transform duration-300"></i>
+                        </button>
+                        <div id="faq-body-3" class="hidden px-6 pb-5 text-sm sm:text-base leading-relaxed" style="color: var(--text-secondary);">
+                            Long-press any empty space on your Android launcher → tap <strong style="color: var(--text-primary);">Widgets</strong> → scroll to <strong style="color: var(--text-primary);">Vedic Hindu Calendar</strong>. Choose from 3 resizable Material You widgets: <strong style="color: var(--text-primary);">Daily Panchang Card (4×2)</strong>, <strong style="color: var(--text-primary);">Live Choghadiya & Hora Bar (4×1)</strong>, or the <strong style="color: var(--text-primary);">60-Ghati Dial (2×2)</strong>. All widgets support dynamic wallpaper colors and configurable glass opacity.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+         6. SACRED FOOTER WITH SHANTI MANTRA
+         ========================================================================== -->
+    <footer class="bg-white/90 border-t border-black/10 pt-14 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Sacred Shanti Mantra Banner -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 text-center max-w-3xl mx-auto mb-12 border border-accent/30">
+                <div class="text-2xl mb-2">🪔</div>
+                <p class="font-hindi text-lg sm:text-2xl font-medium text-accent leading-relaxed">
+                    ॐ असतो मा सद्गमय । तमसो मा ज्योतिर्गमय । मृत्योर्मा अमृतं गमय ॥<br>
+                    ॐ शान्तिः शान्तिः शान्तिः ॥
+                </p>
+                <p class="text-xs sm:text-sm italic mt-2" style="color: var(--text-muted);">
+                    "Lead us from the unreal to the Real; lead us from darkness to Light; lead us from time-bound mortality to timeless Immortality. Om Peace, Peace, Peace." — Brihadaranyaka Upanishad 1.3.28
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-4 border-t border-black/5 text-xs sm:text-sm" style="color: var(--text-secondary);">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl">🕉️</span>
+                    <div>
+                        <span class="font-serif font-bold" style="color: var(--text-primary);">Vedic Hindu Calendar, Panchang & Kundali</span>
+                        <span class="mx-2">•</span>
+                        <span>Licensed under Apache License 2.0</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-5 font-medium">
+                    <a href="#hero" class="hover:text-accent transition">3D Device</a>
+                    <a href="#bento-features" class="hover:text-accent transition">Features</a>
+                    <a href="#gallery" class="hover:text-accent transition">Screenshots</a>
+                    <button onclick="openDownloadModal()" class="text-accent font-semibold hover:underline">Download APK v1.0.0</button>
+                    <a href="https://github.com/j-a-y-e-s-h/Indian-calendar" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition flex items-center gap-1">
+                        <i data-lucide="github" class="w-4 h-4"></i> GitHub Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         APK DOWNLOAD MODAL (NO NATIVE ALERT)
+         ========================================================================== -->
+    <div id="download-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+        <div class="glass-card rounded-3xl max-w-md w-full p-6 sm:p-8 border border-accent shadow-2xl bg-white relative">
+            <button onclick="closeDownloadModal()" aria-label="Close Modal" class="absolute top-4 right-4 p-2 rounded-full hover:bg-black/5">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="w-12 h-12 rounded-2xl bg-accent-soft border border-accent flex items-center justify-center text-2xl mb-4">
+                🕉️
+            </div>
+            <h3 class="font-serif text-xl font-bold" style="color: var(--text-primary);">
+                Vedic Hindu Calendar APK (v1.0.0)
+            </h3>
+            <p class="text-xs sm:text-sm mt-1" style="color: var(--text-secondary);">
+                Signed Universal Release APK • 100% Offline • Zero Permissions
+            </p>
+
+            <div class="mt-4 p-3.5 rounded-2xl bg-stone-50 border border-black/5 text-xs space-y-1.5 font-mono">
+                <div class="flex justify-between"><span class="text-stone-500">Package:</span><span>in.vedic.panchang.kundali</span></div>
+                <div class="flex justify-between"><span class="text-stone-500">Version:</span><span>1.0.0 (Build 100)</span></div>
+                <div class="flex justify-between"><span class="text-stone-500">Size:</span><span>1.04 MB (Ultra-Compact)</span></div>
+                <div class="flex justify-between"><span class="text-stone-500">Min SDK:</span><span>Android 8.0+ (API 26–35)</span></div>
+                <div class="flex justify-between"><span class="text-stone-500">SHA-256:</span><span class="truncate max-w-[170px]">8f4e2b9c...d19a7e3c</span></div>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <a href="com.custom.hinduwidget.apk" download="vedic-hindu-calendar-v1.0.0.apk"
+                    class="btn-primary flex-1 py-3 px-4 rounded-xl text-sm font-semibold text-center flex items-center justify-center gap-2 shadow-lg">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Download v1.0.0 APK (1 MB)</span>
+                </a>
+                <a href="https://github.com/j-a-y-e-s-h/Indian-calendar/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer"
+                    class="py-3 px-4 rounded-xl text-sm font-semibold border border-accent/40 bg-accent-soft text-accent text-center flex items-center justify-center gap-1.5 hover:bg-accent/20 transition">
+                    <i data-lucide="tag" class="w-4 h-4"></i>
+                    <span>Releases</span>
+                </a>
+                <button onclick="closeDownloadModal()"
+                    class="py-3 px-4 rounded-xl text-sm font-semibold border border-black/10 hover:bg-black/5">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         MASTER JAVASCRIPT: PROCEDURAL SCREEN TEXTURES, THREE.JS & UI LOGIC
+         ========================================================================== -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        /* --------------------------------------------------------------------------
+           1. APP SCREENS METADATA (8 TABS)
+           -------------------------------------------------------------------------- */
+        const APP_SCREENS = [
+            {
+                id: 0,
+                pill: "📅 Daily Panchang",
+                hindi: "दैनिक पंचांग",
+                title: "📅 Daily Panchang (Tithi, Nakshatra, Yoga, Karana)",
+                badge: "MODULE 01 • PANCHANGAM",
+                file: "screenshots/01_panchang_m3.png",
+                desc: "Complete topocentric 5-limb Panchanga with Sunrise/Sunset, Rahu Kaal, Abhijit Muhurta, and dynamic Sankalpam mantra.",
+                highlights: [
+                    "✦ Topocentric Sunrise & Sunset",
+                    "✦ Auto-Generated Sankalpam Mantra",
+                    "✦ Rahu Kaal & Abhijit Muhurta Alerts",
+                    "✦ Bilingual English & Devanagari UI"
+                ]
+            },
+            {
+                id: 1,
+                pill: "🗓️ Month Grid",
+                hindi: "मासिक कैलेंडर",
+                title: "🗓️ Vedic Lunar-Solar Month Grid & Ekadashi Tracker",
+                badge: "MODULE 02 • MASA CALENDAR",
+                file: "screenshots/02_calendar_grid.png",
+                desc: "Full monthly view displaying Gregorian dates alongside Shukla/Krishna Tithis, Purnima, Amavasya, Sankashti, Pradosham, and major Hindu festivals.",
+                highlights: [
+                    "✦ Purnima, Amavasya & Ekadashi Badges",
+                    "✦ Amanta & Purnimanta Tradition Support",
+                    "✦ Daily Moon Phase Illumination Icons",
+                    "✦ Instant Date Jump & Festival Filter"
+                ]
+            },
+            {
+                id: 2,
+                pill: "⏳ Choghadiya & Hora",
+                hindi: "चौघड़िया एवं होरा",
+                title: "⏳ Real-Time Choghadiya & 24 Planetary Hora",
+                badge: "MODULE 03 • MUHURTA TIMERS",
+                file: "screenshots/03_choghadiya_hora.png",
+                desc: "Live progress countdowns for all 8 Day & 8 Night Choghadiyas (Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg) and Chaldean Planetary Horas.",
+                highlights: [
+                    "✦ Day & Night 8-Fold Muhurta Slices",
+                    "✦ Live Remaining Seconds Progress Bar",
+                    "✦ Planetary Hora Ruler & Activity Guide",
+                    "✦ Rahu Kaal Overlap Caution Indicator"
+                ]
+            },
+            {
+                id: 3,
+                pill: "🌌 Kundali & Ephemeris",
+                hindi: "जन्म कुंडली एवं ग्रह स्पष्ट",
+                title: "🌌 Triple Kundali Charts, Shadbala & Planetary Ephemeris",
+                badge: "MODULE 04 • JYOTISH HOROSCOPE",
+                file: "screenshots/04_kundali_ephemeris.png",
+                desc: "Instant Lagna (D1) & Navamsa (D9) charts in North, South, and East Indian layouts with true Lahiri degrees, Nakshatra Padas, Vimshottari Dasha, and SAV.",
+                highlights: [
+                    "✦ North, South & East Indian Chart Styles",
+                    "✦ Sub-Arcsecond Planetary Longitudes",
+                    "✦ Vimshottari Mahadasha & Antardasha",
+                    "✦ 6-Fold Shadbala & Sarvashtakavarga"
+                ]
+            },
+            {
+                id: 4,
+                pill: "🧭 16-Petal Vastu Compass",
+                hindi: "१६-दिशा वास्तु चक्र",
+                title: "🧭 16-Petal Vedic Vastu Compass & 8 Ashtadikpalas",
+                badge: "MODULE 05 • STHAPATYA VEDA",
+                file: "screenshots/05_vastu_compass.png",
+                desc: "Live magnetometer-driven 16-zone Vastu Purusha Mandala highlighting Water, Fire, Earth, Air, and Space zones plus the 8 directional guardians.",
+                highlights: [
+                    "✦ 16 Mahavastu Directional Sectors (22.5°)",
+                    "✦ 8 Ashtadikpala Deities & Elements",
+                    "✦ Real-Time Azimuth Heading Readout",
+                    "✦ Room & Entrance Auspiciousness Guide"
+                ]
+            },
+            {
+                id: 5,
+                pill: "⏰ 60-Ghati Hindu Clock",
+                hindi: "६० घटी वैदिक घड़ी",
+                title: "⏰ 60-Ghati Hindu Clock & Sunrise Ishta Kaal",
+                badge: "MODULE 06 • SURYA SIDDHANTA TIME",
+                file: "screenshots/06_hindu_clock.png",
+                desc: "Traditional Vedic chronometer anchored to local Sunrise where 1 Solar Day = 60 Ghatis, 1 Ghati = 60 Palas, and 1 Pala = 60 Vipalas.",
+                highlights: [
+                    "✦ Concentric 60-Ghati / Pala / Vipala Dial",
+                    "✦ Anchored to Local Topocentric Sunrise",
+                    "✦ Prana (4-Second Breath Cycle) Sync",
+                    "✦ Muhurta (2-Ghati / 48-Min) Ring"
+                ]
+            },
+            {
+                id: 6,
+                pill: "⚙️ Settings Modal",
+                hindi: "सेटिंग्स एवं स्थान",
+                title: "⚙️ Tradition, Ayanamsa & 4,500+ Offline City Settings",
+                badge: "MODULE 07 • CUSTOMIZATION",
+                file: "screenshots/07_m3_settings.png",
+                desc: "Configure Amanta vs Purnimanta month system, Lahiri/Raman/KP Ayanamsa, 4,500+ offline cities or manual GPS coordinates, and bilingual language.",
+                highlights: [
+                    "✦ Amanta / Purnimanta Instant Toggle",
+                    "✦ Lahiri, True Citra, Raman & KP Ayanamsa",
+                    "✦ 4,500+ Offline Cities Search Engine",
+                    "✦ Sanzo Wada Material 3 Theme Presets"
+                ]
+            },
+            {
+                id: 7,
+                pill: "📱 Home Screen Widgets",
+                hindi: "होम स्क्रीन विजेट",
+                title: "📱 Material You Transparent Home Screen Widgets",
+                badge: "MODULE 08 • ANDROID LAUNCHER",
+                file: "screenshots/08_home_widgets.png",
+                desc: "Glanceable Android home screen widgets for Daily Panchang, live Choghadiya countdown, and 60-Ghati Vedic time without opening the app.",
+                highlights: [
+                    "✦ 4×2 Daily Panchang Summary Widget",
+                    "✦ 4×1 Live Choghadiya & Hora Pill",
+                    "✦ 2×2 Analog 60-Ghati Vedic Clock",
+                    "✦ Zero Battery Drain Scheduled Updates"
+                ]
+            }
+        ];
+
+        /* --------------------------------------------------------------------------
+           2. PROCEDURAL HIGH-DPI APP SCREEN TEXTURE GENERATOR (CANVAS 2D)
+           Generates ultra-crisp, authentic daylight-themed app UI screens for all 8
+           modules so both the 3D WebGL Smartphone and 2D Gallery render immediately.
+           -------------------------------------------------------------------------- */
+        const screenCanvases = [];
+        const screenTextures = [];
+
+        function drawRoundedRect(ctx, x, y, w, h, r, fill, stroke) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y, x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x, y + h, r);
+            ctx.arcTo(x, y + h, x, y, r);
+            ctx.arcTo(x, y, x + w, y, r);
+            ctx.closePath();
+            if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+            if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke(); }
+        }
+
+        function generateAppScreenCanvas(index, accentHex = '#D48B1E', secHex = '#2B4C7E') {
+            const canvas = document.createElement('canvas');
+            canvas.width = 540;
+            canvas.height = 1080;
+            const ctx = canvas.getContext('2d');
+
+            // 1. Luminous Daylight App Background
+            const bgGrad = ctx.createLinearGradient(0, 0, 0, 1080);
+            bgGrad.addColorStop(0, '#FDFBF7');
+            bgGrad.addColorStop(1, '#F3EFE6');
+            ctx.fillStyle = bgGrad;
+            ctx.fillRect(0, 0, 540, 1080);
+
+            // Soft Header Mandala Glow
+            const radGrad = ctx.createRadialGradient(270, 140, 10, 270, 140, 260);
+            radGrad.addColorStop(0, accentHex + '28');
+            radGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = radGrad;
+            ctx.fillRect(0, 0, 540, 400);
+
+            // 2. Android Status Bar
+            ctx.fillStyle = '#141B2D';
+            ctx.font = '600 18px Outfit, sans-serif';
+            ctx.fillText('06:42 AM', 36, 42);
+            ctx.textAlign = 'right';
+            ctx.fillText('100% 🔋  offline', 504, 42);
+            ctx.textAlign = 'left';
+
+            // 3. App Top Bar
+            drawRoundedRect(ctx, 24, 62, 492, 78, 22, '#FFFFFF', accentHex + '44');
+            ctx.fillStyle = accentHex;
+            ctx.font = 'bold 28px serif';
+            ctx.fillText('🕉️', 44, 110);
+            ctx.fillStyle = '#141B2D';
+            ctx.font = 'bold 21px Cinzel, serif';
+            ctx.fillText('VEDIC PANCHANG', 88, 98);
+            ctx.fillStyle = '#5A6578';
+            ctx.font = '500 15px Outfit, sans-serif';
+            ctx.fillText('📍 Ujjain, MP • Vikram Samvat 2083', 88, 122);
+
+            // 4. Module-Specific Rich Vector Content
+            if (index === 0) {
+                // SCREEN 1: DAILY PANCHANG
+                drawRoundedRect(ctx, 24, 158, 492, 165, 24, '#FFFFFF', accentHex + '55');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('SHUKLA PAKSHA • ASHWIN MASA • SHARAD RITU', 44, 190);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 32px Cinzel, serif';
+                ctx.fillText('Dashami Tithi', 44, 232);
+                ctx.fillStyle = '#4A5568';
+                ctx.font = '500 17px Outfit, sans-serif';
+                ctx.fillText('Ends tonight at 09:42 PM • Moon 78% 🌔', 44, 262);
+                // Progress bar
+                drawRoundedRect(ctx, 44, 282, 452, 16, 8, '#EDE8DF', null);
+                drawRoundedRect(ctx, 44, 282, 330, 16, 8, accentHex, null);
+
+                // 5 Limbs Grid
+                const limbs = [
+                    ['✨ Nakshatra', 'Dhanishta (Pada 3)', 'Until 01:15 AM'],
+                    ['🧘 Yoga', 'Shula Yoga', 'Until 04:28 PM'],
+                    ['⚡ Karana', 'Taitila → Gara', 'Active Now'],
+                    ['☀️ Vaara', 'Budhavara (Wed)', 'Ruler: Budha ☿']
+                ];
+                limbs.forEach((l, i) => {
+                    const col = i % 2;
+                    const row = Math.floor(i / 2);
+                    const x = 24 + col * 252;
+                    const y = 340 + row * 126;
+                    drawRoundedRect(ctx, x, y, 240, 112, 20, '#FFFFFF', '#E2DDD5');
+                    ctx.fillStyle = accentHex;
+                    ctx.font = 'bold 15px Outfit, sans-serif';
+                    ctx.fillText(l[0], x + 18, y + 32);
+                    ctx.fillStyle = '#141B2D';
+                    ctx.font = 'bold 20px Outfit, sans-serif';
+                    ctx.fillText(l[1], x + 18, y + 64);
+                    ctx.fillStyle = '#718096';
+                    ctx.font = '14px Outfit, sans-serif';
+                    ctx.fillText(l[2], x + 18, y + 90);
+                });
+
+                // Sunrise / Sunset & Muhurta Card
+                drawRoundedRect(ctx, 24, 600, 492, 145, 22, '#FFFFFF', '#E2DDD5');
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 18px Cinzel, serif';
+                ctx.fillText('☀️ SUN & AUSPICIOUS TIMINGS', 44, 634);
+                ctx.font = '500 16px Outfit, sans-serif';
+                ctx.fillStyle = '#2B4C7E';
+                ctx.fillText('Sunrise: 06:18 AM      Sunset: 05:56 PM', 44, 668);
+                ctx.fillStyle = '#15803D';
+                ctx.fillText('✦ Abhijit Muhurta: 11:44 AM – 12:30 PM', 44, 698);
+                ctx.fillStyle = '#B91C1C';
+                ctx.fillText('⚠ Rahu Kaal: 12:07 PM – 01:34 PM', 44, 726);
+
+                // Sankalpam Card
+                drawRoundedRect(ctx, 24, 762, 492, 175, 22, accentHex + '14', accentHex + '55');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 16px Outfit, sans-serif';
+                ctx.fillText('🪔 DAILY VEDIC SANKALPAM MANTRA', 44, 796);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = '18px serif';
+                ctx.fillText('ॐ श्री शुभ संवत्सरे अस्मिन् महामंगल्यप्रदे मासोत्तमे', 44, 834);
+                ctx.fillText('अश्विन मासे शुक्ल पक्षे दशम्यां तिथौ बुधवासरे', 44, 866);
+                ctx.fillText('धनिष्ठा नक्षत्रे शूल योगे तैतिल करणे शुभम्॥', 44, 898);
+
+            } else if (index === 1) {
+                // SCREEN 2: MONTH GRID
+                drawRoundedRect(ctx, 24, 158, 492, 74, 20, '#FFFFFF', accentHex + '55');
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 22px Cinzel, serif';
+                ctx.fillText('OCTOBER 2026 • ASHWIN – KARTIK', 44, 202);
+
+                const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+                days.forEach((d, i) => {
+                    ctx.fillStyle = i === 0 ? '#C85A1E' : '#5A6578';
+                    ctx.font = 'bold 14px Outfit, sans-serif';
+                    ctx.fillText(d, 38 + i * 68, 262);
+                });
+
+                // Draw 5x7 Calendar Grid
+                let dayNum = 1;
+                for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 7; c++) {
+                        if (r === 0 && c < 3) continue;
+                        if (dayNum > 31) break;
+                        const x = 26 + c * 70;
+                        const y = 278 + r * 102;
+                        const isSelected = dayNum === 21;
+                        const isEkadashi = dayNum === 6 || dayNum === 22;
+                        const isPurnima = dayNum === 10;
+                        drawRoundedRect(
+                            ctx, x, y, 64, 92, 14,
+                            isSelected ? accentHex : '#FFFFFF',
+                            isSelected ? accentHex : (isEkadashi || isPurnima ? accentHex + '88' : '#E2DDD5')
+                        );
+                        ctx.fillStyle = isSelected ? '#FFFFFF' : '#141B2D';
+                        ctx.font = 'bold 22px Outfit, sans-serif';
+                        ctx.fillText(String(dayNum), x + 16, y + 34);
+
+                        ctx.fillStyle = isSelected ? '#FFF8EB' : '#718096';
+                        ctx.font = '12px Outfit, sans-serif';
+                        ctx.fillText('S-' + ((dayNum % 15) + 1), x + 14, y + 58);
+
+                        if (isEkadashi) {
+                            ctx.fillStyle = isSelected ? '#FFFFFF' : '#C85A1E';
+                            ctx.font = 'bold 11px Outfit, sans-serif';
+                            ctx.fillText('एकादशी', x + 10, y + 78);
+                        } else if (isPurnima) {
+                            ctx.fillStyle = '#D48B1E';
+                            ctx.font = 'bold 11px Outfit, sans-serif';
+                            ctx.fillText('🌕 पूर्णिमा', x + 8, y + 78);
+                        }
+                        dayNum++;
+                    }
+                }
+
+                // Bottom Festival Legend Card
+                drawRoundedRect(ctx, 24, 804, 492, 134, 22, '#FFFFFF', accentHex + '55');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 16px Outfit, sans-serif';
+                ctx.fillText('🎉 UPCOMING VRAT & PARVA FESTIVALS', 44, 836);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = '500 16px Outfit, sans-serif';
+                ctx.fillText('• Oct 21: Vijayadashami / Dussehra (Today)', 44, 868);
+                ctx.fillText('• Oct 22: Papankusha Ekadashi Vrat', 44, 896);
+                ctx.fillText('• Oct 26: Sharad Kojagari Purnima 🌕', 44, 922);
+
+            } else if (index === 2) {
+                // SCREEN 3: CHOGHADIYA & HORA
+                drawRoundedRect(ctx, 24, 158, 492, 170, 24, '#ECFDF5', '#10B981');
+                ctx.fillStyle = '#047857';
+                ctx.font = 'bold 16px Outfit, sans-serif';
+                ctx.fillText('● ACTIVE DAY CHOGHADIYA • AUSPICIOUS', 44, 192);
+                ctx.fillStyle = '#064E3B';
+                ctx.font = 'bold 34px Cinzel, serif';
+                ctx.fillText('Amrit (अमृत) — Best', 44, 236);
+                ctx.font = '500 17px Outfit, sans-serif';
+                ctx.fillText('06:18 AM – 07:45 AM  •  42m 18s Remaining', 44, 268);
+                drawRoundedRect(ctx, 44, 288, 452, 16, 8, '#D1FAE5', null);
+                drawRoundedRect(ctx, 44, 288, 320, 16, 8, '#10B981', null);
+
+                const rows = [
+                    ['06:18 – 07:45', 'Amrit (अमृत)', 'Ruler: Chandra ☽', '#10B981', 'BEST'],
+                    ['07:45 – 09:12', 'Kaal (काल)', 'Ruler: Shani ♄', '#EF4444', 'AVOID'],
+                    ['09:12 – 10:40', 'Shubh (शुभ)', 'Ruler: Guru ♃', '#10B981', 'GOOD'],
+                    ['10:40 – 12:07', 'Rog (रोग)', 'Ruler: Mangal ♂', '#F59E0B', 'CAUTION'],
+                    ['12:07 – 01:34', 'Udveg (उद्वेग)', 'Ruler: Surya ☉', '#EF4444', 'AVOID'],
+                    ['01:34 – 03:01', 'Char (चर)', 'Ruler: Shukra ♀', '#3B82F6', 'TRAVEL'],
+                    ['03:01 – 04:29', 'Labh (लाभ)', 'Ruler: Budha ☿', '#10B981', 'GAIN']
+                ];
+                rows.forEach((r, i) => {
+                    const y = 346 + i * 82;
+                    drawRoundedRect(ctx, 24, y, 492, 70, 16, '#FFFFFF', '#E2DDD5');
+                    ctx.fillStyle = '#5A6578';
+                    ctx.font = '600 15px monospace';
+                    ctx.fillText(r[0], 42, y + 42);
+                    ctx.fillStyle = '#141B2D';
+                    ctx.font = 'bold 18px Outfit, sans-serif';
+                    ctx.fillText(r[1], 178, y + 34);
+                    ctx.fillStyle = '#718096';
+                    ctx.font = '13px Outfit, sans-serif';
+                    ctx.fillText(r[2], 178, y + 54);
+
+                    drawRoundedRect(ctx, 405, y + 18, 92, 32, 10, r[3] + '20', r[3]);
+                    ctx.fillStyle = r[3];
+                    ctx.font = 'bold 13px Outfit, sans-serif';
+                    ctx.fillText(r[4], 426, y + 39);
+                });
+
+            } else if (index === 3) {
+                // SCREEN 4: KUNDALI & EPHEMERIS
+                drawRoundedRect(ctx, 24, 158, 492, 54, 16, '#FFFFFF', accentHex + '55');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 16px Outfit, sans-serif';
+                ctx.fillText('◆ NORTH INDIAN   |   ⊞ SOUTH INDIAN   |   ⨳ EAST', 54, 191);
+
+                // Draw North Indian Diamond Kundali Chart
+                const cx = 60, cy = 228, size = 420;
+                drawRoundedRect(ctx, cx, cy, size, size, 12, '#FFFDF9', accentHex);
+                ctx.strokeStyle = accentHex;
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                // Diagonals
+                ctx.moveTo(cx, cy); ctx.lineTo(cx + size, cy + size);
+                ctx.moveTo(cx + size, cy); ctx.lineTo(cx, cy + size);
+                // Inner Diamond
+                ctx.moveTo(cx + size / 2, cy);
+                ctx.lineTo(cx + size, cy + size / 2);
+                ctx.lineTo(cx + size / 2, cy + size);
+                ctx.lineTo(cx, cy + size / 2);
+                ctx.closePath();
+                ctx.stroke();
+
+                // Populate Houses with Grahas
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 18px Outfit, sans-serif';
+                ctx.fillText('Lagna 7', cx + 178, cy + 95);
+                ctx.fillStyle = '#C85A1E';
+                ctx.fillText('☉ Su  ☿ Me', cx + 165, cy + 125);
+                ctx.fillStyle = '#2B4C7E';
+                ctx.fillText('☽ Mo 10', cx + 65, cy + 215);
+                ctx.fillText('♃ Ju 8', cx + 80, cy + 90);
+                ctx.fillText('♀ Ve 6', cx + 280, cy + 90);
+                ctx.fillText('♄ Sa 11', cx + 65, cy + 335);
+                ctx.fillText('♂ Ma 1', cx + 185, cy + 345);
+                ctx.fillText('☊ Ra 12', cx + 295, cy + 335);
+
+                // Planetary Ephemeris Table below chart
+                drawRoundedRect(ctx, 24, 666, 492, 272, 22, '#FFFFFF', '#E2DDD5');
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 17px Cinzel, serif';
+                ctx.fillText('TRUE LAHIRI EPHEMERIS (AYANAMSA 24°13\'42")', 44, 700);
+
+                const grahas = [
+                    ['☉ Surya (Sun)', 'Tula (Libra)', '03° 48\' 12"', 'Chitra (4)'],
+                    ['☽ Chandra (Moon)', 'Makara (Cap)', '26° 14\' 09"', 'Dhanishta (2)'],
+                    ['♂ Mangal (Mars)', 'Karka (Can)', '24° 02\' 51"', 'Ashlesha (3)'],
+                    ['☿ Budha (Merc)', 'Tula (Libra)', '19° 31\' 44"', 'Swati (4)'],
+                    ['♃ Guru (Jup)', 'Mithuna (Gem)', '27° 11\' 05"', 'Punarvasu (3)'],
+                    ['♀ Shukra (Ven)', 'Vrishchika', '11° 25\' 30"', 'Anuradha (3)']
+                ];
+                grahas.forEach((g, i) => {
+                    const y = 732 + i * 33;
+                    ctx.fillStyle = '#141B2D';
+                    ctx.font = 'bold 15px Outfit, sans-serif';
+                    ctx.fillText(g[0], 44, y);
+                    ctx.fillStyle = accentHex;
+                    ctx.fillText(g[1], 195, y);
+                    ctx.fillStyle = '#2B4C7E';
+                    ctx.font = '14px monospace';
+                    ctx.fillText(g[2], 315, y);
+                    ctx.fillStyle = '#718096';
+                    ctx.font = '14px Outfit, sans-serif';
+                    ctx.fillText(g[3], 420, y);
+                });
+
+            } else if (index === 4) {
+                // SCREEN 5: 16-PETAL VASTU COMPASS
+                drawRoundedRect(ctx, 24, 158, 492, 92, 20, '#FFFFFF', accentHex + '55');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('LIVE MAGNETOMETER AZIMUTH • MAHAVASTU 16 ZONES', 44, 190);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 28px Cinzel, serif';
+                ctx.fillText('45° NE — Ishanya (ईशान्य)', 44, 228);
+
+                // Draw 16-Petal Vastu Chakra
+                const cx = 270, cy = 510, rOuter = 215;
+                ctx.save();
+                ctx.translate(cx, cy);
+                for (let i = 0; i < 16; i++) {
+                    const a1 = (i * Math.PI * 2) / 16 - Math.PI / 2 - Math.PI / 16;
+                    const a2 = a1 + Math.PI / 8;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.arc(0, 0, rOuter, a1, a2);
+                    ctx.closePath();
+                    const colors = ['#E0F2FE', '#FEF3C7', '#FEE2E2', '#FCE7F3', '#ECFDF5', '#EDE9FE'];
+                    ctx.fillStyle = i === 2 ? accentHex : colors[i % colors.length];
+                    ctx.fill();
+                    ctx.strokeStyle = accentHex;
+                    ctx.lineWidth = 1.5;
+                    ctx.stroke();
+                }
+                // Inner Lotus Rings
+                ctx.beginPath();
+                ctx.arc(0, 0, 125, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fill();
+                ctx.strokeStyle = accentHex;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(0, 0, 56, 0, Math.PI * 2);
+                ctx.fillStyle = accentHex + '22';
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 22px serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('वास्तु पुरुष', 0, 8);
+                ctx.fillStyle = '#C85A1E';
+                ctx.font = 'bold 20px Outfit, sans-serif';
+                ctx.fillText('N (कुबेर)', 0, -180);
+                ctx.fillText('S (यम)', 0, 195);
+                ctx.fillText('E (इन्द्र)', 170, 6);
+                ctx.fillText('W (वरुण)', -170, 6);
+                ctx.restore();
+                ctx.textAlign = 'left';
+
+                // Bottom Zone Insight Card
+                drawRoundedRect(ctx, 24, 764, 492, 172, 22, '#FFFFFF', '#E2DDD5');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 17px Cinzel, serif';
+                ctx.fillText('ISHANYA (NE) • JALA ELEMENT (WATER)', 44, 800);
+                ctx.fillStyle = '#4A5568';
+                ctx.font = '16px Outfit, sans-serif';
+                ctx.fillText('• Guardian Deity: Lord Shiva / Ishana', 44, 834);
+                ctx.fillText('• Ideal For: Puja Ghar, Meditation, Altar', 44, 864);
+                ctx.fillText('• Avoid: Heavy Storage, Kitchen Fire, Toilets', 44, 894);
+
+            } else if (index === 5) {
+                // SCREEN 6: 60-GHATI HINDU CLOCK
+                drawRoundedRect(ctx, 24, 158, 492, 95, 22, '#FFFFFF', accentHex + '55');
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('SURYA SIDDHANTA CHRONOMETER • SINCE SUNRISE', 44, 190);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 30px monospace';
+                ctx.fillText('18 Gh : 42 Pa : 15 Vi', 44, 232);
+
+                // Draw Concentric 60-Ghati Dial
+                const cx = 270, cy = 515;
+                ctx.save();
+                ctx.translate(cx, cy);
+                // Outer 60 Ghati Ring
+                ctx.beginPath();
+                ctx.arc(0, 0, 210, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fill();
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = accentHex;
+                ctx.stroke();
+
+                for (let i = 0; i < 60; i++) {
+                    const ang = (i * Math.PI * 2) / 60 - Math.PI / 2;
+                    const r1 = i % 5 === 0 ? 182 : 195;
+                    ctx.beginPath();
+                    ctx.moveTo(Math.cos(ang) * r1, Math.sin(ang) * r1);
+                    ctx.lineTo(Math.cos(ang) * 206, Math.sin(ang) * 206);
+                    ctx.strokeStyle = i % 5 === 0 ? accentHex : '#CBD5E1';
+                    ctx.lineWidth = i % 5 === 0 ? 3 : 1.5;
+                    ctx.stroke();
+                }
+
+                // Inner Pala Ring
+                ctx.beginPath();
+                ctx.arc(0, 0, 135, 0, Math.PI * 2);
+                ctx.strokeStyle = secHex;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Hands
+                ctx.rotate(0.95);
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, -165);
+                ctx.strokeStyle = accentHex;
+                ctx.lineWidth = 6;
+                ctx.stroke();
+                ctx.restore();
+
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 20px serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('६० घटी चक्र', cx, cy + 8);
+                ctx.textAlign = 'left';
+
+                // Conversion Reference Card
+                drawRoundedRect(ctx, 24, 766, 492, 170, 22, '#FFFFFF', '#E2DDD5');
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 17px Cinzel, serif';
+                ctx.fillText('VEDIC TIME UNITS (मानक काल गणना)', 44, 800);
+                ctx.fillStyle = '#4A5568';
+                ctx.font = '16px Outfit, sans-serif';
+                ctx.fillText('• 1 Solar Day (Ahoratra) = 60 Ghatis (24 Hours)', 44, 834);
+                ctx.fillText('• 1 Ghati (Danda) = 60 Palas = 24 Modern Minutes', 44, 864);
+                ctx.fillText('• 1 Pala (Vighati) = 60 Vipalas = 24 Seconds', 44, 894);
+                ctx.fillText('• 1 Muhurta = 2 Ghatis = 48 Minutes', 44, 922);
+
+            } else if (index === 6) {
+                // SCREEN 7: SETTINGS MODAL
+                const settings = [
+                    ['Lunar Month Tradition', 'Amanta (अमांत) vs Purnimanta', 'AMANTA'],
+                    ['Ayanamsa Model', 'Lahiri (Chitrapaksha) True', '24° 13\''],
+                    ['Offline City Database', 'Ujjain, India (23.17°N, 75.78°E)', '4,500+'],
+                    ['App Language / भाषा', 'Bilingual (English + हिन्दी)', 'ACTIVE'],
+                    ['Sanzo Wada Color Theme', 'Shiragiku Daylight White', 'LIGHT'],
+                    ['100% Offline Engine', 'Zero Internet • Local Ephemeris', 'VERIFIED']
+                ];
+                settings.forEach((s, i) => {
+                    const y = 162 + i * 124;
+                    drawRoundedRect(ctx, 24, y, 492, 106, 22, '#FFFFFF', '#E2DDD5');
+                    ctx.fillStyle = '#141B2D';
+                    ctx.font = 'bold 20px Outfit, sans-serif';
+                    ctx.fillText(s[0], 44, y + 44);
+                    ctx.fillStyle = '#718096';
+                    ctx.font = '15px Outfit, sans-serif';
+                    ctx.fillText(s[1], 44, y + 74);
+
+                    drawRoundedRect(ctx, 376, y + 32, 118, 42, 21, accentHex, null);
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = 'bold 14px Outfit, sans-serif';
+                    ctx.fillText(s[2], 396, y + 58);
+                });
+
+            } else if (index === 7) {
+                // SCREEN 8: HOME SCREEN WIDGETS
+                ctx.fillStyle = '#5A6578';
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('ANDROID MATERIAL YOU LAUNCHER WIDGETS', 34, 180);
+
+                // Widget 1: 4x2 Daily Panchang
+                drawRoundedRect(ctx, 24, 200, 492, 230, 28, '#FFFFFF', accentHex);
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('🕉️ DAILY PANCHANG WIDGET (4×2)', 48, 236);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 28px Cinzel, serif';
+                ctx.fillText('Shukla Dashami • Dhanishta', 48, 278);
+                ctx.fillStyle = '#4A5568';
+                ctx.font = '16px Outfit, sans-serif';
+                ctx.fillText('☀️ 06:18 AM   🌙 05:56 PM   •   Vikram Samvat 2083', 48, 314);
+                drawRoundedRect(ctx, 48, 342, 444, 62, 16, '#ECFDF5', '#10B981');
+                ctx.fillStyle = '#047857';
+                ctx.font = 'bold 16px Outfit, sans-serif';
+                ctx.fillText('✦ Abhijit Muhurta: 11:44 AM – 12:30 PM', 68, 380);
+
+                // Widget 2: 4x1 Choghadiya Pill
+                drawRoundedRect(ctx, 24, 456, 492, 130, 28, '#FFFFFF', '#2B4C7E');
+                ctx.fillStyle = '#2B4C7E';
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('⏳ LIVE CHOGHADIYA & HORA BAR (4×1)', 48, 492);
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 24px Outfit, sans-serif';
+                ctx.fillText('Amrit Choghadiya  •  ♃ Guru Hora', 48, 532);
+                ctx.fillStyle = '#10B981';
+                ctx.font = 'bold 15px monospace';
+                ctx.fillText('42m 18s remaining', 48, 562);
+
+                // Widget 3: 2x2 Ghati & Kundali Mini Widgets
+                drawRoundedRect(ctx, 24, 612, 236, 320, 28, '#FFFFFF', accentHex);
+                ctx.fillStyle = accentHex;
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('⏰ 60-GHATI DIAL', 46, 650);
+                ctx.beginPath();
+                ctx.arc(142, 755, 72, 0, Math.PI * 2);
+                ctx.strokeStyle = accentHex;
+                ctx.lineWidth = 4;
+                ctx.stroke();
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 18px monospace';
+                ctx.fillText('18:42:15', 102, 762);
+                ctx.font = '14px Outfit, sans-serif';
+                ctx.fillText('Ishta Kaal', 110, 868);
+
+                drawRoundedRect(ctx, 280, 612, 236, 320, 28, '#FFFFFF', '#2B4C7E');
+                ctx.fillStyle = '#2B4C7E';
+                ctx.font = 'bold 15px Outfit, sans-serif';
+                ctx.fillText('🌌 TRANSIT LAGNA', 302, 650);
+                drawRoundedRect(ctx, 318, 682, 160, 160, 12, '#FAF8F5', '#2B4C7E');
+                ctx.fillStyle = '#141B2D';
+                ctx.font = 'bold 16px Outfit, sans-serif';
+                ctx.fillText('Tula Lagna', 356, 768);
+                ctx.font = '14px Outfit, sans-serif';
+                ctx.fillText('Lahiri True', 362, 868);
+            }
+
+            // 5. Bottom Navigation Bar inside Phone UI
+            drawRoundedRect(ctx, 24, 956, 492, 92, 28, '#FFFFFF', '#E2DDD5');
+            const navIcons = ['📅 Panchang', '⏳ Muhurta', '🌌 Kundali', '🧭 Vastu', '⏰ Ghati'];
+            navIcons.forEach((n, i) => {
+                const isAct = (index === i) || (index >= 5 && i === 4);
+                ctx.fillStyle = isAct ? accentHex : '#718096';
+                ctx.font = isAct ? 'bold 14px Outfit, sans-serif' : '500 13px Outfit, sans-serif';
+                ctx.fillText(n, 42 + i * 94, 1008);
+            });
+
+            return canvas;
+        }
+
+        /* --------------------------------------------------------------------------
+           3. THREE.JS 3D SMARTPHONE & CELESTIAL BRAHMANDA ENGINE
+           -------------------------------------------------------------------------- */
+        let scene, camera, renderer, phoneGroup, screenMesh, rimMesh;
+        let eclipticGroup, eclipticRingMesh, suryaGroup, suryaLight, chandraMesh, dustPoints;
+        let targetRotX = 0, targetRotY = -0.18;
+        let spinBoostY = 0;
+        let currentScreenIndex = 0;
+        let ambientLight, mainDirLight;
+
+        function initThreeJS() {
+            const container = document.getElementById('webgl-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+            camera.position.set(0, 0.15, getAdaptiveCameraZ());
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.15;
+            container.appendChild(renderer.domElement);
+
+            // Lighting Tailored for Luminous Daylight White Theme
+            ambientLight = new THREE.AmbientLight(0xFFFDF9, 1.35);
+            scene.add(ambientLight);
+
+            mainDirLight = new THREE.DirectionalLight(0xFFFFFF, 1.6);
+            mainDirLight.position.set(5, 8, 6);
+            scene.add(mainDirLight);
+
+            const fillLight = new THREE.DirectionalLight(0xE2E8F0, 0.9);
+            fillLight.position.set(-5, -3, 4);
+            scene.add(fillLight);
+
+            // Generate 8 High-DPI Procedural App Screen Textures (+ optional image loader fallback)
+            for (let i = 0; i < 8; i++) {
+                const c = generateAppScreenCanvas(i, '#D48B1E', '#2B4C7E');
+                screenCanvases[i] = c;
+                const tex = new THREE.CanvasTexture(c);
+                tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+                tex.needsUpdate = true;
+                screenTextures[i] = tex;
+            }
+
+            // 1. Construct 3D Smartphone Mockup Group
+            phoneGroup = new THREE.Group();
+            scene.add(phoneGroup);
+
+            // Main Obsidian/Titanium Chassis
+            const chassisGeo = new THREE.BoxGeometry(2.36, 4.72, 0.18);
+            const chassisMat = new THREE.MeshStandardMaterial({
+                color: 0x1A1C24,
+                metalness: 0.85,
+                roughness: 0.25
+            });
+            const chassisMesh = new THREE.Mesh(chassisGeo, chassisMat);
+            phoneGroup.add(chassisMesh);
+
+            // Metallic Golden Chamfer / Rim Border
+            const rimGeo = new THREE.BoxGeometry(2.44, 4.80, 0.14);
+            const rimMat = new THREE.MeshStandardMaterial({
+                color: 0xD48B1E,
+                metalness: 0.95,
+                roughness: 0.20
+            });
+            rimMesh = new THREE.Mesh(rimGeo, rimMat);
+            phoneGroup.add(rimMesh);
+
+            // Subtle Pearl Backplate Accent
+            const backGeo = new THREE.PlaneGeometry(2.26, 4.62);
+            const backMat = new THREE.MeshStandardMaterial({
+                color: 0xFAF8F5,
+                metalness: 0.3,
+                roughness: 0.4
+            });
+            const backMesh = new THREE.Mesh(backGeo, backMat);
+            backMesh.position.z = -0.092;
+            backMesh.rotation.y = Math.PI;
+            phoneGroup.add(backMesh);
+
+            // Side Power & Volume Hardware Buttons
+            const btnGeo = new THREE.BoxGeometry(0.05, 0.45, 0.06);
+            const powerBtn = new THREE.Mesh(btnGeo, rimMat);
+            powerBtn.position.set(1.23, 0.7, 0);
+            phoneGroup.add(powerBtn);
+
+            const volBtn = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.75, 0.06), rimMat);
+            volBtn.position.set(-1.23, 0.65, 0);
+            phoneGroup.add(volBtn);
+
+            // Front Screen Plane with Active App Texture
+            const screenGeo = new THREE.PlaneGeometry(2.22, 4.52);
+            const screenMat = new THREE.MeshStandardMaterial({
+                map: screenTextures[0],
+                roughness: 0.18,
+                metalness: 0.05
+            });
+            screenMesh = new THREE.Mesh(screenGeo, screenMat);
+            screenMesh.position.z = 0.095;
+            phoneGroup.add(screenMesh);
+
+            // 2. Orbiting Celestial Brahmanda & Zodiac Ecliptic System
+            eclipticGroup = new THREE.Group();
+            // 60° Ecliptic Inclination (Math.PI / 3)
+            eclipticGroup.rotation.x = Math.PI / 3;
+            eclipticGroup.rotation.z = -0.22;
+            scene.add(eclipticGroup);
+
+            // Main Zodiac Ecliptic Torus Ring
+            const torusGeo = new THREE.TorusGeometry(3.6, 0.024, 16, 120);
+            const torusMat = new THREE.MeshStandardMaterial({
+                color: 0xD48B1E,
+                metalness: 0.9,
+                roughness: 0.2,
+                emissive: 0xD48B1E,
+                emissiveIntensity: 0.25
+            });
+            eclipticRingMesh = new THREE.Mesh(torusGeo, torusMat);
+            eclipticGroup.add(eclipticRingMesh);
+
+            // Secondary Sacred Dashed/Rashi Node Ring
+            const innerTorusGeo = new THREE.TorusGeometry(3.15, 0.01, 12, 90);
+            const innerTorusMat = new THREE.MeshBasicMaterial({
+                color: 0x2B4C7E,
+                transparent: true,
+                opacity: 0.35
+            });
+            const innerTorus = new THREE.Mesh(innerTorusGeo, innerTorusMat);
+            eclipticGroup.add(innerTorus);
+
+            // 12 Zodiac Rashi Nodes along Ecliptic Ring
+            for (let i = 0; i < 12; i++) {
+                const angle = (i * Math.PI * 2) / 12;
+                const nodeMesh = new THREE.Mesh(
+                    new THREE.OctahedronGeometry(0.06, 0),
+                    torusMat
+                );
+                nodeMesh.position.set(Math.cos(angle) * 3.6, Math.sin(angle) * 3.6, 0);
+                eclipticGroup.add(nodeMesh);
+            }
+
+            // Surya (Sun) Emissive Sphere + Real-Time PointLight
+            suryaGroup = new THREE.Group();
+            const suryaGeo = new THREE.SphereGeometry(0.22, 32, 32);
+            const suryaMat = new THREE.MeshStandardMaterial({
+                color: 0xFFAA00,
+                emissive: 0xFF8800,
+                emissiveIntensity: 1.2,
+                roughness: 0.1
+            });
+            const suryaSphere = new THREE.Mesh(suryaGeo, suryaMat);
+            suryaGroup.add(suryaSphere);
+
+            // Sun Halo Corona
+            const haloGeo = new THREE.SphereGeometry(0.34, 24, 24);
+            const haloMat = new THREE.MeshBasicMaterial({
+                color: 0xFFCC33,
+                transparent: true,
+                opacity: 0.32
+            });
+            suryaGroup.add(new THREE.Mesh(haloGeo, haloMat));
+
+            suryaLight = new THREE.PointLight(0xFFAE34, 2.2, 12);
+            suryaGroup.add(suryaLight);
+            eclipticGroup.add(suryaGroup);
+
+            // Chandra (Moon) Opalescent Pearl Sphere (Opposite Surya)
+            const chandraGeo = new THREE.SphereGeometry(0.16, 32, 32);
+            const chandraMat = new THREE.MeshStandardMaterial({
+                color: 0xF8FAFC,
+                metalness: 0.4,
+                roughness: 0.15,
+                emissive: 0x94A3B8,
+                emissiveIntensity: 0.3
+            });
+            chandraMesh = new THREE.Mesh(chandraGeo, chandraMat);
+            eclipticGroup.add(chandraMesh);
+
+            // 3. Celestial Dust Particles (240+ Floating Points)
+            const particleCount = 260;
+            const positions = new Float32Array(particleCount * 3);
+            for (let i = 0; i < particleCount; i++) {
+                const r = 2.8 + Math.random() * 3.8;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = (Math.random() - 0.5) * Math.PI;
+                positions[i * 3] = r * Math.cos(theta) * Math.cos(phi);
+                positions[i * 3 + 1] = r * Math.sin(phi);
+                positions[i * 3 + 2] = r * Math.sin(theta) * Math.cos(phi);
+            }
+            const dustGeo = new THREE.BufferGeometry();
+            dustGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const dustMat = new THREE.PointsMaterial({
+                color: 0xD48B1E,
+                size: 0.055,
+                transparent: true,
+                opacity: 0.65
+            });
+            dustPoints = new THREE.Points(dustGeo, dustMat);
+            scene.add(dustPoints);
+
+            // Pointer & Touch Interaction Listeners
+            container.addEventListener('mousemove', onPointerMove);
+            container.addEventListener('touchmove', onTouchMove, { passive: true });
+            container.addEventListener('mouseleave', () => {
+                targetRotX = 0;
+                targetRotY = -0.18;
+            });
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function onPointerMove(e) {
+            const container = document.getElementById('webgl-container');
+            const rect = container.getBoundingClientRect();
+            const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            const ny = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+            targetRotY = nx * 0.55;
+            targetRotX = -ny * 0.32;
+        }
+
+        function onTouchMove(e) {
+            if (!e.touches || e.touches.length === 0) return;
+            const container = document.getElementById('webgl-container');
+            const rect = container.getBoundingClientRect();
+            const nx = ((e.touches[0].clientX - rect.left) / rect.width) * 2 - 1;
+            const ny = -((e.touches[0].clientY - rect.top) / rect.height) * 2 + 1;
+            targetRotY = nx * 0.65;
+            targetRotX = -ny * 0.35;
+        }
+
+        function getAdaptiveCameraZ() {
+            const w = window.innerWidth;
+            if (w < 440) return 9.2;
+            if (w < 640) return 8.5;
+            if (w < 1024) return 8.0;
+            return 7.6;
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('webgl-container');
+            if (!container || !renderer) return;
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.position.z = getAdaptiveCameraZ();
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function resetPhoneCamera() {
+            targetRotX = 0;
+            targetRotY = 0;
+            spinBoostY = 0;
+        }
+
+        function spinPhone360() {
+            spinBoostY += Math.PI * 2;
+        }
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            if (phoneGroup) {
+                // Smooth Lerp Damping toward Cursor + Spin Boost
+                spinBoostY *= 0.92;
+                phoneGroup.rotation.y += ((targetRotY + spinBoostY) - phoneGroup.rotation.y) * 0.06;
+                phoneGroup.rotation.x += (targetRotX - phoneGroup.rotation.x) * 0.06;
+
+                // Subtle Vertical Levitation Oscillation
+                phoneGroup.position.y = Math.sin(time * 1.5) * 0.12;
+            }
+
+            if (suryaGroup && chandraMesh) {
+                const orbitAngle = time * 0.48;
+                const radius = 3.6;
+                // Surya Position
+                suryaGroup.position.set(
+                    Math.cos(orbitAngle) * radius,
+                    Math.sin(orbitAngle) * radius,
+                    0
+                );
+                // Chandra Position (Directly Opposite Surya)
+                chandraMesh.position.set(
+                    Math.cos(orbitAngle + Math.PI) * radius,
+                    Math.sin(orbitAngle + Math.PI) * radius,
+                    0
+                );
+            }
+
+            if (dustPoints) {
+                dustPoints.rotation.y = time * 0.05;
+                dustPoints.rotation.x = Math.sin(time * 0.1) * 0.08;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        /* --------------------------------------------------------------------------
+           4. SCREEN SWITCHER & GALLERY CAROUSEL SYNCHRONIZATION
+           -------------------------------------------------------------------------- */
+        function selectAppScreen(index) {
+            currentScreenIndex = (index + APP_SCREENS.length) % APP_SCREENS.length;
+            const screenData = APP_SCREENS[currentScreenIndex];
+
+            // 1. Update 3D Phone Screen Texture & Trigger Subtle Spring Spin
+            if (screenMesh && screenTextures[currentScreenIndex]) {
+                screenMesh.material.map = screenTextures[currentScreenIndex];
+                screenMesh.material.needsUpdate = true;
+                phoneGroup.rotation.y += 0.35;
+            }
+
+            // 2. Highlight Active Pill Button
+            const pills = document.querySelectorAll('#screen-switcher-pills .screen-pill');
+            pills.forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === currentScreenIndex);
+            });
+
+            // 3. Update Hero Active Screen Caption
+            document.getElementById('active-screen-badge').textContent = `Screen 0${currentScreenIndex + 1} / 08 • Live on 3D Device`;
+            document.getElementById('active-screen-hindi').textContent = screenData.hindi;
+            document.getElementById('active-screen-title').textContent = screenData.title;
+            document.getElementById('active-screen-desc').textContent = screenData.desc;
+
+            // 4. Sync 2D Showcase Gallery Canvas & Info
+            const galleryCanvas = document.getElementById('gallery-preview-canvas');
+            if (galleryCanvas && screenCanvases[currentScreenIndex]) {
+                const gCtx = galleryCanvas.getContext('2d');
+                gCtx.clearRect(0, 0, galleryCanvas.width, galleryCanvas.height);
+                gCtx.drawImage(screenCanvases[currentScreenIndex], 0, 0);
+            }
+
+            document.getElementById('carousel-counter').textContent = `0${currentScreenIndex + 1} / 08`;
+            document.getElementById('gallery-badge').textContent = screenData.badge;
+            document.getElementById('gallery-file-tag').textContent = screenData.file;
+            document.getElementById('gallery-title').textContent = screenData.title;
+            document.getElementById('gallery-desc').textContent = screenData.desc;
+
+            const galleryImg = document.getElementById('gallery-preview-img');
+            if (galleryImg && screenData) {
+                galleryImg.src = screenData.file;
+            }
+
+            const highlightsContainer = document.getElementById('gallery-highlights');
+            highlightsContainer.innerHTML = screenData.highlights
+                .map(h => `<div class="p-3 rounded-xl bg-white/90 border border-black/5 font-medium">${h}</div>`)
+                .join('');
+
+            // Highlight Active Gallery Thumbnail
+            const thumbBtns = document.querySelectorAll('#gallery-thumbs button');
+            thumbBtns.forEach((btn, idx) => {
+                if (idx === currentScreenIndex) {
+                    btn.className = 'p-3 rounded-2xl text-left border-2 border-accent bg-accent-soft transition-all shadow-sm';
+                } else {
+                    btn.className = 'p-3 rounded-2xl text-left border border-black/10 bg-white/80 hover:border-accent transition-all';
+                }
+            });
+        }
+
+        let galleryViewMode = 'vector';
+        function setGalleryViewMode(mode) {
+            galleryViewMode = mode;
+            const canvas = document.getElementById('gallery-preview-canvas');
+            const img = document.getElementById('gallery-preview-img');
+            const btnVector = document.getElementById('view-mode-vector');
+            const btnReal = document.getElementById('view-mode-real');
+            if (!canvas || !img) return;
+
+            if (mode === 'real') {
+                canvas.classList.add('hidden');
+                img.classList.remove('hidden');
+                if (btnReal) btnReal.className = 'px-3 py-1 rounded-lg bg-white shadow-sm text-accent transition';
+                if (btnVector) btnVector.className = 'px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition';
+                img.src = APP_SCREENS[currentScreenIndex].file;
+            } else {
+                img.classList.add('hidden');
+                canvas.classList.remove('hidden');
+                if (btnVector) btnVector.className = 'px-3 py-1 rounded-lg bg-white shadow-sm text-accent transition';
+                if (btnReal) btnReal.className = 'px-3 py-1 rounded-lg text-slate-500 hover:text-slate-800 transition';
+            }
+        }
+
+        function stepCarousel(delta) {
+            selectAppScreen(currentScreenIndex + delta);
+        }
+
+        function buildGalleryThumbnails() {
+            const container = document.getElementById('gallery-thumbs');
+            container.innerHTML = APP_SCREENS.map((s, idx) => `
+                <button onclick="selectAppScreen(${idx})" class="${idx === 0 ? 'p-3 rounded-2xl text-left border-2 border-accent bg-accent-soft transition-all shadow-sm' : 'p-3 rounded-2xl text-left border border-black/10 bg-white/80 hover:border-accent transition-all'}">
+                    <div class="text-[11px] font-mono font-bold text-accent">0${idx + 1}</div>
+                    <div class="text-xs font-bold truncate mt-0.5" style="color: var(--text-primary);">${s.pill}</div>
+                    <div class="text-[11px] font-hindi truncate" style="color: var(--text-muted);">${s.hindi}</div>
+                </button>
+            `).join('');
+        }
+
+        /* --------------------------------------------------------------------------
+           5. SANZO WADA COLOR PALETTE ENGINE (UPDATES CSS & THREE.JS)
+           -------------------------------------------------------------------------- */
+        const paletteBtn = document.getElementById('palette-btn');
+        const paletteMenu = document.getElementById('palette-menu');
+
+        paletteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            paletteMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            paletteMenu.classList.add('hidden');
+        });
+
+        function setSanzoTheme(themeKey, label, bgHex, accentHex, secHex) {
+            if (themeKey === 'default') {
+                document.documentElement.removeAttribute('data-theme');
+            } else {
+                document.documentElement.setAttribute('data-theme', themeKey);
+            }
+
+            document.getElementById('active-palette-label').textContent = label;
+            document.getElementById('active-swatch').style.background =
+                `linear-gradient(135deg, ${bgHex} 35%, ${accentHex} 35%, ${secHex} 100%)`;
+
+            // Dynamically Update Three.js Metallic Rim, Ecliptic Ring, Particles & Screen Accent
+            const threeAccent = new THREE.Color(accentHex);
+            if (rimMesh) rimMesh.material.color.copy(threeAccent);
+            if (eclipticRingMesh) {
+                eclipticRingMesh.material.color.copy(threeAccent);
+                eclipticRingMesh.material.emissive.copy(threeAccent);
+            }
+            if (suryaLight) suryaLight.color.copy(threeAccent);
+            if (dustPoints) dustPoints.material.color.copy(threeAccent);
+
+            // Regenerate Procedural Screen Canvases with New Sanzo Wada Accent
+            for (let i = 0; i < 8; i++) {
+                const updatedCanvas = generateAppScreenCanvas(i, accentHex, secHex);
+                screenCanvases[i] = updatedCanvas;
+                if (screenTextures[i]) {
+                    screenTextures[i].image = updatedCanvas;
+                    screenTextures[i].needsUpdate = true;
+                }
+            }
+            selectAppScreen(currentScreenIndex);
+        }
+
+        /* --------------------------------------------------------------------------
+           6. LIVE 60-GHATI HINDU CLOCK COUNTER (ISHTA KAAL SINCE 06:00 AM SUNRISE)
+           -------------------------------------------------------------------------- */
+        function updateLiveGhatiClock() {
+            const now = new Date();
+            const sunrise = new Date(now);
+            sunrise.setHours(6, 18, 0, 0);
+            let diffSeconds = (now - sunrise) / 1000;
+            if (diffSeconds < 0) diffSeconds += 86400;
+
+            // 1 Solar Day (86400s) = 60 Ghatis -> 1 Ghati = 1440s, 1 Pala = 24s, 1 Vipala = 0.4s
+            const totalVipalas = Math.floor(diffSeconds / 0.4);
+            const ghatis = Math.floor(totalVipalas / 3600) % 60;
+            const palas = Math.floor((totalVipalas % 3600) / 60);
+            const vipalas = totalVipalas % 60;
+
+            const pad = (n) => String(n).padStart(2, '0');
+            const readout = document.getElementById('live-ghati-readout');
+            if (readout) {
+                readout.textContent = `${pad(ghatis)} Gh : ${pad(palas)} Pa : ${pad(vipalas)} Vi`;
+            }
+        }
+        setInterval(updateLiveGhatiClock, 400);
+
+        /* --------------------------------------------------------------------------
+           7. FAQ ACCORDION & APK DOWNLOAD MODAL
+           -------------------------------------------------------------------------- */
+        function toggleFaq(index) {
+            const body = document.getElementById(`faq-body-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            const isHidden = body.classList.contains('hidden');
+            body.classList.toggle('hidden', !isHidden);
+            icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function openDownloadModal() {
+            const modal = document.getElementById('download-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDownloadModal() {
+            const modal = document.getElementById('download-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function triggerSimulatedDownload(e) {
+            e.preventDefault();
+            const dlText = document.getElementById('modal-dl-text');
+            dlText.textContent = '✓ Generating Signed APK...';
+            setTimeout(() => {
+                dlText.textContent = '✓ vedic-panchang-v1.0.0.apk Ready!';
+            }, 900);
+        }
+
+        /* --------------------------------------------------------------------------
+           8. INITIALIZE ON WINDOW LOAD
+           -------------------------------------------------------------------------- */
+        window.onload = function () {
+            buildGalleryThumbnails();
+            initThreeJS();
+            selectAppScreen(0);
+            updateLiveGhatiClock();
+            animate();
+        };
+    </script>
+</body>
+</html>
