@@ -6,6 +6,82 @@
     <title>Vedic Hindu Calendar, Panchang & Kundali — 3D Interactive Showcase</title>
     <meta name="description" content="100% Offline, Ad-Free Android App for Daily Vedic Panchang, Choghadiya, Hora, Triple Kundali Charts, 16-Petal Vastu Compass, and 60-Ghati Hindu Clock.">
 
+    <!-- SEO & Social Open Graph Metadata -->
+    <link rel="canonical" href="https://j-a-y-e-s-h.github.io/Indian-calendar/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://j-a-y-e-s-h.github.io/Indian-calendar/">
+    <meta property="og:title" content="🕉️ Vedic Hindu Calendar, Panchang & Kundali — 3D Android App">
+    <meta property="og:description" content="100% Offline, Ad-Free Android App for Daily Vedic Panchang, Choghadiya, Hora, Triple Kundali Charts, 16-Petal Vastu Compass, and 60-Ghati Hindu Clock.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/j-a-y-e-s-h/Indian-calendar/main/screenshots/01_panchang_m3.png">
+    <meta property="og:site_name" content="Vedic Hindu Calendar">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🕉️ Vedic Hindu Calendar, Panchang & Kundali — 3D Android App">
+    <meta name="twitter:description" content="100% Offline, Ad-Free Android App with Choghadiya, Triple Kundali, Vastu Compass, and 60-Ghati Clock.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/j-a-y-e-s-h/Indian-calendar/main/screenshots/01_panchang_m3.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕉️</text></svg>">
+
+    <!-- Schema.org Structured Data (SoftwareApplication & FAQPage) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "Vedic Hindu Calendar, Panchang & Kundali",
+          "operatingSystem": "Android 8.0+",
+          "applicationCategory": "LifestyleApplication",
+          "fileSize": "1019088",
+          "softwareVersion": "1.0.0",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "100% Offline, Ad-Free Android App for Daily Vedic Panchang, Choghadiya, Hora, Triple Kundali Charts, 16-Petal Vastu Compass, and 60-Ghati Hindu Clock.",
+          "downloadUrl": "https://github.com/j-a-y-e-s-h/Indian-calendar/releases/download/v1.0.0/vedic-hindu-calendar-v1.0.0.apk",
+          "author": {
+            "@type": "Person",
+            "name": "Jayesh",
+            "url": "https://github.com/j-a-y-e-s-h"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is the difference between Amanta and Purnimanta lunar month traditions?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In the Amanta system (followed across South & West India), each lunar month ends on No Moon (Amavasya). In Purnimanta (followed across North India), the lunar month ends on Full Moon (Purnima). Both traditions share identical Shukla Paksha dates."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How are Topocentric Sunrise, Sunset, and Choghadiya intervals calculated?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Calculations use exact Drik Ganita topocentric Sunrise and Sunset based on city latitude, longitude, and elevation. Daytime length is divided into 8 equal Choghadiyas, and nighttime length into 8 nocturnal Choghadiyas."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the app work 100% offline without internet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It bundles a compressed database of over 4,500+ global cities with coordinates and runs all astronomical perturbation models directly on device."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -393,14 +469,14 @@
 
                         <!-- High-Impact CTA Buttons -->
                         <div class="flex flex-wrap items-center gap-3.5 pt-1">
-                            <button onclick="openDownloadModal()"
-                                class="btn-primary flex items-center gap-3 px-6 py-3.5 rounded-2xl text-sm sm:text-base font-semibold">
-                                <i data-lucide="smartphone" class="w-5 h-5"></i>
+                            <a href="https://github.com/j-a-y-e-s-h/Indian-calendar/releases/download/v1.0.0/vedic-hindu-calendar-v1.0.0.apk" download
+                                class="btn-primary flex items-center gap-3 px-6 py-3.5 rounded-2xl text-sm sm:text-base font-semibold shadow-lg">
+                                <i data-lucide="download" class="w-5 h-5"></i>
                                 <div class="text-left">
-                                    <div class="leading-none">Download APK</div>
-                                    <div class="text-[11px] opacity-90 font-normal mt-0.5">v1.0.0 • 1.04 MB • Android 8.0+</div>
+                                    <div class="leading-none">Download APK (v1.0.0)</div>
+                                    <div class="text-[11px] opacity-90 font-normal mt-0.5">1.0 MB • Universal APK • Android 8.0+</div>
                                 </div>
-                            </button>
+                            </a>
 
                             <a href="https://github.com/j-a-y-e-s-h/Indian-calendar" target="_blank" rel="noopener noreferrer"
                                 class="flex items-center gap-2.5 px-5 py-3.5 rounded-2xl text-sm sm:text-base font-semibold bg-white border border-black/10 hover:border-accent shadow-sm hover:shadow transition-all"
