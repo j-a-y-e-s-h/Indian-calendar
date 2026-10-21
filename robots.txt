@@ -1,0 +1,6 @@
+# robots.txt for Vedic Hindu Calendar, Panchang & Kundali
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://j-a-y-e-s-h.github.io/Indian-calendar/sitemap.xml

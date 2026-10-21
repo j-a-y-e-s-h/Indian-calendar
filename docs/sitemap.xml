@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://j-a-y-e-s-h.github.io/Indian-calendar/</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/01_panchang_m3.png</image:loc>
+      <image:title>Daily Vedic Panchang Android Dashboard</image:title>
+      <image:caption>Complete 5-Limb Vedic Panchang showing Tithi, Nakshatra, Yoga, Karana, Vaara, Sunrise, Sunset, and Auspicious Muhurtas.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/02_calendar_grid.png</image:loc>
+      <image:title>High-Density Vedic Month Calendar Grid</image:title>
+      <image:caption>Full monthly calendar grid synchronizing Gregorian and Vedic dates, Amanta and Purnimanta month systems, and Hindu festival badges.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/03_choghadiya_hora.png</image:loc>
+      <image:title>Real-Time Day and Night Choghadiya and Planetary Hora</image:title>
+      <image:caption>Live countdown timers for Amrit, Shubh, Labh, Char, Rog, Kaal, and Udveg Muhurtas alongside 24 Chaldean Planetary Horas.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/04_kundali_ephemeris.png</image:loc>
+      <image:title>Triple Vedic Kundali Charts and Planetary Ephemeris</image:title>
+      <image:caption>North Indian Diamond, South Indian Square, and East Indian Bangla Vedic Janma Kundali horoscope charts with Shadbala and Sarvashtakavarga.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/05_vastu_compass.png</image:loc>
+      <image:title>16-Petal Vedic Vastu Shastra Compass</image:title>
+      <image:caption>Sensor-fused 16-zone Vastu Purusha Mandala with 8 Ashtadikpala directional guardians and architectural auspiciousness guidance.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/06_hindu_clock.png</image:loc>
+      <image:title>Traditional 60-Ghati Vedic Hindu Clock</image:title>
+      <image:caption>Classical Hindu timekeeper dividing the solar day into 60 Ghatis from local sunrise, with Pala, Vipala, and Ishta Kaal calculations.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/07_m3_settings.png</image:loc>
+      <image:title>Material 3 Settings and Customization</image:title>
+      <image:caption>Centralized settings for 8 Sanzo Wada color harmonies, Amanta and Purnimanta lunar months, Lahiri and KP Ayanamsa, and 4,500+ offline cities.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://j-a-y-e-s-h.github.io/Indian-calendar/screenshots/08_home_widgets.png</image:loc>
+      <image:title>Transparent Material 3 Android Home Screen Widgets</image:title>
+      <image:caption>Glanceable Android desktop home screen widgets for Daily Panchang summary, monthly calendar grid, and live Choghadiya timer.</image:caption>
+    </image:image>
+  </url>
+</urlset>
