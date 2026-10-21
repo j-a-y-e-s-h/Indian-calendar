@@ -1,6 +1,32 @@
-# robots.txt for Vedic Hindu Calendar, Panchang & Kundali
+# robots.txt for Vedic Hindu Calendar & Panchang
+# Allow all standard search engines and modern AI crawlers
+
 User-agent: *
 Allow: /
 
-# Sitemap Index
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap Index & LLM Manifest
 Sitemap: https://j-a-y-e-s-h.github.io/Indian-calendar/sitemap.xml

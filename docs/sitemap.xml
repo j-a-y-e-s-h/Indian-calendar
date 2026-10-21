@@ -47,4 +47,10 @@
       <image:caption>Glanceable Android desktop home screen widgets for Daily Panchang summary, monthly calendar grid, and live Choghadiya timer.</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://j-a-y-e-s-h.github.io/Indian-calendar/llms.txt</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
